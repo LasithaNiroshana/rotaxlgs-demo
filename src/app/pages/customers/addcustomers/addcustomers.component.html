@@ -1,0 +1,116 @@
+<h2>Add Customer Details</h2>
+<form (ngSubmit)="onSubmit()" class="addcustomer-form">
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Customer ID</mat-label>
+        <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="customer.customer_id" name="customer_id">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="customer.email" name="email">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Mobile No.</mat-label>
+        <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="customer.tel_no" name="tel_no">
+      </mat-form-field>
+      <br>
+    </div>
+  </mat-card>
+  <br>
+  <mat-divider>
+  </mat-divider>
+  <br>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+      <mat-form-field class="addcustomer-field">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput placeholder="John" [(ngModel)]="customer.first_name" name="first_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput placeholder="Doe" [(ngModel)]="customer.last_name" name="last_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Customer Type</mat-label>
+        <mat-select [(ngModel)]="customer.customer_type" name="customer_type">
+          <mat-option value="Cash">Cash</mat-option>
+          <mat-option value="Credit">Credit</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <br>
+    </div>
+  </mat-card>
+    <br>
+  <mat-divider></mat-divider>
+  <br>
+  Address
+  <br>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center " fxLayoutGap="20px">
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Address Line 1</mat-label>
+        <input type="text" matInput placeholder="No.24" [(ngModel)]="customer.address_ln1" name="address_ln1">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="addcustomer-field">
+        <mat-label>Address Line 2</mat-label>
+        <input type="text" matInput placeholder="Dalugama" [(ngModel)]="customer.address_ln2" name="address_ln2">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="addcustomer-field">
+        <mat-label>City/District</mat-label>
+        <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="customer.city" name="city">
+      </mat-form-field>
+      <br>
+     <br>
+     </div>
+  </mat-card>
+ <br>
+ <mat-card>
+  <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="350px">
+    <mat-form-field class="addcustomer-field">
+      <mat-label>Province</mat-label>
+      <mat-select [(ngModel)]="customer.province" name="province">
+        <mat-option value="Central">Central</mat-option>
+        <mat-option value="Eastern">Eastern</mat-option>
+        <mat-option value="North Central">North Central</mat-option>
+        <mat-option value="Nothern">Nothern</mat-option>
+        <mat-option value="North Western">North Western</mat-option>
+        <mat-option value="Sabaragamuwa">Sabaragamuwa</mat-option>
+        <mat-option value="Southern">Southern</mat-option>
+        <mat-option value="Uva">Uva</mat-option>
+        <mat-option value="Western">Western</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="addcustomer-field">
+      <mat-label>Postal Codes</mat-label>
+      <mat-select [(ngModel)]="customer.postal_code" name="postalcodes">
+        <mat-option value="31000">31000</mat-option>
+        <mat-option value="11450">11450</mat-option>
+        <mat-option value="81180">81180</mat-option>
+        <mat-option value="10115">10115</mat-option>
+        <mat-option value="12000">12000</mat-option>
+        <mat-option value="12550">12550</mat-option>
+        <mat-option value="20160">20160</mat-option>
+        <mat-option value="20400">20400</mat-option>
+        <mat-option value="21160">21160</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+ </mat-card>
+ <br>
+ <mat-divider></mat-divider>
+  <br><br>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <button class="submit-btn" mat-raised-button color="primary" click="onSubmit()">SUBMIT</button>
+  <button class="reset-btn" mat-raised-button>RESET</button>
+  </div>
+</form>
+

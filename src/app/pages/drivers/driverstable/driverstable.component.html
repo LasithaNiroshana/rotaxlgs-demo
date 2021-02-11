@@ -1,0 +1,60 @@
+<div *ngIf="drivers?.length>0;else noDrivers">
+  <table mat-table [dataSource]="drivers" class="mat-elevation-z8">
+    <!-- <ng-container matColumnDef="driver_id">
+      <th mat-header-cell *matHeaderCellDef> Driver ID </th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.driver_id}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="driver_name">
+      <th mat-header-cell *matHeaderCellDef>Driver Name</th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.first_name}}  {{drivers.last_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.address_ln1}},{{drivers.address_ln2}},{{drivers.city}} </td>
+    </ng-container>
+    <ng-container matColumnDef="license_no">
+      <th mat-header-cell *matHeaderCellDef>License Number</th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.license_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="license_expiry">
+      <th mat-header-cell *matHeaderCellDef>License Expiry Date</th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.license_expiry.seconds*1000 | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="mobile_no">
+      <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
+      <td mat-cell *matCellDef="let drivers"> {{drivers.mobile_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let orders">
+        <button mat-icon-button class="edit_btn" routerLinkActive="list-item-active" routerLink="/adddrivers" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let orders">
+        <button mat-icon-button class="dlt_btn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="driverColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: driverColumns;"></tr>
+  </table>
+  </div>
+
+  <ng-template #noDrivers>
+    <hr>
+    <h5>There are no current drivers registered</h5>
+  </ng-template>
+
+
+
+
+

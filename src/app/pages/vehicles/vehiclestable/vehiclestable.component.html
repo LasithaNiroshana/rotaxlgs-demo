@@ -1,0 +1,52 @@
+<div *ngIf="vehicles?.length>0;else noVehicles">
+  <table mat-table [dataSource]="vehicles" class="mat-elevation-z8">
+    <ng-container matColumnDef="vehicle_no">
+      <th mat-header-cell *matHeaderCellDef> Vehicle Number </th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.vehicle_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="rl_no">
+      <th mat-header-cell *matHeaderCellDef>Revenue License Number</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.revenuelicense_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="rl_expiry">
+      <th mat-header-cell *matHeaderCellDef>Revenue icense Expiry Date</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.revenuelicense_expiry}} </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_type">
+      <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.vehicle_type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="company_name">
+      <th mat-header-cell *matHeaderCellDef>Company Name</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.company_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.address_ln1}},{{vehicles.address_ln2}},{{vehicles.city}} </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_type">
+      <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.vehicle_type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="tel_no">
+      <th mat-header-cell *matHeaderCellDef>Telephone Number</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.telephone_no}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vehiclesColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vehiclesColumns;"></tr>
+  </table>
+  </div>
+
+  <ng-template #noVehicles>
+    <hr>
+    <h5>There are no current registered vehicles</h5>
+  </ng-template>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<div *ngIf="salesagents?.length>0;else noSalesAgents">
+  <table mat-table [dataSource]="salesagents" class="mat-elevation-z8">
+    <ng-container matColumnDef="agent_id">
+      <th mat-header-cell *matHeaderCellDef> Sales Agent ID </th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.agent_id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="agent_name">
+      <th mat-header-cell *matHeaderCellDef>Sales Agent Name</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.first_name}} {{salesagents.last_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef>DoB</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.dob.seconds*1000 | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nic_no">
+      <th mat-header-cell *matHeaderCellDef>NIC Number</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.nic_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="mobile_no">
+      <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.mobile_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.address_ln1}},{{salesagents.address_ln2}},{{salesagents.city}} </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_type">
+      <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.vehicle_type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_no">
+      <th mat-header-cell *matHeaderCellDef>Vehicle No</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.vehicle_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let orders">
+        <button mat-icon-button class="edit_btn" routerLinkActive="list-item-active" routerLink="/addsalesagents" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let orders">
+        <button mat-icon-button class="dlt_btn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="salesagentColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: salesagentColumns;"></tr>
+  </table>
+  </div>
+
+  <ng-template #noSalesAgents>
+    <hr>
+    <h5>There are no current registered sales agents</h5>
+  </ng-template>
+
+
+
+

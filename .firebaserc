@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "rotaxlgs-demo": {
+      "hosting": {
+        "rotaxlgs-demo": [
+          "rotaxlgs-demo"
+        ]
+      }
+    }
+  }
+}

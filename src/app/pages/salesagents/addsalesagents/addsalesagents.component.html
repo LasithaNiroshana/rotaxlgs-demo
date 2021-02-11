@@ -1,0 +1,136 @@
+<h2>Add Sales Agent Details</h2>
+<form (ngSubmit)="onSubmit()" class="addsalesagent-form">
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput placeholder="John" [(ngModel)]="salesAgent.first_name" name="first_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput placeholder="Doe" [(ngModel)]="salesAgent.last_name" name="last_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="salesAgent.email" name="email">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mobile No.</mat-label>
+        <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="salesAgent.mobile_no" name="mobile_no">
+      </mat-form-field>
+    </div>
+  </mat-card>
+  <br><br>
+  <mat-divider></mat-divider>
+  <br>
+  NIC Details
+  <br><br>
+ <mat-card>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+    <mat-form-field>
+      <mat-label>NIC Number</mat-label>
+      <input type="text" matInput placeholder="921564564V" [(ngModel)]="salesAgent.nic_no" name="nic_no">
+    </mat-form-field>
+    <!-- <mat-form-field>
+      <mat-label>Select Image</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>camera</mat-icon>
+    </mat-form-field> -->
+     <mat-form-field>
+    <mat-label>DOB</mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="salesAgent.dob" name="dob">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  <br>
+  </div>
+ </mat-card>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  Address
+  <br>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part2">
+      <mat-form-field class="signup-full-width">
+        <mat-label>Address Line 1</mat-label>
+        <input type="text" matInput placeholder="No.24" [(ngModel)]="salesAgent.address_ln1" name="address_ln1">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Address Line 2</mat-label>
+        <input type="text" matInput placeholder="Dalugama" [(ngModel)]="salesAgent.address_ln2" name="address_ln2">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>City/District</mat-label>
+        <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="salesAgent.city" name="city">
+      </mat-form-field>
+      <br>
+      <!-- <mat-form-field>
+        <mat-label>Province</mat-label>
+        <mat-select>
+          <mat-option value="Central">Central</mat-option>
+          <mat-option value="Eastern">Eastern</mat-option>
+          <mat-option value="North Central">North Central</mat-option>
+          <mat-option value="Nothern">Nothern</mat-option>
+          <mat-option value="North Western">North Western</mat-option>
+          <mat-option value="Sabaragamuwa">Sabaragamuwa</mat-option>
+          <mat-option value="Southern">Southern</mat-option>
+          <mat-option value="Uva">Uva</mat-option>
+          <mat-option value="Western">Western</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Postal Codes</mat-label>
+        <mat-select>
+          <mat-option value="31000">31000</mat-option>
+          <mat-option value="11450">11450</mat-option>
+          <mat-option value="81180">81180</mat-option>
+          <mat-option value="10115">10115</mat-option>
+          <mat-option value="12000">12000</mat-option>
+          <mat-option value="12550">12550</mat-option>
+          <mat-option value="20160">20160</mat-option>
+          <mat-option value="20400">	20400</mat-option>
+          <mat-option value="21160">21160</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+     </div>
+  </mat-card>
+ <br>
+ <mat-divider></mat-divider>
+  <br>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="680px" class="form-part3">
+      <mat-radio-group aria-label="Select an option">
+        Vehicle Type:
+        <br>
+        <label><input type="radio" [(ngModel)]="salesAgent.vehicle_type" value="Special" name="assigned_vehicle" name="vehicle_type1">Special</label>
+        <br>
+        <label><input type="radio" [(ngModel)]="salesAgent.vehicle_type" value="Normal" name="assigned_vehicle" name="vehicle_type2">Normal</label>
+      </mat-radio-group>
+    <mat-form-field>
+      <mat-label>Vehicle</mat-label>
+      <mat-select [(ngModel)]="salesAgent.assigned_vehicle" name="assigned_vehicle">
+        <mat-option value="NG-3100">NG-3100</mat-option>
+        <mat-option value="KD-1145">KD-1145</mat-option>
+        <mat-option value="HS-8118">HS-8118</mat-option>
+        <mat-option value="BAD-1115">BAD_1115</mat-option>
+      </mat-select>
+    </mat-form-field>
+   </div>
+  </mat-card>
+ <br><br>
+  <mat-divider></mat-divider>
+  <br>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
+    <button class="submit-btn" mat-raised-button color="primary" click="onSubmit()">SUBMIT</button>
+  <button class="reset-btn" mat-raised-button>RESET</button>
+  </div>
+</form>
+
+

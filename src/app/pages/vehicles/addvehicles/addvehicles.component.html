@@ -1,0 +1,81 @@
+<h2>Add Vehicle Details</h2>
+<form class="addvehicle-form" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+      <mat-form-field class>
+        <mat-label>Vehicle Number</mat-label>
+        <input type="text" matInput placeholder="KD-1564" [(ngModel)]="vehicle.vehicle_no" name="vehicle_no">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Revenue License Number</mat-label>
+        <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="vehicle.revenuelicense_no" name="revenuelicense_no">
+      </mat-form-field>
+    <br>
+     <mat-form-field>
+      <mat-label>Revenue License Expiry Date</mat-label>
+      <input matInput [matDatepicker]="picker1" [(ngModel)]="vehicle.revenuelicense_expiry" name="revenuelicense_expiry">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    </div>
+  </mat-card>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  Chose Vehicle Type:
+  <br><br>
+  <mat-card class="card">
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="vehicle.vehicle_type" name="vehicle_type">
+        <mat-radio-button value="Company Owned">Company Owned</mat-radio-button>
+        <br>
+        <mat-radio-button value="Hired">Hired</mat-radio-button>
+      </mat-radio-group>
+  </mat-card>
+ <br>
+ <mat-divider></mat-divider>
+  <br><br>
+  Fill Details if Hired Vehicle*
+  <mat-card class="card1">
+    <div fxLayout="row" fxLayoutAlign="left space-between" fxLayoutGap="360px" class="form-part3">
+      <mat-form-field>
+        <mat-label>Company Name</mat-label>
+        <input type="text" matInput placeholder="Doe" [(ngModel)]="vehicle.company_name" name="company_name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Telephone No.</mat-label>
+        <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="vehicle.telephone_no" name="telephone_no">
+      </mat-form-field>
+   </div>
+  </mat-card>
+ <br>
+ <mat-divider></mat-divider>
+ <br>
+ <mat-card>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part3">
+    <mat-form-field>
+      <mat-label>Address Line 1</mat-label>
+      <input type="text" matInput placeholder="No.24" [(ngModel)]="vehicle.address_ln1" name="address_ln1">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Address Line 2</mat-label>
+      <input type="text" matInput placeholder="Dalugama" [(ngModel)]="vehicle.address_ln2" name="address_ln2">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>City/District</mat-label>
+      <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="vehicle.city" name="city">
+    </mat-form-field>
+    <br>
+   </div>
+ </mat-card>
+ <br>
+ <mat-divider></mat-divider>
+  <br><br>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
+    <button class="submit-btn" mat-raised-button color="primary" click="onSubmit()">SUBMIT</button>
+  <button class="reset-btn" mat-raised-button>RESET</button>
+  </div>
+</form>
+

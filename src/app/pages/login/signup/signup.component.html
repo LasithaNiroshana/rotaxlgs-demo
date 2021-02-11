@@ -1,0 +1,44 @@
+<form class="signup-form" (ngSubmit)="createUser()">
+  <div class="error">
+    <div class="auth-error">
+      {{authError?.message}}
+    </div>
+  </div>
+  <mat-form-field class="signup-full-width">
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput placeholder="John" [(ngModel)]="user.first_name" name="first_name">
+  </mat-form-field>
+
+  <mat-form-field class="signup-full-width">
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput placeholder="Doe" [(ngModel)]="user.last_name" name="last_name">
+  </mat-form-field>
+
+  <mat-form-field class="signup-full-width">
+    <mat-label>ID No.</mat-label>
+    <input type="text" matInput placeholder="921561456V" [(ngModel)]="user.uid" name="uid">
+  </mat-form-field>
+
+  <mat-form-field class="signup-full-width">
+    <mat-label>Mobile No.</mat-label>
+    <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="user.mobile_no" name="mobile_no">
+  </mat-form-field>
+
+  <mat-form-field class="signup-full-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="user.email" name="email">
+  </mat-form-field>
+
+  <mat-form-field class="signup-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" name="password">
+  </mat-form-field>
+
+  <mat-form-field class="signup-full-width">
+    <mat-label>Confirm Password</mat-label>
+    <input type="password" matInput placeholder="Confirm Password">
+  </mat-form-field>
+
+  <button class="signup-btn" mat-raised-button color="primary" click="createUser()">SIGNUP</button>
+  <button class="reset-btn" mat-raised-button>RESET</button>
+</form>

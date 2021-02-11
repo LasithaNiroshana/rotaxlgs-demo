@@ -1,0 +1,95 @@
+<h2>Add Driver Details</h2>
+<form (ngSubmit)="onSubmit()" class="adddriver-form">
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput placeholder="John" [(ngModel)]="driver.first_name" name="first_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput placeholder="Doe" [(ngModel)]="driver.last_name" name="last_name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="driver.email" name="email">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mobile No.</mat-label>
+        <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="driver.mobile_no" name="mobile_no">
+      </mat-form-field>
+    </div>
+  </mat-card>
+  <br><br>
+  <mat-divider></mat-divider>
+  <br>
+  License Details
+  <br><br>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part1">
+      <mat-form-field>
+        <mat-label>License Number</mat-label>
+        <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="driver.license_no" name="license_no">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select Image</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>camera</mat-icon>
+      </mat-form-field>
+       <mat-form-field>
+      <mat-label>License Expiry Date</mat-label>
+      <input matInput [matDatepicker]="picker1" [(ngModel)]="driver.license_expiry" name="license_expiry">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker2" [(ngModel)]="driver.dob" name="dob">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br>
+    </div>
+  </mat-card>
+  <br><br>
+  <mat-divider></mat-divider>
+  <br>
+  Address
+  <br>
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part2">
+      <mat-form-field class="signup-full-width">
+        <mat-label>Address Line 1</mat-label>
+        <input type="text" matInput placeholder="No.24" [(ngModel)]="driver.address_ln1" name="address_ln1">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Address Line 2</mat-label>
+        <input type="text" matInput placeholder="Dalugama" [(ngModel)]="driver.address_ln2" name="address_ln2">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>City/District</mat-label>
+        <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="driver.city" name="city">
+      </mat-form-field>
+      <br>
+     </div>
+  </mat-card>
+ <br><br>
+ <!-- <mat-divider></mat-divider>
+  <br><br>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="form-part3">
+ </div>
+ <br><br> -->
+  <mat-divider></mat-divider>
+  <br>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
+    <button class="submit-btn" mat-raised-button color="primary" onclick="onSubmit()">SUBMIT</button>
+  <button class="reset-btn" mat-raised-button>RESET</button>
+  </div>
+</form>
+
+

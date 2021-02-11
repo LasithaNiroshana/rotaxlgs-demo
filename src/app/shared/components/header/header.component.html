@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- <span>
+      APP Logo
+    </span> -->
+    <p>Rotax Logistics</p>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+        <li>
+  <button mat-icon-button>
+    <mat-icon>settings</mat-icon>
+  </button>
+        </li>
+        <li>
+          <button mat-icon-button>
+            <mat-icon>help</mat-icon>
+          </button>
+                </li>
+                <li>
+                  <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon>person</mat-icon>
+                  </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Sign Out
+    <mat-icon>log_out</mat-icon>
+  </button>
+</mat-menu>
+                        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+  </mat-toolbar>
+

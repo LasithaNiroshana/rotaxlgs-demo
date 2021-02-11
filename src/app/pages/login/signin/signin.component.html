@@ -1,0 +1,14 @@
+<form class="signin-form" (ngSubmit)="signIn()">
+  <mat-form-field class="signin-full-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="email" name="email">
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field class="signin-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" [(ngModel)]="password" name="password">
+    <mat-icon matSuffix>lock</mat-icon>
+  </mat-form-field>
+  <a mat-raised-button class="loginbtn" click="signIn()" target="_blank">LOGIN</a>
+</form>
