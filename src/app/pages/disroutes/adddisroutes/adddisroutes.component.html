@@ -1,1 +1,35 @@
-<p>adddisroutes works!</p>
+
+<h1>Routes</h1>
+<form  class="addroute-form">
+    <div fxLayoutAlign="space-between start" fxLayoutGap="20px" class="route-form">
+
+  <div class="form-part1">
+  
+    <mat-card class="route">
+      <div  fxLayoutAlign="space-between start" fxLayoutGap="20px" class="route-form">
+        <mat-form-field class="route-field">
+          <mat-label>Route Name</mat-label>
+          <input type="text" matInput placeholder="R1" [(ngModel)]="disroute.route_name" name="route_name">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="city-field">
+          <mat-label>cities</mat-label>
+          <input type="text" matInput placeholder="" [(ngModel)]="city" name="city">
+        </mat-form-field>
+        <br>
+        <!--<P>{{towns}}</P> -->
+        <button class="btn" mat-raised-button color="primary" (click)="addcities()">+</button>
+    </div>
+  <br>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
+      <button class="submit-btn" mat-raised-button color="primary" (click)="onSubmit()">SUBMIT</button>
+    <button class="reset-btn" mat-raised-button>RESET</button>
+    </div>
+    </mat-card>
+  </div>
+    </div>
+</form>
+<br>
+<mat-divider></mat-divider>
+  
+  
