@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "rotaxlgs-demo"
+  "defaultProject": "rotaxlgs-demo",
+  "cli": {
+    "analytics": "b43c7786-1f97-4b0c-8f7a-d10ef74912a8"
+  }
 }
