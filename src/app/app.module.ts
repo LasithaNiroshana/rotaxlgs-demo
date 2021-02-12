@@ -38,6 +38,7 @@ import { OrdersnumchartComponent } from './pages/adminhome/ordersnumchart/orders
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
+import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admind
     OrdersnumchartComponent,
     HeaderComponent,
     FooterComponent,
-    AdmindashchartComponent
+    AdmindashchartComponent,
+    RoutetableComponent
   ],
   imports: [
     BrowserModule,
