@@ -18,7 +18,7 @@ export class SalesagentsService {
   getSalesagents(){
     return this.salesagents;
   }
-  addSalesAgent(salesagent:Salesagent){
-    this.salesagentsCollection.add(salesagent);
+  addSalesAgent(salesAgent:Salesagent){
+    this.salesagentsCollection.add(salesAgent);
   }
 }

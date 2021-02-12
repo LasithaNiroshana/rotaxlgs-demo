@@ -29,7 +29,8 @@ export class AddsalesagentsComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.salesAgent.agent_id!=''
+
+    if(this.salesAgent.first_name!=''
     && this.salesAgent.last_name!=''
     && this.salesAgent.nic_no!=''
     && this.salesAgent.mobile_no!=''
@@ -41,8 +42,8 @@ export class AddsalesagentsComponent implements OnInit {
     && this.salesAgent.assigned_vehicle!=''
     ){
       this.salesagentsservice.addSalesAgent(this.salesAgent);
-      console.log(this.salesAgent);
-      this.salesAgent.agent_id='';
+      alert('New sales agent data has been added successfully')
+    
     this.salesAgent.last_name='';
     this.salesAgent.nic_no='';
     this.salesAgent.mobile_no='';
@@ -52,8 +53,8 @@ export class AddsalesagentsComponent implements OnInit {
     this.salesAgent.city='';
     this.salesAgent.vehicle_type='';
     this.salesAgent.assigned_vehicle='';
-
     }
+    else{alert('Error...!!!')}
   }
 
 }

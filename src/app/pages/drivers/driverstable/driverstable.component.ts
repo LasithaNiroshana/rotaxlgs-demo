@@ -9,7 +9,7 @@ import {Driver} from '../../../models/drivers';
 })
 export class DriverstableComponent implements OnInit {
   drivers:Driver[];
-  driverColumns:string[]=['driver_name','address','license_no','license_expiry','email','mobile_no','edit','delete'];
+  driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','edit','delete'];
   constructor(private driversservice:DriversService) {
 
   }

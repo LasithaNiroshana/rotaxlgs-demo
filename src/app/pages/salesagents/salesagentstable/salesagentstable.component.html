@@ -8,29 +8,13 @@
       <th mat-header-cell *matHeaderCellDef>Sales Agent Name</th>
       <td mat-cell *matCellDef="let salesagents"> {{salesagents.first_name}} {{salesagents.last_name}} </td>
     </ng-container>
-    <ng-container matColumnDef="dob">
-      <th mat-header-cell *matHeaderCellDef>DoB</th>
-      <td mat-cell *matCellDef="let salesagents"> {{salesagents.dob.seconds*1000 | date}} </td>
-    </ng-container>
-    <ng-container matColumnDef="nic_no">
-      <th mat-header-cell *matHeaderCellDef>NIC Number</th>
-      <td mat-cell *matCellDef="let salesagents"> {{salesagents.nic_no}} </td>
-    </ng-container>
     <ng-container matColumnDef="mobile_no">
       <th mat-header-cell *matHeaderCellDef>Mobile Number</th>
       <td mat-cell *matCellDef="let salesagents"> {{salesagents.mobile_no}} </td>
     </ng-container>
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef>Address</th>
-      <td mat-cell *matCellDef="let salesagents"> {{salesagents.address_ln1}},{{salesagents.address_ln2}},{{salesagents.city}} </td>
-    </ng-container>
-    <ng-container matColumnDef="vehicle_type">
-      <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
-      <td mat-cell *matCellDef="let salesagents"> {{salesagents.vehicle_type}} </td>
-    </ng-container>
-    <ng-container matColumnDef="vehicle_no">
-      <th mat-header-cell *matHeaderCellDef>Vehicle No</th>
-      <td mat-cell *matCellDef="let salesagents"> {{salesagents.vehicle_no}} </td>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.email}} </td>
     </ng-container>
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
