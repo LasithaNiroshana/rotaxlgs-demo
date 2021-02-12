@@ -9,8 +9,8 @@
       <td mat-cell *matCellDef="let vehicles"> {{vehicles.revenuelicense_no}} </td>
     </ng-container>
     <ng-container matColumnDef="rl_expiry">
-      <th mat-header-cell *matHeaderCellDef>Revenue icense Expiry Date</th>
-      <td mat-cell *matCellDef="let vehicles"> {{vehicles.revenuelicense_expiry}} </td>
+      <th mat-header-cell *matHeaderCellDef>Revenue license Expiry Date</th>
+      <td mat-cell *matCellDef="let vehicles"> {{vehicles.revenuelicense_expiry.seconds*1000 | date}} </td>
     </ng-container>
     <ng-container matColumnDef="vehicle_type">
       <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
@@ -23,10 +23,6 @@
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef>Address</th>
       <td mat-cell *matCellDef="let vehicles"> {{vehicles.address_ln1}},{{vehicles.address_ln2}},{{vehicles.city}} </td>
-    </ng-container>
-    <ng-container matColumnDef="vehicle_type">
-      <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
-      <td mat-cell *matCellDef="let vehicles"> {{vehicles.vehicle_type}} </td>
     </ng-container>
     <ng-container matColumnDef="tel_no">
       <th mat-header-cell *matHeaderCellDef>Telephone Number</th>

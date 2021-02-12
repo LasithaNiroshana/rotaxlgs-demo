@@ -9,7 +9,7 @@ import {Salesagent} from '../../../models/salesagents';
 })
 export class SalesagentstableComponent implements OnInit {
   salesagents:Salesagent[];
-  salesagentColumns:string[]=['agent_id','agent_name','dob','nic_no','email','mobile_no','address','vehicle_type','vehicle_no','edit','delete'];
+  salesagentColumns:string[]=['agent_id','agent_name','mobile_no','email','edit','delete'];
   constructor(private salesagentservice:SalesagentsService) {
 
    }

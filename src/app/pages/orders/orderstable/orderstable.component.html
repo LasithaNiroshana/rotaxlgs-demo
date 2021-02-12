@@ -1,8 +1,12 @@
 <div *ngIf="orders?.length>0;else noOrders">
   <table mat-table [dataSource]="orders" class="mat-elevation-z8">
-    <ng-container matColumnDef="customer_id">
-      <th mat-header-cell *matHeaderCellDef> Customer ID </th>
-      <td mat-cell *matCellDef="let orders"> {{orders.customer_id}} </td>
+    <ng-container matColumnDef="order_date">
+      <th mat-header-cell *matHeaderCellDef>Order Date</th>
+      <td mat-cell *matCellDef="let orders"> {{ orders.order_date.seconds*1000 | date}}  </td>
+    </ng-container>
+    <ng-container matColumnDef="invoice_no">
+      <th mat-header-cell *matHeaderCellDef>Invoice Number</th>
+      <td mat-cell *matCellDef="let orders"> {{orders.invoice_no}} </td>
     </ng-container>
     <ng-container matColumnDef="customer_name">
       <th mat-header-cell *matHeaderCellDef>Customer Name</th>
@@ -10,28 +14,16 @@
     </ng-container>
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef>Address</th>
-      <td mat-cell *matCellDef="let orders"> {{orders.address_ln1}},{{orders.address_ln2}},{{orders.city}} </td>
+      <td mat-cell *matCellDef="let orders"> {{orders.address_ln1}},{{orders.address_ln2}} </td>
     </ng-container>
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef>City</th>
+      <td mat-cell *matCellDef="let orders"> {{orders.city}} </td>
+    </ng-container> 
     <ng-container matColumnDef="province">
       <th mat-header-cell *matHeaderCellDef>Province</th>
       <td mat-cell *matCellDef="let orders"> {{orders.province}} </td>
-    </ng-container>
-    <ng-container matColumnDef="postal_code">
-      <th mat-header-cell *matHeaderCellDef>Postal Code</th>
-      <td mat-cell *matCellDef="let orders"> {{orders.postal_code}} </td>
-    </ng-container>
-    <ng-container matColumnDef="invoice_no">
-      <th mat-header-cell *matHeaderCellDef>Invoice Number</th>
-      <td mat-cell *matCellDef="let orders"> {{orders.invoice_no}} </td>
-    </ng-container>
-    <ng-container matColumnDef="item_type">
-      <th mat-header-cell *matHeaderCellDef>Item Type</th>
-      <td mat-cell *matCellDef="let orders"> {{orders.item_type}} </td>
-    </ng-container>
-    <ng-container matColumnDef="order_date">
-      <th mat-header-cell *matHeaderCellDef>Order Date</th>
-      <td mat-cell *matCellDef="let orders"> {{ orders.order_date.seconds*1000 | date}}  </td>
-    </ng-container>
+    </ng-container>  
     <ng-container matColumnDef="route">
       <th mat-header-cell *matHeaderCellDef>Route</th>
       <td mat-cell *matCellDef="let orders"> {{orders.route}} </td>
