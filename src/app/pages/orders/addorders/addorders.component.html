@@ -21,10 +21,13 @@
           <mat-label>Customer ID</mat-label>
           <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="order.customer_id" name="customer_id">
         </mat-form-field>
+        <button class="btn" type= "button" mat-raised-button color="primary" (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button> 
       <br>
         <mat-form-field class="ord1-field">
           <mat-label>Customer Name</mat-label>
-          <input type="text" matInput placeholder="John" [(ngModel)]="order.customer_name" name="customer_name">
+          <input type="text"  matInput placeholder="John" [(ngModel)]="order.customer_name" name="customer_name">
         </mat-form-field>
         <br>
       </div>
@@ -46,9 +49,8 @@
         <mat-form-field class="ord2-field">
         <mat-label>Sales Agent</mat-label>
         <mat-select [(ngModel)]="order.sales_agent" name="sales_agent">
-          <mat-option value="Nimal">Nimal</mat-option>
-          <mat-option value="Kamal">Kamal</mat-option>
-          <mat-option value="Sunil">Sunil</mat-option>
+          <mat-option value="">- Select -</mat-option>
+          <mat-option *ngFor="let sales_agent of sales_agents" [value]="sales_agent.first_name">{{sales_agent.first_name}} {{sales_agent.last_name}}  </mat-option>
         </mat-select>
       </mat-form-field>
       <br>

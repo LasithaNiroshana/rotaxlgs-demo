@@ -20,7 +20,21 @@ export class OrdersService {
      return this.orders;
    }
 
+   getOrder(route){
+     return this.afs.collection('orders',  ref => ref.where('route', '==', route));
+   }
+
+
    addOrder(order:Order){
      this.ordersCollection.add(order);
    }
+
+  //  update(order){
+  //    console.log(status)
+  //    console.log(order[1].id)
+  //   this.afs.doc(`orders/${order[1].id}`).update({
+  //     status: 'not delivered',
+  //   })
+  //  }
+
 }
