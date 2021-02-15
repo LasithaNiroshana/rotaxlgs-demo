@@ -11,12 +11,11 @@ export class DriversService {
   drivers:Observable<Driver[]>;
 
   constructor(public afs:AngularFirestore) {
-    this.drivers=this.afs.collection('drivers').valueChanges();
     this.driversCollection=this.afs.collection('drivers');
    }
 
    getDrivers(){
-    return this.drivers;
+    return this.afs.collection('drivers').snapshotChanges();
   }
 
   addDriver(driver:Driver){

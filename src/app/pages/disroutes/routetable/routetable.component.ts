@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { DisroutsService } from 'src/app/services/disroutes.service';
-import {Disroute} from '../../../models/disroutes';
 
 @Component({
   selector: 'app-routetable',
@@ -8,23 +8,25 @@ import {Disroute} from '../../../models/disroutes';
   styleUrls: ['./routetable.component.scss']
 })
 export class RoutetableComponent implements OnInit {
-  route:Disroute[];
+  disroutes=[];
   routeColumns:string[]=['Route_Name','cities', 'edit','delete'];
-  constructor(private disroutsService:DisroutsService) {
+  constructor(private disroutsService:DisroutsService, private afs:AngularFirestore) {
 
   }
 
   ngOnInit(): void {
-    this.disroutsService.getRoutes().subscribe(route=>
-      {
-        console.log(route);
-        this.route=route;
-      }
-      );
+    this.disroutsService.getRoutes().subscribe(route=>{
+      this.disroutes=[];
+      route.forEach(r=>{
+        let disroute:any=r.payload.doc.data();
+        disroute.id=r.payload.doc.id;
+        this.disroutes.push(disroute);
+      });
+    });
   }
 
-  // delete(){
-  //   this.disroutsService.deleteRoute(this.route_name);
-  // }
+  deleteRoute(disroute){
+    this.afs.collection('routes').doc(disroute.id).delete();
+  }
 
 }

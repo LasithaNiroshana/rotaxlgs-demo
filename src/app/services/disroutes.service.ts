@@ -11,12 +11,11 @@ export class DisroutsService {
   disroute:Observable<Disroute[]>;
 
   constructor(public afs:AngularFirestore) {
-    this.disroute=this.afs.collection('routes').valueChanges();
     this.routeCollection=this.afs.collection('routes');
    }
 
    getRoutes(){
-    return this.disroute;
+    return this.afs.collection('routes').snapshotChanges();
   }
 
    addDisroutes(disroute:Disroute){

@@ -11,12 +11,11 @@ export class SalesagentsService {
   salesagents:Observable<Salesagent[]>;
 
   constructor(public afs:AngularFirestore) {
-    this.salesagents=this.afs.collection('salesagents').valueChanges();
     this.salesagentsCollection=this.afs.collection('salesagents');
   }
 
   getSalesagents(){
-    return this.salesagents;
+    return this.afs.collection('salesagents').snapshotChanges();
   }
   addSalesAgent(salesAgent:Salesagent){
     this.salesagentsCollection.add(salesAgent);

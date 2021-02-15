@@ -11,13 +11,8 @@ export class CustomersService {
   customers:Observable<Customer[]>;
 
   constructor(public afs:AngularFirestore) {
-    // this.customers=this.afs.collection('customers').valueChanges();
     this.customersCollection=this.afs.collection('customers');
   }
-
-  //  getCustomers(){
-  //    return this.customers;
-  //  }
 
    getCustomers(){
      return this.afs.collection('customers').snapshotChanges();
@@ -27,8 +22,5 @@ export class CustomersService {
 this.customersCollection.add(customer);
    }
 
-   deleteCustomer(){
-     this.customersCollection;
-   }
 }
 

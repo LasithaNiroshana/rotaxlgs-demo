@@ -22,6 +22,7 @@ import { AddvehiclesComponent } from './pages/vehicles/addvehicles/addvehicles.c
 import { ViewvehiclesComponent } from './pages/vehicles/viewvehicles/viewvehicles.component';
 import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclestable.component';
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
+import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path:'mainlogin',component:MainloginComponent},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
+  {path:'routetable',component:RoutetableComponent}
 ];
 
 @NgModule({
@@ -75,5 +77,6 @@ export const routingComponents=[
  VehiclestableComponent,
  MainloginComponent,
  SigninComponent,
- SignupComponent
+ SignupComponent,
+ RoutetableComponent,
 ]
