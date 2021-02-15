@@ -23,8 +23,13 @@ export class CustomersService {
      return this.afs.collection('customers').snapshotChanges();
    }
 
+   getspcustomer(custID){
+    return this.afs.collection('customers',  ref => ref.where('customer_id', '==', custID));
+    
+  }
+
    addCustomer(customer:Customer){
-this.customersCollection.add(customer);
+    this.customersCollection.add(customer);
    }
 
    deleteCustomer(){
