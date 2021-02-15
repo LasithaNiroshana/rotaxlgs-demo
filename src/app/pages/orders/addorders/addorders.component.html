@@ -49,9 +49,8 @@
         <mat-form-field class="ord2-field">
         <mat-label>Sales Agent</mat-label>
         <mat-select [(ngModel)]="order.sales_agent" name="sales_agent">
-          <mat-option value="Nimal">Nimal</mat-option>
-          <mat-option value="Kamal">Kamal</mat-option>
-          <mat-option value="Sunil">Sunil</mat-option>
+          <mat-option value="">- Select -</mat-option>
+          <mat-option *ngFor="let sales_agent of sales_agents" [value]="sales_agent.first_name">{{sales_agent.first_name}} {{sales_agent.last_name}}  </mat-option>
         </mat-select>
       </mat-form-field>
       <br>

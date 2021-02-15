@@ -3,6 +3,8 @@ import {OrdersService} from '../../../services/orders.service';
 import { Order } from '../../../models/order';
 import { Customer } from 'src/app/models/customer';
 import { CustomersService } from 'src/app/services/customers.service';
+import { SalesagentsService } from 'src/app/services/salesagents.service';
+import { Salesagent } from 'src/app/models/salesagents';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class AddordersComponent implements OnInit {
   customers:Customer[];
+  sales_agents: Salesagent[];
   
   order:Order={
   customer_id:'',
@@ -29,9 +32,14 @@ export class AddordersComponent implements OnInit {
   status:''
   }
 
-  constructor(private ordersService:OrdersService, private customerService: CustomersService) { }
+  constructor(private ordersService:OrdersService, private customerService: CustomersService, private salesagentService: SalesagentsService) { }
 
   ngOnInit(): void {
+    this.salesagentService.getSalesagents().subscribe(salesagents=>
+      {
+        console.log(salesagents);
+        this.sales_agents=salesagents;
+      });
   }
 
   routeSelector(){
@@ -105,6 +113,7 @@ this.order.sales_agent='';
   search(){
     this.customerService.getspcustomer(this.order.customer_id).snapshotChanges().subscribe(cus=>{
       this.customers=[];
+      if(cus.length>0){
       cus.forEach(c=>{
         let customer:any=c.payload.doc.data();
         customer.id=c.payload.doc.id;
@@ -116,7 +125,9 @@ this.order.sales_agent='';
         this.order.city=this.customers[0].city;
         this.order.province=this.customers[0].province;
         this.order.postal_code=this.customers[0].postal_code;
-  });
+  });}else{
+    alert("No customers has been registered under this Customer ID. Please check the Customer ID")
+  }
 });
 }
 
