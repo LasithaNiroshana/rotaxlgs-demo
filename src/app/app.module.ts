@@ -38,6 +38,7 @@ import { OrdersnumchartComponent } from './pages/adminhome/ordersnumchart/orders
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -79,9 +80,10 @@ import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admind
     MatSelectModule,
     MatFormFieldModule,
     MatExpansionModule,
+    MatDialogModule,
     AppRoutingModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

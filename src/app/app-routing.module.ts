@@ -44,10 +44,10 @@ const routes: Routes = [
   {path:'viewvehicles',component:ViewvehiclesComponent},
   {path:'addvehicles',component:AddvehiclesComponent},
   {path:'vehiclestable',component:VehiclestableComponent},
+  {path:'routetable',component:RoutetableComponent},
   {path:'mainlogin',component:MainloginComponent},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
-  {path:'routetable',component:RoutetableComponent}
 ];
 
 @NgModule({

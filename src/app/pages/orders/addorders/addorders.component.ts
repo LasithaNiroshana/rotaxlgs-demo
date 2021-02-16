@@ -13,9 +13,10 @@ import { Salesagent } from 'src/app/models/salesagents';
   styleUrls: ['./addorders.component.scss']
 })
 export class AddordersComponent implements OnInit {
+  [x: string]: any;
   customers:Customer[];
   sales_agents: Salesagent[];
-  
+
   order:Order={
   customer_id:'',
   customer_name:'',
@@ -38,7 +39,7 @@ export class AddordersComponent implements OnInit {
     this.salesagentService.getSalesagents().subscribe(salesagents=>
       {
         console.log(salesagents);
-        this.sales_agents=salesagents;
+        this.sales_agent=salesagents;
       });
   }
 

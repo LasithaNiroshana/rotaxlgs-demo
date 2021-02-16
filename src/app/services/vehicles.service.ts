@@ -11,12 +11,11 @@ export class VehiclesService {
   vehicles:Observable<Vehicle[]>;
 
   constructor(public afs:AngularFirestore) {
-    this.vehicles=this.afs.collection('vehicles').valueChanges();
     this.vehiclesCollection=this.afs.collection('vehicles');
   }
 
   getVehicles(){
-    return this.vehicles;
+    return this.afs.collection('vehicles').snapshotChanges();
   }
   addVehicle(vehicle:Vehicle){
     this.vehiclesCollection.add(vehicle);
