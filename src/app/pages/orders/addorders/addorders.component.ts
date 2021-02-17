@@ -39,13 +39,21 @@ export class AddordersComponent implements OnInit {
     private salesagentService: SalesagentsService,
     private routeService: DisroutsService) { }
 
-  ngOnInit(): void {
-    this.salesagentService.getSalesagents().subscribe(salesagents=>
-      {
-        console.log(salesagents);
-        this.sales_agent=salesagents;
+  ngOnInit(): void {this.salesagentService.getSalesagents().subscribe(sa=>{
+    this.sales_agents = [];
+    if(sa.length > 0){
+      sa.forEach(SA=>{
+        let SalesAgent:any=SA.payload.doc.data();
+        this.sales_agents.push(SalesAgent);
       });
+    }});
   }
+    // this.salesagentService.getSalesagents().subscribe(salesagents=>
+    //   {
+    //     console.log(salesagents);
+    //     this.sales_agent=salesagents;
+    //   });
+  
 
   routeSelector(){
     this.order.route = ''
