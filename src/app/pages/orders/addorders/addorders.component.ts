@@ -5,6 +5,7 @@ import { Customer } from 'src/app/models/customer';
 import { CustomersService } from 'src/app/services/customers.service';
 import { SalesagentsService } from 'src/app/services/salesagents.service';
 import { Salesagent } from 'src/app/models/salesagents';
+import { DisroutsService } from 'src/app/services/disroutes.service';
 
 
 @Component({
@@ -33,7 +34,10 @@ export class AddordersComponent implements OnInit {
   status:''
   }
 
-  constructor(private ordersService:OrdersService, private customerService: CustomersService, private salesagentService: SalesagentsService) { }
+  constructor(private ordersService:OrdersService, 
+    private customerService: CustomersService, 
+    private salesagentService: SalesagentsService,
+    private routeService: DisroutsService) { }
 
   ngOnInit(): void {
     this.salesagentService.getSalesagents().subscribe(salesagents=>
@@ -121,7 +125,6 @@ this.order.sales_agent='';
     }
   }
 
-
   search(){
     this.customerService.getspcustomer(this.order.customer_id).snapshotChanges().subscribe(cus=>{
       this.customers=[];
@@ -161,6 +164,5 @@ route() {
     }
   })
 }
-
 
 }

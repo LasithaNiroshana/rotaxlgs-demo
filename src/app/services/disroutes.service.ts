@@ -21,6 +21,7 @@ export class DisroutsService {
   getroute(city){
     return this.afs.collection('routes',  ref => ref.where('cities', 'array-contains', city));
    }
+  
 
    addDisroutes(disroute:Disroute){
     this.routeCollection.add(disroute);
