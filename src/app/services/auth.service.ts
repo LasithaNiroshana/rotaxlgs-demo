@@ -34,8 +34,15 @@ export class AuthService {
     return this.afauth.authState;
   }
 
-  signIn(user:User){
-    this.afauth.signInWithEmailAndPassword(user.email,user.password);
+  signIn(email:string,password:string){
+    this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
+      {
+        this.eventAuthError.next(error);
+      }).then(userCredentials=>{
+        if(userCredentials){
+        this.router.navigate(['/adminhome']);
+        }
+      });
   }
 
 

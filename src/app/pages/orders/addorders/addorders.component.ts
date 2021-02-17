@@ -125,12 +125,12 @@ this.order.sales_agent='';
   search(){
     this.customerService.getspcustomer(this.order.customer_id).snapshotChanges().subscribe(cus=>{
       this.customers=[];
+      console.log(cus);
       if(cus.length>0){
       cus.forEach(c=>{
         let customer:any=c.payload.doc.data();
         customer.id=c.payload.doc.id;
         this.customers.push(customer);
-        console.log(this.customers[0].first_name)
         this.order.customer_name=this.customers[0].first_name +' ' + this.customers[0].last_name ;
         this.order.address_ln1=this.customers[0].address_ln1;
         this.order.address_ln2=this.customers[0].address_ln2;
@@ -144,6 +144,7 @@ this.order.sales_agent='';
 }
 
 route() {
+  console.log(this.order.city);
   this.routeService.getroute(this.order.city).snapshotChanges().subscribe(route =>{
     try {
       this.routes = [];

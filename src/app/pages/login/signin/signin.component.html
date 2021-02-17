@@ -1,13 +1,13 @@
-<form class="signin-form" (ngSubmit)="signIn()">
+<form #loginform="ngForm" class="signin-form" (ngSubmit)="signIn()">
   <mat-form-field class="signin-full-width">
     <mat-label>Email</mat-label>
-    <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="email"  name="email">
+    <input type="email" matInput placeholder="abc@gmail.com" ngModel #email="ngModel"  name="email">
     <mat-icon matSuffix>email</mat-icon>
   </mat-form-field>
 
   <mat-form-field class="signin-full-width">
     <mat-label>Password</mat-label>
-    <input type="password" matInput placeholder="Enter your password here" [(ngModel)]="password"  name="password">
+    <input type="password" matInput placeholder="Enter your password here" ngModel #password="ngModel"  name="password">
     <mat-icon matSuffix>https</mat-icon>
   </mat-form-field>
 

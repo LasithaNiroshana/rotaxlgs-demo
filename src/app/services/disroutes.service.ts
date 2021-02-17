@@ -17,7 +17,7 @@ export class DisroutsService {
    getRoutes(){
     return this.afs.collection('routes').snapshotChanges();
   }
-  
+
   getroute(city){
     return this.afs.collection('routes',  ref => ref.where('cities', 'array-contains', city));
    }
