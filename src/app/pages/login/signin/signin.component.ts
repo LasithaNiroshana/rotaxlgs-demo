@@ -13,12 +13,9 @@ password:string;
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.authService.eventAuthError$.subscribe(data=>{
-      this.authError=data;
-    })
   }
   signIn(){
-    this.authService.signIn(this.email,this.password);
+    // this.authService.signIn(this.email,this.password);
   }
 
 }

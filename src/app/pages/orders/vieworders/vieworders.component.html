@@ -1,6 +1,7 @@
-<button mat-raised-button class="add-btn" routerLinkActive="list-item-active" routerLink="/addorders">Add Order</button>
-<br><br>
-<app-orderstable></app-orderstable>
-<br><br>
-<mat-divider></mat-divider>
-<br><br>
+<mat-tab-group>
+  <mat-tab label="View Orders"> <app-orderstable></app-orderstable>
+    <br><br>
+    <mat-divider></mat-divider>
+    <br><br></mat-tab>
+  <mat-tab label="Add Orders"><app-addorders></app-addorders></mat-tab>
+</mat-tab-group>

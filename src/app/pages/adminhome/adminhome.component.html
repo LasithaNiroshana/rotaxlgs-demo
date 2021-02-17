@@ -16,17 +16,14 @@
       </div>
       <mat-divider></mat-divider>
       <div>
-        <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/admindashboard">Dashboard</a>
-
         <mat-accordion>
-          <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/viewcustomers">Customers</a>
-    <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/vieworders">Orders</a>
-    <!-- <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/viewinvoices">Invoices</a> -->
-    <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/viewdrivers">Drivers</a>
-    <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/viewsalesagents">Sales Agents</a>
-    <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/viewvehicles">Vehicles</a>
-    <a mat-list-item class="listitem" routerLinkActive="list-item-active" routerLink="/viewdisroutes">Routes</a>
-
+          <a mat-list-item class="listitem" (click)="showDashboard()">Dashboard</a>
+          <a mat-list-item class="listitem" (click)="showCustomers()">Customers</a>
+          <a mat-list-item class="listitem" (click)="showDrivers()">Drivers</a>
+          <a mat-list-item class="listitem" (click)="showOrders()">Orders</a>
+          <a mat-list-item class="listitem" (click)="showRoutes()">Routes</a>
+          <a mat-list-item class="listitem" (click)="showSalesAgents()">Sales Agents</a>
+          <a mat-list-item class="listitem" (click)="showVehicles()">Vehicles</a>
     </mat-accordion>
       </div>
     </mat-nav-list>

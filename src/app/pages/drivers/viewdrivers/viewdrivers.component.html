@@ -1,6 +1,9 @@
-<button mat-raised-button class="add-btn" routerLinkActive="list-item-active" routerLink="/adddrivers">Add Driver</button>
-<br><br>
-<app-driverstable></app-driverstable>
-<br><br>
-<mat-divider></mat-divider>
-<br><br>
+<mat-tab-group>
+  <mat-tab label="View Drivers"><app-driverstable></app-driverstable>
+    <br><br>
+    <mat-divider></mat-divider>
+    <br><br></mat-tab>
+  <mat-tab label="Add Drivers">
+    <app-adddrivers></app-adddrivers>
+  </mat-tab>
+</mat-tab-group>

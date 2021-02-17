@@ -23,7 +23,7 @@
         </mat-form-field>
         <button class="btn" type= "button" mat-raised-button color="primary" (click)="search()">
           <mat-icon>search</mat-icon>
-        </button> 
+        </button>
       <br>
         <mat-form-field class="ord1-field">
           <mat-label>Customer Name</mat-label>
@@ -95,16 +95,6 @@
       <mat-label>City/District</mat-label>
       <input type="text" matInput placeholder="Kelaniya" (change)="routeSelector()" [(ngModel)]="order.city" name="city">
     </mat-form-field>
-    <!-- <mat-form-field>
-      <mat-label>Route</mat-label>
-      <mat-select [(ngModel)]="order.route" name="route">
-        <mat-option value="R1">R1</mat-option>
-        <mat-option value="R2">R2</mat-option>
-        <mat-option value="R3">R3</mat-option>
-        <mat-option value="R4">R4</mat-option>
-        <mat-option value="R5">R5</mat-option>
-      </mat-select>
-    </mat-form-field> -->
     <br>
    </div>
  </mat-card>
@@ -145,9 +135,9 @@
     </mat-card>
   </div>
 </div>
-<br><br>
+<br>
 <mat-divider></mat-divider>
-<br><br>
+<br>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
     <button class="submit-btn" mat-raised-button color="primary" click="onSubmit()">SUBMIT</button>
   <button class="reset-btn" mat-raised-button click="reset()">RESET</button>
