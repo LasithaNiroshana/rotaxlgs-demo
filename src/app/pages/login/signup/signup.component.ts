@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   mobile_no:'',
   email:'',
   password:'',
-  role:'',
+
   }
 
   constructor(private authService:AuthService) { }
@@ -24,11 +24,13 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.authService.eventAuthError$.subscribe(data=>{
       this.authError=data;
-    })
+    });
   }
 
   createUser(){
     this.authService.createUser(this.user);
   }
+
+
 
 }
