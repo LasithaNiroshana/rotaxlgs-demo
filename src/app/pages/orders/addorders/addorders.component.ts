@@ -77,39 +77,50 @@ this.order.item_type='';
 this.order.sales_agent='';
   }
 
-  onSubmit(){
-    if(this.order.invoice_no!=''
-    && this.order.customer_id!=''
-    && this.order.customer_name!=''
-    && this.order.address_ln1!=''
-    && this.order.address_ln2!=''
-    && this.order.city!=''
-    && this.order.province!=''
-    && this.order.postal_code!=''
-    && this.order.route!=''
-    && this.order.item_type!=''
-    && this.order.sales_agent!=''
-    && this.order.status!=''){
-      this.ordersService.addOrder(this.order);
-      alert('Order has been added successfully');
-      console.log(this.order);
-this.order.invoice_no='';
-this.order.customer_id='';
-this.order.customer_name='';
-this.order.address_ln1='';
-this.order.address_ln2='';
-this.order.city='';
-this.order.province='';
-this.order.postal_code='';
-this.order.route='';
-this.order.status='';
-this.order.item_type='';
-this.order.sales_agent='';
-    }
-    else{
-      alert('Error adding new order');
+  onSubmit() {
+    if (this.order.invoice_no != ''
+      && this.order.customer_id != ''
+      && this.order.customer_name != ''
+      && this.order.address_ln1 != ''
+      && this.order.address_ln2 != ''
+      && this.order.city != ''
+      && this.order.province != ''
+      && this.order.postal_code != ''
+      && this.order.item_type != ''
+      && this.order.sales_agent != ''
+      && this.order.status != '') {
+      console.log(this.order.invoice_no)
+      this.ordersService.getspOrder(this.order.invoice_no).snapshotChanges().subscribe(ord => {
+        if (ord.length > 0) {
+          alert('This invoice Number is already added.')
+        } else {
+          try {
+            this.ordersService.addOrder(this.order);
+            alert('Order has been added successfully');
+            console.log(this.order);
+            this.order.invoice_no = '';
+            this.order.customer_id = '';
+            this.order.customer_name = '';
+            this.order.address_ln1 = '';
+            this.order.address_ln2 = '';
+            this.order.city = '';
+            this.order.province = '';
+            this.order.postal_code = '';
+            this.order.route = '';
+            this.order.status = '';
+            this.order.item_type = '';
+            this.order.sales_agent = '';
+          }
+          catch (error) {
+            alert(error);
+          }
+        }
+      });
+    } else {
+      alert("Please fill all the fields.")
     }
   }
+
 
   search(){
     this.customerService.getspcustomer(this.order.customer_id).snapshotChanges().subscribe(cus=>{
@@ -131,5 +142,25 @@ this.order.sales_agent='';
   }
 });
 }
+
+route() {
+  this.routeService.getroute(this.order.city).snapshotChanges().subscribe(route =>{
+    try {
+      this.routes = [];
+    if(route.length > 0){
+      route.forEach(r => {
+        let route: any= r.payload.doc.data();
+        console.log(route)
+        this.routes.push(route);
+        console.log(this.routes[0].route_name)
+        this.order.route = this.routes[0].route_name;
+      });
+    }
+    } catch (error) {
+      console.log(error)
+    }
+  })
+}
+
 
 }

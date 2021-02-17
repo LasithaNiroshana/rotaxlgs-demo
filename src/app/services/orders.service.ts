@@ -20,6 +20,11 @@ export class OrdersService {
      return this.orders;
    }
 
+   
+   getspOrder(invoice_no){
+    return this.afs.collection('orders',  ref => ref.where('invoice_no', '==', invoice_no));
+  }
+
    getOrder(route){
      return this.afs.collection('orders',  ref => ref.where('route', '==', route));
    }
