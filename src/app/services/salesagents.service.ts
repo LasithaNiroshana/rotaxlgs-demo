@@ -7,17 +7,20 @@ import {Salesagent} from '../../app/models/salesagents';
   providedIn: 'root'
 })
 export class SalesagentsService {
-  salesagentsCollection:AngularFirestoreCollection<Salesagent>;
-  salesagents:Observable<Salesagent[]>;
+  salesagentsCollection: AngularFirestoreCollection<Salesagent>;
+  salesagents: Observable<Salesagent[]>;
 
-  constructor(public afs:AngularFirestore) {
-    this.salesagentsCollection=this.afs.collection('salesagents');
+  constructor(public afs: AngularFirestore) {
+    this.salesagentsCollection = this.afs.collection('salesagents');
   }
 
+  // tslint:disable-next-line: typedef
   getSalesagents(){
     return this.afs.collection('salesagents').snapshotChanges();
   }
-  addSalesAgent(salesAgent:Salesagent){
+
+  // tslint:disable-next-line: typedef
+  addSalesAgent(salesAgent: Salesagent){
     this.salesagentsCollection.add(salesAgent);
   }
 }
