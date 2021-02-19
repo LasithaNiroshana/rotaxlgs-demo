@@ -57,9 +57,9 @@ export class AuthService {
       this.insertUserData(userCredentials).then(()=>{
         this.router.navigate(['/adminhome']);
       });
-    }).catch(error=>{
-      this.eventAuthError.next(error);
     })
+    // .catch(error=>{
+    //   this.eventAuthError.next(error);
   }
 
   signOut(){
@@ -81,7 +81,7 @@ export class AuthService {
   }
 
   checkUserProfile(userCredentials:firebase.default.auth.UserCredential){
-    return this.afs.collection('users').doc(userCredentials.user.uid).snapshotChanges();
+    return this.afs.collection('users').doc(userCredentials.user.uid).snapshotChanges().subscribe();
   }
 
 
