@@ -39,8 +39,6 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
-import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +53,6 @@ import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenth
     HeaderComponent,
     FooterComponent,
     AdmindashchartComponent,
-    SalesagenthomeComponent,
-    SalesagenthometabelComponent,
   ],
   imports: [
     BrowserModule,

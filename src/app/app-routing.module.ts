@@ -44,6 +44,10 @@ const routes: Routes = [
 children:[
   {path:'drdeliverylist',component:DrdeliverylistComponent}
 ]},
+{path:'salesagenthome',component: SalesagenthomeComponent,
+    children:[
+    {path: 'salesagenthometable', component: SalesagenthometabelComponent}
+]},
   {path:'**',component:MainloginComponent},
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
@@ -59,10 +63,6 @@ children:[
   {path:'routetable',component:RoutetableComponent},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
-  {path:'salesagenthome',component: SalesagenthomeComponent,
-    children:[
-    {path: 'salesagenthometable', component: SalesagenthometabelComponent}
-]},
 ];
 
 @NgModule({
