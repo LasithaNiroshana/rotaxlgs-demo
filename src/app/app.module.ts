@@ -23,7 +23,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 // import {Chart} from 'chart.js';
 import { MatTableModule } from '@angular/material/table';
@@ -85,6 +85,7 @@ import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenth
     MatFormFieldModule,
     MatExpansionModule,
     MatDialogModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
