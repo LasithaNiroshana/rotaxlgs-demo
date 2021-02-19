@@ -23,6 +23,8 @@ import { ViewvehiclesComponent } from './pages/vehicles/viewvehicles/viewvehicle
 import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclestable.component';
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
+import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
+import { DrdeliverylistComponent } from './pages/drivershome/drdeliverylist/drdeliverylist.component';
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -36,6 +38,11 @@ const routes: Routes = [
     {path:'viewvehicles',component:ViewvehiclesComponent},
   ]
 },
+{path:'drivershome',component:DrivershomeComponent,
+children:[
+  {path:'drdeliverylist',component:DrdeliverylistComponent}
+]},
+  {path:'**',component:MainloginComponent},
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
   {path:'adddisroutes',component:AdddisroutesComponent},
@@ -48,7 +55,6 @@ const routes: Routes = [
   {path:'addvehicles',component:AddvehiclesComponent},
   {path:'vehiclestable',component:VehiclestableComponent},
   {path:'routetable',component:RoutetableComponent},
-  {path:'mainlogin',component:MainloginComponent},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
 ];
@@ -82,4 +88,5 @@ export const routingComponents=[
  SigninComponent,
  SignupComponent,
  RoutetableComponent,
+ DrivershomeComponent
 ]

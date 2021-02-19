@@ -50,6 +50,7 @@ export class AuthService {
   createUser(user:User){
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
+      console.log(userCredentials);
       userCredentials.user.updateProfile({
         displayName:user.first_name+'  '+user.last_name
       });
@@ -69,16 +70,18 @@ export class AuthService {
   }
 
   insertUserData(userCredentials:firebase.default.auth.UserCredential){
-    return this.afs.doc('users/${userCredentials.user.uid}').set({
+    return this.afs.collection('users').doc(userCredentials.user.uid).set({
       email:this.newUser.email,
       firstName:this.newUser.first_name,
       lastName:this.newUser.last_name,
-      uid:this.newUser.uid,
+      id_no:this.newUser.id_no,
       mobileNumber:this.newUser.mobile_no,
-      roles:{
-        subscriber:true
-      }
+      role:this.newUser.role
     });
+  }
+
+  checkUserProfile(userCredentials:firebase.default.auth.UserCredential){
+    return this.afs.collection('users').doc(userCredentials.user.uid).snapshotChanges();
   }
 
 

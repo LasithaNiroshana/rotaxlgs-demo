@@ -12,11 +12,11 @@ export class SignupComponent implements OnInit {
   user:User={
     first_name:'',
   last_name:'',
-  uid:'',
+  id_no:'',
   mobile_no:'',
   email:'',
   password:'',
-
+  role:''
   }
 
   constructor(private authService:AuthService) { }
@@ -30,7 +30,5 @@ export class SignupComponent implements OnInit {
   createUser(){
     this.authService.createUser(this.user);
   }
-
-
 
 }
