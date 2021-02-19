@@ -25,6 +25,8 @@ import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admind
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
 import { DrdeliverylistComponent } from './pages/drivershome/drdeliverylist/drdeliverylist.component';
+import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
+import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -57,6 +59,10 @@ children:[
   {path:'routetable',component:RoutetableComponent},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
+  {path:'salesagenthome',component: SalesagenthomeComponent,
+    children:[
+    {path: 'salesagenthometable', component: SalesagenthometabelComponent}
+]},
 ];
 
 @NgModule({
@@ -87,6 +93,8 @@ export const routingComponents=[
  MainloginComponent,
  SigninComponent,
  SignupComponent,
+ SalesagenthometabelComponent,
+ SalesagenthomeComponent,
  RoutetableComponent,
  DrivershomeComponent
 ]

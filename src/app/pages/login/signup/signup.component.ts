@@ -10,7 +10,7 @@ import {User} from '../../../models/user';
 export class SignupComponent implements OnInit {
   authError:any;
   user:User={
-    first_name:'',
+  first_name:'',
   last_name:'',
   id_no:'',
   mobile_no:'',
