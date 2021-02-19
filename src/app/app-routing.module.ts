@@ -23,6 +23,9 @@ import { ViewvehiclesComponent } from './pages/vehicles/viewvehicles/viewvehicle
 import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclestable.component';
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
+import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
+import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
+
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -51,6 +54,10 @@ const routes: Routes = [
   {path:'mainlogin',component:MainloginComponent},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
+  {path:'salesagenthome',component: SalesagenthomeComponent,
+    children:[
+    {path: 'salesagenthometable', component: SalesagenthometabelComponent}
+]},
 ];
 
 @NgModule({
@@ -82,4 +89,6 @@ export const routingComponents=[
  SigninComponent,
  SignupComponent,
  RoutetableComponent,
+ SalesagenthomeComponent,
+ SalesagenthometabelComponent
 ]

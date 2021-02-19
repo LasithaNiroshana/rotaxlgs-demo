@@ -17,12 +17,15 @@ export class OrdersService {
    }
 
    getOrders(){
-     return this.orders;
+     return this.afs.collection('orders').snapshotChanges();
    }
 
-   
    getspOrder(invoice_no){
     return this.afs.collection('orders',  ref => ref.where('invoice_no', '==', invoice_no));
+  }
+
+  getSAOrder(name){
+    return this.afs.collection('orders',  ref => ref.where('sales_agent', '==', name));
   }
 
    getOrder(route){
