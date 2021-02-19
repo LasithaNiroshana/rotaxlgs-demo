@@ -12,10 +12,14 @@ export class AdmindashchartComponent implements OnInit {
   constructor(private ordersservice:OrdersService) {
    }
 
-  ngOnInit(): void {
-    this.ordersservice.getOrders().subscribe(orders=>{
-      console.log(orders);
-      this.orders=orders;
+   ngOnInit(): void {
+    this.ordersservice.getOrders().subscribe(order=>{
+      this.orders=[];
+      order.forEach(o=>{
+        let ordes:any = o.payload.doc.data();
+        ordes.id = o.payload.doc.id;
+        this.orders.push(ordes);
+      })
     });
   }
 

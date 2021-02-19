@@ -34,7 +34,7 @@ export class AuthService {
     return this.afauth.authState;
   }
 
-  signIn(email:string,password:string){
+  signIn(email:string, password:string){
     this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
       {
         this.eventAuthError.next(error);
@@ -83,7 +83,6 @@ export class AuthService {
   checkUserProfile(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).snapshotChanges();
   }
-
 
   canRead(user:User):boolean{
     const allowed=['admin','driver','storekeeper','salesagent']

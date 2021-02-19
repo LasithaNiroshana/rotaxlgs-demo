@@ -21,6 +21,8 @@ user:User={
     // });
   }
   signIn(){
+    console.log(this.user.email)
+    console.log(this.user.password)
     this.authService.signIn(this.user.email,this.user.password);
   }
 

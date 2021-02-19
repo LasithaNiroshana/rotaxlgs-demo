@@ -23,14 +23,10 @@ import { ViewvehiclesComponent } from './pages/vehicles/viewvehicles/viewvehicle
 import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclestable.component';
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
-<<<<<<< HEAD
-import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
-import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
-
-=======
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
 import { DrdeliverylistComponent } from './pages/drivershome/drdeliverylist/drdeliverylist.component';
->>>>>>> 46b858e820b9e15594ae29f4c6a33615abdbaade
+import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
+import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -97,11 +93,8 @@ export const routingComponents=[
  MainloginComponent,
  SigninComponent,
  SignupComponent,
- RoutetableComponent,
-<<<<<<< HEAD
+ SalesagenthometabelComponent,
  SalesagenthomeComponent,
- SalesagenthometabelComponent
-=======
+ RoutetableComponent,
  DrivershomeComponent
->>>>>>> 46b858e820b9e15594ae29f4c6a33615abdbaade
 ]
