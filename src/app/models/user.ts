@@ -1,17 +1,17 @@
 export interface User{
   first_name?:string;
   last_name?:string;
-  uid?:string;
+  id_no?:string;
   mobile_no?:string;
   email?:string;
   password?:string;
-  role?:Roles;
+  role?:string;
   photo_url?:string;
 }
 
-export interface Roles{
-  admin?:boolean;
-  driver?:boolean;
-  store_keeper?:boolean;
-  sales_agent?:boolean;
-}
+// export interface Roles{
+//   admin?:string;
+//   driver?:string;
+//   store_keeper?:string;
+//   sales_agent?:string;
+// }

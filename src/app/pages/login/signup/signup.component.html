@@ -16,7 +16,7 @@
 
   <mat-form-field class="signup-full-width">
     <mat-label>ID No.</mat-label>
-    <input type="text" matInput placeholder="921561456V" [(ngModel)]="user.uid" name="uid">
+    <input type="text" matInput placeholder="921561456V" [(ngModel)]="user.id_no" name="uid">
   </mat-form-field>
 
   <mat-form-field class="signup-full-width">
@@ -24,15 +24,15 @@
     <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="user.mobile_no" name="mobile_no">
   </mat-form-field>
 
-  <!-- <mat-form-field class="ord2-field">
-    <mat-label>Sales Agent</mat-label>
+  <mat-form-field class="signup-full-width">
+    <mat-label>Choose Your Role</mat-label>
     <mat-select [(ngModel)]="user.role" name="sales_agent">
       <mat-option value="Driver">Driver</mat-option>
       <mat-option value="Admin">Admin</mat-option>
       <mat-option value="Store Keeper">Store Keeper</mat-option>
       <mat-option value="Sales Agent">Sales Agent</mat-option>
     </mat-select>
-  </mat-form-field> -->
+  </mat-form-field>
 
   <mat-form-field class="signup-full-width">
     <mat-label>Email</mat-label>
