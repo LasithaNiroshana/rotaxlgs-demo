@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {User} from '../../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute,Router} from '@angular/router';
-
+import {MediaObserver,MediaChange} from '@angular/flex-layout';
+import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-adminhome',
   templateUrl: './adminhome.component.html',
   styleUrls: ['./adminhome.component.scss']
 })
-export class AdminhomeComponent implements OnInit {
+export class AdminhomeComponent implements OnInit,OnDestroy {
+  @Input()
+  toggleOpen:boolean;
   user:firebase.default.User;
-  constructor(private authService:AuthService,private afs:AngularFirestore,private router:Router,private route:ActivatedRoute) { }
+  mediaSub:Subscription;
+  deviceXs:boolean;
+  constructor(private authService:AuthService,private afs:AngularFirestore,private router:Router,
+    private route:ActivatedRoute, public mediaObserver:MediaObserver) { }
 
   ngOnInit(): void {
     this.authService.getUserState().subscribe(user=>{
       this.user=user;
+      this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
+        console.log(result.mqAlias);
+        this.deviceXs=result.mqAlias==='xs'?true:false;
+      });
     })
+  }
+
+  ngOnDestroy(){
+    this.mediaSub.unsubscribe();
   }
 
   showDashboard(){
@@ -49,6 +63,10 @@ export class AdminhomeComponent implements OnInit {
 
   logOut(){
     this.authService.signOut();
+  }
+
+  toggleNav(){
+    this.toggleOpen=!this.toggleOpen;
   }
 
 }

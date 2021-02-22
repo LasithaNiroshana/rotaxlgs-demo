@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import {AuthService} from '../../../services/auth.service'
 
 @Component({
@@ -7,7 +8,8 @@ import {AuthService} from '../../../services/auth.service'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  @Output()
+  toggleClicked=new EventEmitter();
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -15,6 +17,10 @@ export class HeaderComponent implements OnInit {
 
   logOut(){
     this.authService.signOut();
+  }
+
+  toggleNav(){
+    this.toggleClicked.emit();
   }
 
 }

@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header (toggleClicked)="toggleNav()"></app-header>
 <mat-drawer-container class="drawer-container">
-  <mat-drawer class="drawer" mode="side" [opened]="true">
+  <mat-drawer class="drawer" mode="side" [opened]="toggleOpen">
     <mat-nav-list class="sidenav">
       <div class="profile-card">
         <div class="header" >

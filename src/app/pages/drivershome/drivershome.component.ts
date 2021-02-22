@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
 
 @Component({
@@ -7,14 +7,19 @@ import { ActivatedRoute,Router} from '@angular/router';
   styleUrls: ['./drivershome.component.scss']
 })
 export class DrivershomeComponent implements OnInit {
-
+@Output()
+toggleOpen:boolean;
   constructor(private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
+  toggleNav(){
+    this.toggleOpen=!this.toggleOpen;
+  }
+
   showDeliveryList(){
-    this.router.navigate(['drdeliverylist'],{relativeTo:this.route});
+    this.router.navigate(['deliverylist'],{relativeTo:this.route});
   }
 
 }

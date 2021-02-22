@@ -1,6 +1,7 @@
 <h2>Add Customer Details</h2>
 <form (ngSubmit)="onSubmit()" class="addcustomer-form">
-  <div fxLayout="row" fxLayoutAlign="space-between center " fxLayoutGap="20px">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <!-- <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="20px"> -->
     <mat-card class="cus1">
       <div >
         <mat-form-field class="cus1-field">
@@ -44,6 +45,7 @@
       <br>
       </div>
     </mat-card>
+    <!-- </div> -->
   </div>
   <br><br>
   <mat-divider>
@@ -64,18 +66,17 @@
           <mat-label>Address Line 2</mat-label>
           <input type="text" matInput placeholder="Dalugama" [(ngModel)]="customer.address_ln2" name="address_ln2">
         </mat-form-field>
-        <br>
-        <mat-form-field class="cus3-field">
-          <mat-label>City/District</mat-label>
-          <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="customer.city" name="city">
-        </mat-form-field>
-        <br>
        <br>
        </div>
     </mat-card>
     <mat-card class="cus4">
       <div>
         <mat-form-field class="cus4-field">
+          <mat-label>City/District</mat-label>
+          <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="customer.city" name="city">
+        </mat-form-field>
+        <mat-form-field class="cus4-field">
+          <br>
           <mat-label>Province</mat-label>
           <mat-select [(ngModel)]="customer.province" name="province">
             <mat-option value="Central">Central</mat-option>
@@ -87,21 +88,6 @@
             <mat-option value="Southern">Southern</mat-option>
             <mat-option value="Uva">Uva</mat-option>
             <mat-option value="Western">Western</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="cus4-field">
-          <mat-label>Postal Codes</mat-label>
-          <mat-select [(ngModel)]="customer.postal_code" name="postalcodes">
-            <mat-option value="31000">31000</mat-option>
-            <mat-option value="11450">11450</mat-option>
-            <mat-option value="81180">81180</mat-option>
-            <mat-option value="10115">10115</mat-option>
-            <mat-option value="12000">12000</mat-option>
-            <mat-option value="12550">12550</mat-option>
-            <mat-option value="20160">20160</mat-option>
-            <mat-option value="20400">20400</mat-option>
-            <mat-option value="21160">21160</mat-option>
           </mat-select>
         </mat-form-field>
         </div>

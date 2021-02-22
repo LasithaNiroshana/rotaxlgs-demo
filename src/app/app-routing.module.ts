@@ -24,9 +24,10 @@ import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclest
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-import { DrdeliverylistComponent } from './pages/drivershome/drdeliverylist/drdeliverylist.component';
+
 import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
 import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
+import { DeliverylistComponent } from './pages/drivershome/deliverylist/deliverylist.component';
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -42,7 +43,7 @@ const routes: Routes = [
 },
 {path:'drivershome',component:DrivershomeComponent,
 children:[
-  {path:'drdeliverylist',component:DrdeliverylistComponent}
+  {path:'deliverylist',component:DeliverylistComponent}
 ]},
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[

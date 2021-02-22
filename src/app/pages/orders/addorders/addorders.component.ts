@@ -25,7 +25,6 @@ export class AddordersComponent implements OnInit {
   address_ln2:'',
   city:'',
   province:'',
-  postal_code:'',
   invoice_no:'',
   item_type:'',
   order_date:new Date(),
@@ -34,8 +33,8 @@ export class AddordersComponent implements OnInit {
   status:''
   }
 
-  constructor(private ordersService:OrdersService, 
-    private customerService: CustomersService, 
+  constructor(private ordersService:OrdersService,
+    private customerService: CustomersService,
     private salesagentService: SalesagentsService,
     private routeService: DisroutsService) { }
 
@@ -53,7 +52,7 @@ export class AddordersComponent implements OnInit {
     //     console.log(salesagents);
     //     this.sales_agent=salesagents;
     //   });
-  
+
 
   routeSelector(){
     this.order.route = ''
@@ -82,7 +81,6 @@ this.order.address_ln1='';
 this.order.address_ln2='';
 this.order.city='';
 this.order.province='';
-this.order.postal_code='';
 this.order.route='';
 this.order.status='';
 this.order.item_type='';
@@ -97,7 +95,6 @@ this.order.sales_agent='';
       && this.order.address_ln2 != ''
       && this.order.city != ''
       && this.order.province != ''
-      && this.order.postal_code != ''
       && this.order.item_type != ''
       && this.order.sales_agent != ''
       && this.order.status != '') {
@@ -117,7 +114,6 @@ this.order.sales_agent='';
             this.order.address_ln2 = '';
             this.order.city = '';
             this.order.province = '';
-            this.order.postal_code = '';
             this.order.route = '';
             this.order.status = '';
             this.order.item_type = '';
@@ -147,7 +143,6 @@ this.order.sales_agent='';
         this.order.address_ln2=this.customers[0].address_ln2;
         this.order.city=this.customers[0].city;
         this.order.province=this.customers[0].province;
-        this.order.postal_code=this.customers[0].postal_code;
   });}else{
     alert("No customers has been registered under this Customer ID. Please check the Customer ID")
   }

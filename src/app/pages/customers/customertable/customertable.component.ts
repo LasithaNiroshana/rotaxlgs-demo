@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy,Input } from '@angular/core';
 import {CustomersService} from '../../../services/customers.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import {MediaObserver,MediaChange} from '@angular/flex-layout';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-customertable',
@@ -8,9 +10,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./customertable.component.scss']
 })
 export class CustomertableComponent implements OnInit {
+  @Input()
+  mediaSub:Subscription;
+  deviceXs:boolean;
   customers=[];
-  customerColumns:string[]=['customer_id','customer_name','address','province','postal_code','email','telephone_no','customer_type','edit','delete'];
-  constructor(private customersservice:CustomersService,private afs:AngularFirestore) { }
+  customerColumns:string[]=['customer_id','customer_name','address','province','email','telephone_no','customer_type','edit','delete'];
+  constructor(private customersservice:CustomersService,private afs:AngularFirestore, public mediaObserver:MediaObserver) { }
 
   ngOnInit(): void {
     this.customersservice.getCustomers().subscribe(cus=>{
@@ -22,7 +27,16 @@ export class CustomertableComponent implements OnInit {
         console.log(customer.id);
       });
     });
+
+    this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
+      this.deviceXs=result.mqAlias==='xs'?true:false;
+    });
   }
+
+  ngOnDestroy(){
+    this.mediaSub.unsubscribe();
+  }
+
   deleteCustomers(customer){
     this.afs.collection('customers').doc(customer.id).delete();
   }

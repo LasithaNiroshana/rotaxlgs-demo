@@ -6,7 +6,6 @@ export interface Customer{
   address_ln2?:string;
   city?:string;
   province?:string;
-  postal_code?:string;
   email?:string;
   tel_no?:string;
   customer_type?:string;

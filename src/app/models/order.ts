@@ -5,7 +5,6 @@ export interface Order{
   address_ln2?:string;
   city?:string;
   province?:string;
-  postal_code?:string;
   invoice_no?:string;
   item_type?:string;
   order_date?:Date;

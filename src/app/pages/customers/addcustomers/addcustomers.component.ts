@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {CustomersService} from '../../../services/customers.service';
 import {Customer} from '../../../models/customer';
+import {MediaObserver,MediaChange} from '@angular/flex-layout';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-addcustomers',
   templateUrl: './addcustomers.component.html',
   styleUrls: ['./addcustomers.component.scss']
 })
-export class AddcustomersComponent implements OnInit {
+export class AddcustomersComponent implements OnInit,OnDestroy {
+  @Input()
+  mediaSub:Subscription;
+  deviceXs:boolean;
+
 customer:Customer={
   customer_id:'',
   first_name:'',
@@ -17,15 +23,21 @@ customer:Customer={
   address_ln2:'',
   city:'',
   province:'',
-  postal_code:'',
   tel_no:'',
   customer_type:'',
 }
 
-  constructor(private customersService:CustomersService) {
+  constructor(private customersService:CustomersService,public mediaObserver:MediaObserver) {
    }
 
   ngOnInit(): void {
+    this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
+      this.deviceXs=result.mqAlias==='xs'?true:false;
+    });
+  }
+
+  ngOnDestroy(){
+    this.mediaSub.unsubscribe();
   }
 
   onSubmit(){
@@ -37,7 +49,6 @@ customer:Customer={
     && this.customer.address_ln2!=''
     && this.customer.city!=''
     && this.customer.province!=''
-    && this.customer.postal_code!=''
     && this.customer.email!=''
     && this.customer.tel_no!=''
     && this.customer.customer_type!=''){
@@ -52,7 +63,6 @@ customer:Customer={
       this.customer.address_ln2='';
       this.customer.city='';
       this.customer.province='';
-      this.customer.postal_code='';
       this.customer.email='' ;
       this.customer.tel_no='';
       this.customer.customer_type='';

@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header (toggleClicked)="toggleNav()"></app-header>
 <mat-drawer-container class="drawer-container">
-  <mat-drawer class="drawer" mode="side" [opened]="true">
+  <mat-drawer class="drawer" mode="side" [opened]="toggleOpen">
     <mat-nav-list class="sidenav">
       <div class="profile-card">
         <div class="header" *ngIf="user">
@@ -18,12 +18,12 @@
       <div>
         <mat-accordion>
           <a mat-list-item class="listitem" (click)="showDashboard()">Dashboard</a>
-          <a mat-list-item class="listitem" (click)="showCustomers()">Customers</a>
-          <a mat-list-item class="listitem" (click)="showDrivers()">Drivers</a>
-          <a mat-list-item class="listitem" (click)="showOrders()">Orders</a>
-          <a mat-list-item class="listitem" (click)="showRoutes()">Routes</a>
-          <a mat-list-item class="listitem" (click)="showSalesAgents()">Sales Agents</a>
-          <a mat-list-item class="listitem" (click)="showVehicles()">Vehicles</a>
+          <a  mat-list-item class="listitem" (click)="showCustomers()">Customers</a>
+          <a  mat-list-item class="listitem" (click)="showDrivers()">Drivers</a>
+          <a  mat-list-item class="listitem" (click)="showOrders()">Orders</a>
+          <a  mat-list-item class="listitem" (click)="showRoutes()">Routes</a>
+          <a  mat-list-item class="listitem" (click)="showSalesAgents()">Sales Agents</a>
+          <a  mat-list-item class="listitem" (click)="showVehicles()">Vehicles</a>
     </mat-accordion>
       </div>
     </mat-nav-list>
