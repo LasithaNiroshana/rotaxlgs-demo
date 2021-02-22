@@ -25,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {HttpClientModule} from '@angular/common/http';
 // import {Chart} from 'chart.js';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
@@ -40,7 +41,10 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.component';
-import { AddordersComponent } from './pages/orders/addorders/addorders.component';
+import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopup.component';
+import { DrivertableComponent } from './pages/drivershome/drivertable/drivertable.component';
+
+
 
 @NgModule({
   declarations: [
@@ -56,6 +60,8 @@ import { AddordersComponent } from './pages/orders/addorders/addorders.component
     FooterComponent,
     AdmindashchartComponent,
     EditpopupComponent,
+    DriverpopupComponent,
+    DrivertableComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +94,7 @@ import { AddordersComponent } from './pages/orders/addorders/addorders.component
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -32,7 +32,7 @@ export class AddordersComponent implements OnInit {
   order_date:new Date(),
   route:'',
   sales_agent:'',
-  status:''
+  status:'',
   }
 
   constructor(private ordersService:OrdersService, 

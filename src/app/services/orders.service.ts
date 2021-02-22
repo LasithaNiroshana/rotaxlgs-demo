@@ -48,6 +48,10 @@ export class OrdersService {
      this.ordersCollection.add(order);
    }
 
+   updatefrmDriver(status){
+    this.afs.collection('orders').doc(this.id).update({'status': status})
+   }
+
   //  update(order){
   //    console.log(status)
   //    console.log(order[1].id)

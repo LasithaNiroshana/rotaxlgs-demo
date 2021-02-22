@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { ActivatedRoute, Router } from '@angular/router';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-drivershome',
@@ -8,13 +10,15 @@ import { ActivatedRoute,Router} from '@angular/router';
 })
 export class DrivershomeComponent implements OnInit {
 
-  constructor(private router:Router,private route:ActivatedRoute) { }
+  constructor(private ordersservice:OrdersService,
+    private router:Router,
+    private route:ActivatedRoute,
+    private fireAuth: AngularFireAuth) {
+}
+ngOnInit(): void {
+}
 
-  ngOnInit(): void {
-  }
-
-  showDeliveryList(){
-    this.router.navigate(['drdeliverylist'],{relativeTo:this.route});
-  }
-
+showDashboard(){
+this.router.navigate(['drivertable'],{relativeTo:this.route});
+}
 }

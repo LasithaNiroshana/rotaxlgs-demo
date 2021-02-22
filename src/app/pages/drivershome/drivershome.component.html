@@ -3,16 +3,16 @@
   <mat-drawer class="drawer" mode="side" [opened]="true">
     <mat-nav-list class="sidenav">
       <div class="profile-card">
-        <div class="header">
+        <div class="header" >
+            <!-- *ngIf="user" -->
          <h2>
           <!-- {{user?.displayName}} -->
-          Ravindu
          </h2>
          <!-- <mat-label class="profile-label">
           {{user?.role}}
         </mat-label> -->
          <h4>
-           abc@gmail.com
+             <!-- {{user?.email}} -->
          </h4>
         </div>
         <img class="img-responsive" src="assets/Images/avatar.png">
@@ -20,13 +20,7 @@
       <mat-divider></mat-divider>
       <div>
         <mat-accordion>
-          <a mat-list-item class="listitem" (click)="showDeliveryList()">My List</a>
-          <!-- <a mat-list-item class="listitem" (click)="showCustomers()">Customers</a>
-          <a mat-list-item class="listitem" (click)="showDrivers()">Drivers</a>
-          <a mat-list-item class="listitem" (click)="showOrders()">Orders</a>
-          <a mat-list-item class="listitem" (click)="showRoutes()">Routes</a>
-          <a mat-list-item class="listitem" (click)="showSalesAgents()">Sales Agents</a>
-          <a mat-list-item class="listitem" (click)="showVehicles()">Vehicles</a> -->
+          <a mat-list-item class="listitem" (click)="showDashboard()">Invoices</a>
     </mat-accordion>
       </div>
     </mat-nav-list>
@@ -37,3 +31,4 @@
   </mat-drawer-content>
 </mat-drawer-container>
 <app-footer></app-footer>
+

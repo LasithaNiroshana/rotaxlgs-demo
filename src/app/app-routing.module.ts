@@ -23,10 +23,12 @@ import { ViewvehiclesComponent } from './pages/vehicles/viewvehicles/viewvehicle
 import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclestable.component';
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
-import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-import { DrdeliverylistComponent } from './pages/drivershome/drdeliverylist/drdeliverylist.component';
+
 import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
 import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
+import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
+import { DrivertableComponent } from './pages/drivershome/drivertable/drivertable.component';
+
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -40,13 +42,15 @@ const routes: Routes = [
     {path:'viewvehicles',component:ViewvehiclesComponent},
   ]
 },
-{path:'drivershome',component:DrivershomeComponent,
-children:[
-  {path:'drdeliverylist',component:DrdeliverylistComponent}
-]},
+
+
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
+]},
+{path:'drivershome', component:DrivershomeComponent,
+children:[
+  {path: 'drivertable', component:DrivertableComponent}
 ]},
   {path:'**',component:MainloginComponent},
   {path:'addcustomers',component:AddcustomersComponent},
@@ -96,5 +100,5 @@ export const routingComponents=[
  SalesagenthometabelComponent,
  SalesagenthomeComponent,
  RoutetableComponent,
- DrivershomeComponent
+ DrivershomeComponent,
 ]
