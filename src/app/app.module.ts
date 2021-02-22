@@ -26,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {HttpClientModule} from '@angular/common/http';
 // import {Chart} from 'chart.js';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
@@ -40,6 +41,11 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.component';
+import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopup.component';
+import { DrivertableComponent } from './pages/drivershome/drivertable/drivertable.component';
+
+
 
 @NgModule({
   declarations: [
@@ -54,6 +60,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     HeaderComponent,
     FooterComponent,
     AdmindashchartComponent,
+    EditpopupComponent,
+    DriverpopupComponent,
+    DrivertableComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,9 +95,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
+<<<<<<< HEAD
     CommonModule,
+=======
+    HttpClientModule
+>>>>>>> daf923e88bea9d3d73b6f7224b638e0978adab4c
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EditpopupComponent]
 })
 export class AppModule { }

@@ -1,4 +1,7 @@
+import { Time } from "@angular/common";
+
 export interface Order{
+  id:String,
   customer_id?:string;
   customer_name?:string;
   address_ln1?:string;
@@ -11,4 +14,5 @@ export interface Order{
   route?:string;
   sales_agent?:string;
   status?:string;
+  // pending_completed_time?:Time;
 }
