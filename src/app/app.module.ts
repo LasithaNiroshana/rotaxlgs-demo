@@ -39,6 +39,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.component';
+import { AddordersComponent } from './pages/orders/addorders/addorders.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HeaderComponent,
     FooterComponent,
     AdmindashchartComponent,
+    EditpopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EditpopupComponent]
 })
 export class AppModule { }

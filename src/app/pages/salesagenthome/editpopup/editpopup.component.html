@@ -1,0 +1,10 @@
+<mat-form-field class="ord2-field">
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="Tstatus" name="status">
+      <mat-option value="Pending">Pending</mat-option>
+      <mat-option value="Delivered">Delivered</mat-option>
+      <mat-option value="Delivery Ready">Delivery Ready</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>

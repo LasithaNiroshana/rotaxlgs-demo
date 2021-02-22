@@ -19,6 +19,7 @@ export class AddordersComponent implements OnInit {
   sales_agents: Salesagent[];
 
   order:Order={
+    id:'',
   customer_id:'',
   customer_name:'',
   address_ln1:'',

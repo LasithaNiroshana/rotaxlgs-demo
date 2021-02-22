@@ -1,4 +1,5 @@
 export interface Order{
+  id:String,
   customer_id?:string;
   customer_name?:string;
   address_ln1?:string;

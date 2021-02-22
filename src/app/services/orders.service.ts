@@ -3,15 +3,17 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {Order} from '../models/order';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
   ordersCollection:AngularFirestoreCollection<Order>;
   orders:Observable<Order[]>;
-
-  constructor(public afs:AngularFirestore) {
-    this.orders=this.afs.collection('orders').valueChanges();
+  id:''
+  constructor(public afs:AngularFirestore,
+    ) {
+      // private edit: EditpopupComponent
     // this.afs.collection('orders').snapshotChanges().subscribe(orders=>console.log(orders));
     this.ordersCollection=this.afs.collection('orders');
    }
@@ -32,6 +34,15 @@ export class OrdersService {
      return this.afs.collection('orders',  ref => ref.where('route', '==', route));
    }
 
+   populateOrder(order){
+    this.id = order.id;
+    console.log(this.id)
+    //  this.edit.onSubmit(order.status, order.id);
+   }
+
+  update(status){
+    this.afs.collection('orders').doc(this.id).update({'status': status})
+  }
 
    addOrder(order:Order){
      this.ordersCollection.add(order);
