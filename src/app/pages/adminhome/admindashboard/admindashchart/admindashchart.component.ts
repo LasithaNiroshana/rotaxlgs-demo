@@ -8,12 +8,12 @@ import {Order} from '../../../../models/order';
 })
 export class AdmindashchartComponent implements OnInit {
   orders:Order[];
-  ordercolumns:string[]=['customer_id','customer_name','address','invoice_no','item_type','order_date','route','sales_agent','status'];
+  ordercolumns:string[]=['invoice_no','customer_name','address','order_date','route','sales_agent','status'];
   constructor(private ordersservice:OrdersService) {
    }
 
    ngOnInit(): void {
-    this.ordersservice.getOrders().subscribe(order=>{
+    this.ordersservice.getDOrders().subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{
         let ordes:any = o.payload.doc.data();

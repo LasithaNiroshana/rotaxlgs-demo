@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SalesagentsService} from '../../../services/salesagents.service';
 import {Salesagent} from '../../../models/salesagents';
+import { VehiclesService } from 'src/app/services/vehicles.service';
+import { Vehicle } from 'src/app/models/vehicles';
 
 @Component({
   selector: 'app-addsalesagents',
@@ -8,6 +10,8 @@ import {Salesagent} from '../../../models/salesagents';
   styleUrls: ['./addsalesagents.component.scss']
 })
 export class AddsalesagentsComponent implements OnInit {
+  [x: string]: any;
+  vehicles:Vehicle[];
   salesAgent:Salesagent={
     agent_id:'',
   first_name:'',
@@ -23,9 +27,18 @@ export class AddsalesagentsComponent implements OnInit {
   assigned_vehicle:'',
   }
 
-  constructor(private salesagentsservice:SalesagentsService) { }
+  constructor(private salesagentsservice:SalesagentsService,
+              private vehicleService: VehiclesService) { }
 
   ngOnInit(): void {
+    this.vehicleService.getVehicles().subscribe(sa=>{
+      this.vehicles = [];
+      if(sa.length > 0){
+        sa.forEach(vcl=>{
+          let vehicle:any=vcl.payload.doc.data();
+          this.vehicles.push(vehicle);
+        });
+      }});
   }
 
   onSubmit(){

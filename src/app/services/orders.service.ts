@@ -22,6 +22,14 @@ export class OrdersService {
      return this.afs.collection('orders', ref => ref.orderBy('distance', 'desc')).snapshotChanges();
    }
 
+   getDashOrders(){
+    return this.afs.collection('orders', ref =>ref.where('status', '!=', 'Delivered')).snapshotChanges();
+  }
+
+   getDOrders(){
+    return this.afs.collection('orders', ref =>ref.where('status', '==', 'Not Delivered')).snapshotChanges();
+  }
+
    getspOrder(invoice_no){
     return this.afs.collection('orders',  ref => ref.where('invoice_no', '==', invoice_no));
   }

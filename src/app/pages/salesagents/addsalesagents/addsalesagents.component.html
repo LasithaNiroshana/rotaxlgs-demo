@@ -125,10 +125,7 @@
         <mat-form-field class="sales4-field">
           <mat-label>Vehicle</mat-label>
           <mat-select [(ngModel)]="salesAgent.assigned_vehicle" name="assigned_vehicle">
-            <mat-option value="NG-3100">NG-3100</mat-option>
-            <mat-option value="KD-1145">KD-1145</mat-option>
-            <mat-option value="HS-8118">HS-8118</mat-option>
-            <mat-option value="BAD-1115">BAD_1115</mat-option>
+            <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.vehicle_no">{{vehicle.vehicle_no}}  </mat-option>
           </mat-select>
         </mat-form-field>
        </div>

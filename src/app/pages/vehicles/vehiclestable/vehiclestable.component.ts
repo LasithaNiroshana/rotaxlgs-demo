@@ -20,7 +20,7 @@ export class VehiclestableComponent implements OnInit {
         let vehicle:any=v.payload.doc.data();
         vehicle.id=v.payload.doc.id;
         this.vehicles.push(vehicle);
-        console.log(vehicle.id);
+        console.log(this.vehicles.length);
       });
     });
   }

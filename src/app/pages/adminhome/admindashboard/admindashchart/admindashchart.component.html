@@ -1,9 +1,9 @@
-
+<h1 class="heading">Not delivered active invoices</h1>
 <div *ngIf="orders?.length>0;else noOrders">
   <table mat-table [dataSource]="orders" class="mat-elevation-z8">
-    <ng-container matColumnDef="customer_id">
-      <th mat-header-cell *matHeaderCellDef> Customer ID </th>
-      <td mat-cell *matCellDef="let orders"> {{orders.customer_id}} </td>
+    <ng-container matColumnDef="invoice_no">
+      <th mat-header-cell *matHeaderCellDef>Invoice Number</th>
+      <td mat-cell *matCellDef="let orders"> {{orders.invoice_no}} </td>
     </ng-container>
     <ng-container matColumnDef="customer_name">
       <th mat-header-cell *matHeaderCellDef>Customer Name</th>
@@ -21,14 +21,7 @@
       <th mat-header-cell *matHeaderCellDef>Postal Code</th>
       <td mat-cell *matCellDef="let orders"> {{orders.postal_code}} </td>
     </ng-container> -->
-    <ng-container matColumnDef="invoice_no">
-      <th mat-header-cell *matHeaderCellDef>Invoice Number</th>
-      <td mat-cell *matCellDef="let orders"> {{orders.invoice_no}} </td>
-    </ng-container>
-    <ng-container matColumnDef="item_type">
-      <th mat-header-cell *matHeaderCellDef>Item Type</th>
-      <td mat-cell *matCellDef="let orders"> {{orders.item_type}} </td>
-    </ng-container>
+    
     <ng-container matColumnDef="order_date">
       <th mat-header-cell *matHeaderCellDef>Order Date</th>
       <td mat-cell *matCellDef="let orders"> {{ orders.order_date.seconds*1000 | date}}  </td>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Vehicle } from 'src/app/models/vehicles';
+import { VehiclesService } from 'src/app/services/vehicles.service';
 
 @Component({
   selector: 'app-adminstatcard1',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adminstatcard1.component.scss']
 })
 export class Adminstatcard1Component implements OnInit {
+vehicles:Vehicle[];
 
-  constructor() { }
+  constructor(private vehiclesservice: VehiclesService) { }
 
   ngOnInit(): void {
+    this.vehiclesservice.getVehicles().subscribe(vehi=>{
+      this.vehicles=[];
+      vehi.forEach(v=>{
+        let vehicle:any=v.payload.doc.data();
+        vehicle.id=v.payload.doc.id;
+        this.vehicles.push(vehicle);
+        console.log(this.vehicles.length);
+      });
+    });
   }
 
 }
