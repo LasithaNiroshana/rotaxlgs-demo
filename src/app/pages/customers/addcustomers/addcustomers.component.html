@@ -1,3 +1,4 @@
+<br>
 <h2>Add Customer Details</h2>
 <form (ngSubmit)="onSubmit()" class="addcustomer-form">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
@@ -31,16 +32,13 @@
         <br>
         <mat-form-field class="cus2-field">
           <mat-label>Mobile No.</mat-label>
-          <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="customer.tel_no" name="tel_no">
+          <input type="text" matInput placeholder="714568424" maxlength="10" [(ngModel)]="customer.tel_no" name="tel_no">
           <mat-icon matSuffix>call</mat-icon>
         </mat-form-field>
         <br>
         <mat-form-field class="cus2-field">
-          <mat-label>Customer Type</mat-label>
-          <mat-select [(ngModel)]="customer.customer_type" name="customer_type">
-            <mat-option value="Cash">Cash</mat-option>
-            <mat-option value="Credit">Credit</mat-option>
-          </mat-select>
+          <mat-label>Distance from RLH</mat-label>
+          <input type="number" matInput placeholder="km"  [(ngModel)]="customer.distance" name="distance">
         </mat-form-field>
       <br>
       </div>
@@ -51,9 +49,7 @@
   <mat-divider>
   </mat-divider>
   <br>
-  <br>
-  Address
-  <br><br>
+  <h2>Address</h2>
   <div fxLayout="row" fxLayoutAlign="space-between start " fxLayoutGap="20px">
     <mat-card class="cus3">
       <div>

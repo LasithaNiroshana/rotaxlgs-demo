@@ -43,7 +43,7 @@ import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admind
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.component';
 import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopup.component';
-import { DrivertableComponent } from './pages/drivershome/drivertable/drivertable.component';
+
 
 
 
@@ -62,7 +62,7 @@ import { DrivertableComponent } from './pages/drivershome/drivertable/drivertabl
     AdmindashchartComponent,
     EditpopupComponent,
     DriverpopupComponent,
-    DrivertableComponent,
+   
   ],
   imports: [
     BrowserModule,

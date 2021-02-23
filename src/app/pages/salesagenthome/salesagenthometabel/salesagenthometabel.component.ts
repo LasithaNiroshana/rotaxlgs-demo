@@ -46,5 +46,6 @@ export class SalesagenthometabelComponent implements OnInit {
     this.ordersservice.populateOrder(order)
     this.dialog.open(EditpopupComponent);
   }
+  
 
 }

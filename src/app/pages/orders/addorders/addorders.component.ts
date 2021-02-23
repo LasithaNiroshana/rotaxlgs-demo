@@ -32,6 +32,7 @@ export class AddordersComponent implements OnInit {
   route:'',
   sales_agent:'',
   status:'',
+  distance: 0 ,
   }
 
   constructor(private ordersService:OrdersService,
@@ -55,24 +56,24 @@ export class AddordersComponent implements OnInit {
     //   });
 
 
-  routeSelector(){
-    this.order.route = ''
-    let r1 = ['Kelaniya','Kadawatha','Kegalle','Kadugannawa','Peradeniya','Gannoruwa','Kandy'];
-    let r2 = ['Bambalapitiya','Kollupitiya','Dehiwala','Mount Lavinia','','Kauthara','Benthara','Galle','Matara','Hambantota','Tangalle'];
-    let r3=['Wattala','Ragama','Kandana','Ja-Ela','Negombo','Katunayake'];
-    if(r1.includes(this.order.city)){
-      this.order.route='R1';
-    }
-    else if(r2.includes(this.order.city)){
-      this.order.route='R2';
-    }
-    else if(r3.includes(this.order.city)){
-      this.order.route='R3';
-    }
-    else this.order.route='R4';
-console.log(this.order.route);
+//   routeSelector(){
+//     this.order.route = ''
+//     let r1 = ['Kelaniya','Kadawatha','Kegalle','Kadugannawa','Peradeniya','Gannoruwa','Kandy'];
+//     let r2 = ['Bambalapitiya','Kollupitiya','Dehiwala','Mount Lavinia','','Kauthara','Benthara','Galle','Matara','Hambantota','Tangalle'];
+//     let r3=['Wattala','Ragama','Kandana','Ja-Ela','Negombo','Katunayake'];
+//     if(r1.includes(this.order.city)){
+//       this.order.route='R1';
+//     }
+//     else if(r2.includes(this.order.city)){
+//       this.order.route='R2';
+//     }
+//     else if(r3.includes(this.order.city)){
+//       this.order.route='R3';
+//     }
+//     else this.order.route='R4';
+// console.log(this.order.route);
 
-  }
+//   }
 
   reset(){
     this.order.invoice_no='';
@@ -144,6 +145,7 @@ this.order.sales_agent='';
         this.order.address_ln2=this.customers[0].address_ln2;
         this.order.city=this.customers[0].city;
         this.order.province=this.customers[0].province;
+        this.order.distance = this.customers[0].distance;
   });}else{
     alert("No customers has been registered under this Customer ID. Please check the Customer ID")
   }

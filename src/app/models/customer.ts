@@ -8,5 +8,5 @@ export interface Customer{
   province?:string;
   email?:string;
   tel_no?:string;
-  customer_type?:string;
+  distance?:number;
 }

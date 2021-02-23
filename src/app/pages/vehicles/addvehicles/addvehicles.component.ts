@@ -9,15 +9,11 @@ import {Vehicle} from '../../../models/vehicles';
 })
 export class AddvehiclesComponent implements OnInit {
   vehicle:Vehicle={
-    vehicle_no:'',
+  vehicle_no:'',
   revenuelicense_no:'',
   revenuelicense_expiry:new Date(),
-  vehicle_type:'',
-  company_name:'',
-  address_ln1:'',
-  address_ln2:'',
-  city:'',
   telephone_no:'',
+  vehicle_size:'',
   }
 
   constructor(private vehiclesService:VehiclesService) { }
@@ -29,7 +25,7 @@ export class AddvehiclesComponent implements OnInit {
     if(
       this.vehicle.vehicle_no!=''
       && this.vehicle.revenuelicense_no!=''
-      && this.vehicle.vehicle_type!=''
+      
       // && this.vehicle.company_name!=''
       // && this.vehicle.address_ln1!=''
       // && this.vehicle.address_ln2!=''
@@ -41,11 +37,6 @@ export class AddvehiclesComponent implements OnInit {
       console.log(this.vehicle);
       this.vehicle.vehicle_no='';
       this.vehicle.revenuelicense_no='';
-      this.vehicle.vehicle_type='';
-      this.vehicle.company_name='';
-      this.vehicle.address_ln1='';
-      this.vehicle.address_ln2='';
-      this.vehicle.city='';
       this.vehicle.telephone_no='';
     }
     else{

@@ -1,3 +1,4 @@
+<br>
 <h2>Add Vehicle Details</h2>
 <form class="addvehicle-form" (ngSubmit)="onSubmit()">
   <div fxLayoutAlign="space-between start" fxLayoutGap="20px" class="vehicles-form">
@@ -13,7 +14,7 @@
           <br>
           <mat-form-field class="vehicles1-field">
             <mat-label>Vehicle Size</mat-label>
-            <mat-select name="vehicle_size">
+            <mat-select name="vehicle_size" [(ngModel)]="vehicle.vehicle_size">
               <mat-option value="Small">Small</mat-option>
               <mat-option value="Medium">Medium</mat-option>
               <mat-option value="Large">Large</mat-option>
@@ -33,9 +34,10 @@
         </mat-form-field>
         </div>
       </mat-card>
-<br><br>
-<mat-divider></mat-divider>
-<br><br>
+    </div>
+
+    <div class="form-part2">
+
       <mat-card class="vehicles3">
         <mat-form-field class="vehicles3-field">
           <mat-label>Insurance Expiry Date</mat-label>
@@ -54,53 +56,10 @@
           <input type="text" matInput placeholder="112254864" name="insurancetel_no">
         </mat-form-field>
       </mat-card>
-
-    </div>
-
-
-    <div class="form-part2">
-
-      <mat-card class="vehicles2">
-        Chose Vehicle Type:
       <br><br>
-          <mat-radio-group aria-label="Select an option" [(ngModel)]="vehicle.vehicle_type" name="vehicle_type" class="vehicles2-field">
-            <mat-radio-button value="Company Owned">Company Owned</mat-radio-button>
-            <br>
-            <mat-radio-button value="Hired">Hired</mat-radio-button>
-          </mat-radio-group>
-          <br>
-          <mat-form-field class="vehicles2-field">
-            <mat-label>Company Name</mat-label>
-            <input type="text" matInput placeholder="Doe" [(ngModel)]="vehicle.company_name" name="company_name">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="vehicles2-field">
-            <mat-label>Telephone No.</mat-label>
-            <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="vehicle.telephone_no" name="telephone_no">
-          </mat-form-field>
-      </mat-card>
-      <br><br>
-      <mat-divider></mat-divider>
-      <br><br>
-      <mat-card class="vehicles4">
-        <div>
-          <mat-form-field class="vehicles4-field">
-            <mat-label>Address Line 1</mat-label>
-            <input type="text" matInput placeholder="No.24" [(ngModel)]="vehicle.address_ln1" name="address_ln1">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="vehicles4-field">
-            <mat-label>Address Line 2</mat-label>
-            <input type="text" matInput placeholder="Dalugama" [(ngModel)]="vehicle.address_ln2" name="address_ln2">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="vehicles4-field">
-            <mat-label>City/District</mat-label>
-            <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="vehicle.city" name="city">
-          </mat-form-field>
-          <br>
-         </div>
-       </mat-card>
+     
+      
+     
 
     </div>
 

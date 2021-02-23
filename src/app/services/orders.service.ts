@@ -19,7 +19,7 @@ export class OrdersService {
    }
 
    getOrders(){
-     return this.afs.collection('orders').snapshotChanges();
+     return this.afs.collection('orders', ref => ref.orderBy('distance', 'desc')).snapshotChanges();
    }
 
    getspOrder(invoice_no){

@@ -15,7 +15,7 @@ export class CustomersService {
   }
 
    getCustomers(){
-     return this.afs.collection('customers').snapshotChanges();
+     return this.afs.collection('customers', ref => ref.orderBy('distance', 'desc')).snapshotChanges();
    }
 
    getspcustomer(custID){

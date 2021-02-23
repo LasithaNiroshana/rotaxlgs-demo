@@ -24,7 +24,7 @@ customer:Customer={
   city:'',
   province:'',
   tel_no:'',
-  customer_type:'',
+  distance:0
 }
 
   constructor(private customersService:CustomersService,public mediaObserver:MediaObserver) {
@@ -50,8 +50,7 @@ customer:Customer={
     && this.customer.city!=''
     && this.customer.province!=''
     && this.customer.email!=''
-    && this.customer.tel_no!=''
-    && this.customer.customer_type!=''){
+    && this.customer.tel_no!=''){
       this.customersService.addCustomer(this.customer);
       alert('New customer has been added successfully');
       console.log(this.customer);
@@ -65,7 +64,7 @@ customer:Customer={
       this.customer.province='';
       this.customer.email='' ;
       this.customer.tel_no='';
-      this.customer.customer_type='';
+      this.customer.distance=0;
     }
     else{
       alert('Error Adding Customer');
