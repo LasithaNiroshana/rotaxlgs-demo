@@ -1,3 +1,5 @@
+<h1>Invoices</h1>
+
 <div *ngIf="orders?.length>0;else noOrders">
     <table mat-table [dataSource]="orders" class="mat-elevation-z8">
       <ng-container matColumnDef="order_date">

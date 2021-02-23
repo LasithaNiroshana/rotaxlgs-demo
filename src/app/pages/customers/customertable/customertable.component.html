@@ -12,10 +12,6 @@
         <th mat-header-cell *matHeaderCellDef>Address</th>
         <td mat-cell *matCellDef="let customers"> {{customers.address_ln1}},{{customers.address_ln2}},{{customers.city}} </td>
       </ng-container>
-      <ng-container matColumnDef="province">
-        <th mat-header-cell *matHeaderCellDef>Province</th>
-        <td mat-cell *matCellDef="let customers"> {{customers.province}} </td>
-      </ng-container>
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>Email</th>
         <td mat-cell *matCellDef="let customers"> {{customers.email}} </td>
@@ -24,9 +20,9 @@
         <th mat-header-cell *matHeaderCellDef>Telephone Number</th>
         <td mat-cell *matCellDef="let customers"> {{customers.tel_no}} </td>
       </ng-container>
-      <ng-container matColumnDef="customer_type">
-        <th mat-header-cell *matHeaderCellDef>Customer Type</th>
-        <td mat-cell *matCellDef="let customers"> {{customers.customer_type}} </td>
+      <ng-container matColumnDef="KM_RLH">
+        <th mat-header-cell *matHeaderCellDef>Distance from RLH</th>
+        <td mat-cell *matCellDef="let customers"> {{customers.distance}}  </td>
       </ng-container>
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>

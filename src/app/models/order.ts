@@ -14,5 +14,6 @@ export interface Order{
   route?:string;
   sales_agent?:string;
   status?:string;
+  distance?:number;
   // pending_completed_time?:Time;
 }

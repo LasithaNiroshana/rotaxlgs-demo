@@ -1,11 +1,10 @@
+<br>
 <div class="form-head" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
   <h2>Add Order Details</h2>
   <button class="upload-btn" mat-raised-button>Bulk Upload
     <mat-icon>upload</mat-icon>
   </button>
 </div>
-
-
 <form (ngSubmit)="onSubmit()" class="addorder-form">
 
   <div class="add-order" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
@@ -32,18 +31,10 @@
         <br>
       </div>
     </mat-card>
-    <br><br>
-
+    
+<br>
     <mat-card class="ord2">
       <div>
-        <mat-form-field class="ord2-field">
-          <mat-label>Item Type</mat-label>
-          <mat-select [(ngModel)]="order.item_type" name="item_type">
-            <mat-option value="Normal">Normal</mat-option>
-            <mat-option value="Special">Special</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
         <mat-form-field class="ord2-field">
         <mat-label>Sales Agent</mat-label>
         <mat-select [(ngModel)]="order.sales_agent" name="sales_agent">
@@ -93,21 +84,11 @@
       <mat-label>City/District</mat-label>
       <input type="text" matInput placeholder="Kelaniya" (change)="routeSelector()" [(ngModel)]="order.city" name="city">
     </mat-form-field>
-    <!-- <mat-form-field>
-      <mat-label>Route</mat-label>
-      <mat-select [(ngModel)]="order.route" name="route">
-        <mat-option value="R1">R1</mat-option>
-        <mat-option value="R2">R2</mat-option>
-        <mat-option value="R3">R3</mat-option>
-        <mat-option value="R4">R4</mat-option>
-        <mat-option value="R5">R5</mat-option>
-      </mat-select>
-    </mat-form-field> -->
     <br>
    </div>
  </mat-card>
     </div>
-    <br><br>
+    <br>
     <mat-card class="ord4">
       <mat-form-field class="ord4-field">
         <mat-label>Province</mat-label>
@@ -127,8 +108,9 @@
       <button class="route-btn" type= "button"   (click)="route()">
         <mat-icon>autorenew</mat-icon>
       </button>
-      <h3>Selected Route: {{order.route}}</h3>
+      <p>Selected Route: {{order.route}}</p>
       <mat-form-field>
+        
         <mat-label>Route</mat-label>
         <mat-select [(ngModel)]="order.route" name="route">
           <mat-option value="R1">R1</mat-option>
@@ -137,6 +119,10 @@
           <mat-option value="R4">R4</mat-option>
           <mat-option value="R5">R5</mat-option>
         </mat-select>
+      </mat-form-field>
+      <mat-form-field class="ord2-field">
+        <mat-label>Distance From RLH</mat-label>
+        <input type="number" matInput placeholder="John" [(ngModel)]="order.distance" name="distance">
       </mat-form-field>
     </mat-card>
   </div>

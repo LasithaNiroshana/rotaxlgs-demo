@@ -9,7 +9,7 @@ import {Order} from '../../../models/order';
 })
 export class OrderstableComponent implements OnInit {
   orders:Order[];
-  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','province','route','sales_agent','status','edit','delete'];
+  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','edit','delete'];
   constructor(private ordersservice:OrdersService) {
    }
 

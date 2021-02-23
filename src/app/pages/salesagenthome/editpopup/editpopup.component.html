@@ -1,10 +1,15 @@
+<div>
+  <p>Please update the status of the invoice:</p>
+</div>
 <mat-form-field class="ord2-field">
     <mat-label>Status</mat-label>
     <mat-select [(ngModel)]="Tstatus" name="status">
-      <mat-option value="Pending">Pending</mat-option>
       <mat-option value="Delivered">Delivered</mat-option>
-      <mat-option value="Delivery Ready">Delivery Ready</mat-option>
+      <mat-option value="Not Delivered">Not delivered</mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>
+  <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>
+    <button class="button" mat-raised-button (click)='close()'>Close</button>
+  </div>

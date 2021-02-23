@@ -14,7 +14,7 @@ export class CustomertableComponent implements OnInit {
   mediaSub:Subscription;
   deviceXs:boolean;
   customers=[];
-  customerColumns:string[]=['customer_id','customer_name','address','province','email','telephone_no','customer_type','edit','delete'];
+  customerColumns:string[]=['customer_id','customer_name','address','email','telephone_no','KM_RLH','edit','delete'];
   constructor(private customersservice:CustomersService,private afs:AngularFirestore, public mediaObserver:MediaObserver) { }
 
   ngOnInit(): void {

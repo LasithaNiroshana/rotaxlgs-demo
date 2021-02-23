@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class VehiclestableComponent implements OnInit {
   vehicles=[];
-  vehiclesColumns:string[]=['vehicle_no','rl_no','rl_expiry','vehicle_type','company_name','address','tel_no','delete'];
+  vehiclesColumns:string[]=['vehicle_no','rl_no','rl_expiry','vehicle_size','tel_no','delete'];
   constructor(private vehiclesservice:VehiclesService, private afs:AngularFirestore) { }
 
   ngOnInit(): void {
