@@ -5,8 +5,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/firestore';
 import {BehaviorSubject,Observable,of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
-import {User} from '../models/user'
-import { EmailValidator } from '@angular/forms';
+import {User} from '../models/user';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,21 @@ export class AuthService {
         this.eventAuthError.next(error);
       }).then(userCredentials=>{
         if(userCredentials){
-        this.router.navigate(['/adminhome']);
+        this.getUserData(userCredentials).subscribe((currentUser: any) => {
+          if(currentUser.role=='Admin'){
+            this.router.navigate(['/adminhome']);
+          }
+          else if(currentUser.role=='Driver'){
+            this.router.navigate(['/drivershome']);
+          }
+          else if(currentUser.role=='Sales Agent'){
+            this.router.navigate(['/salesagenthome']);
+          }
+          else{
+            this.router.navigate(['/salesagenthome']);
+          }
+     });
+
         }
       });
   }
@@ -50,12 +64,24 @@ export class AuthService {
   createUser(user:User){
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
-      console.log(userCredentials);
       userCredentials.user.updateProfile({
         displayName:user.first_name+'  '+user.last_name
       });
       this.insertUserData(userCredentials).then(()=>{
-        this.router.navigate(['/adminhome']);
+        this.getUserData(userCredentials).subscribe((currentUser: any) => {
+          if(currentUser.role=='Admin'){
+            this.router.navigate(['/adminhome']);
+          }
+          else if(currentUser.role=='Driver'){
+            this.router.navigate(['/drivershome']);
+          }
+          else if(currentUser.role=='Sales Agent'){
+            this.router.navigate(['/salesagenthome']);
+          }
+          else{
+            this.router.navigate(['/salesagenthome']);
+          }
+     });
       });
     })
     .catch(error=>{
@@ -80,9 +106,11 @@ export class AuthService {
     });
   }
 
-  checkUserProfile(userCredentials:firebase.default.auth.UserCredential){
+  getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
+
+
 
   canRead(user:User):boolean{
     const allowed=['admin','driver','storekeeper','salesagent']

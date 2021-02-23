@@ -20,7 +20,7 @@ export class CustomersService {
 
    getspcustomer(custID){
     return this.afs.collection('customers',  ref => ref.where('customer_id', '==', custID));
-    
+
   }
 
    addCustomer(customer:Customer){
