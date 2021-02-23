@@ -95,11 +95,7 @@ import { DrivertableComponent } from './pages/drivershome/drivertable/drivertabl
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-<<<<<<< HEAD
-    CommonModule,
-=======
     HttpClientModule
->>>>>>> daf923e88bea9d3d73b6f7224b638e0978adab4c
   ],
   providers: [],
   bootstrap: [AppComponent],

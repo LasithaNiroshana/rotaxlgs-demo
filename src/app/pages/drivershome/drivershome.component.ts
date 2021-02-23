@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { Component, OnInit, Output } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
-=======
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrdersService } from 'src/app/services/orders.service';
->>>>>>> daf923e88bea9d3d73b6f7224b638e0978adab4c
 
 @Component({
   selector: 'app-drivershome',
@@ -14,22 +9,8 @@ import { OrdersService } from 'src/app/services/orders.service';
   styleUrls: ['./drivershome.component.scss']
 })
 export class DrivershomeComponent implements OnInit {
-<<<<<<< HEAD
-@Output()
+  @Output()
 toggleOpen:boolean;
-  constructor(private router:Router,private route:ActivatedRoute) { }
-
-  ngOnInit(): void {
-  }
-
-  toggleNav(){
-    this.toggleOpen=!this.toggleOpen;
-  }
-
-  showDeliveryList(){
-    this.router.navigate(['deliverylist'],{relativeTo:this.route});
-  }
-=======
 
   constructor(private ordersservice:OrdersService,
     private router:Router,
@@ -38,7 +19,9 @@ toggleOpen:boolean;
 }
 ngOnInit(): void {
 }
->>>>>>> daf923e88bea9d3d73b6f7224b638e0978adab4c
+toggleNav(){
+  this.toggleOpen=!this.toggleOpen;
+}
 
 showDashboard(){
 this.router.navigate(['drivertable'],{relativeTo:this.route});

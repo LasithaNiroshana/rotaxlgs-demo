@@ -23,20 +23,12 @@ import { ViewvehiclesComponent } from './pages/vehicles/viewvehicles/viewvehicle
 import { VehiclestableComponent } from './pages/vehicles/vehiclestable/vehiclestable.component';
 import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admindashboard.component';
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
-<<<<<<< HEAD
-import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-
-import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
-import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
-import { DeliverylistComponent } from './pages/drivershome/deliverylist/deliverylist.component';
-=======
 
 import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
 import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
 import { DrivertableComponent } from './pages/drivershome/drivertable/drivertable.component';
 
->>>>>>> daf923e88bea9d3d73b6f7224b638e0978adab4c
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
@@ -50,15 +42,8 @@ const routes: Routes = [
     {path:'viewvehicles',component:ViewvehiclesComponent},
   ]
 },
-<<<<<<< HEAD
-{path:'drivershome',component:DrivershomeComponent,
-children:[
-  {path:'deliverylist',component:DeliverylistComponent}
-]},
-=======
 
 
->>>>>>> daf923e88bea9d3d73b6f7224b638e0978adab4c
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
