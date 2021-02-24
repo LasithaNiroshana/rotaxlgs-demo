@@ -9,7 +9,9 @@
     </mat-select>
   </mat-form-field>
   <br>
-  <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <input type="file" (change)="onFileSelected($event)">
+  <br><br>
+  <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="12px">
     <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>
     <button class="button" mat-raised-button (click)='close()'>Close</button>
   </div>

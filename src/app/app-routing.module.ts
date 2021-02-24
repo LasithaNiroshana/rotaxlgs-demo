@@ -27,7 +27,9 @@ import { RoutetableComponent } from './pages/disroutes/routetable/routetable.com
 import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
 import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-import { DrivertableComponent } from './pages/drivershome/drivertable/drivertable.component';
+import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
+
+
 
 
 const routes: Routes = [
@@ -48,10 +50,10 @@ const routes: Routes = [
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
 ]},
-{path:'drivershome', component:DrivershomeComponent,
-children:[
-  {path: 'drivertable', component:DrivertableComponent}
-]},
+{path:'drivershome', component: DrivershomeComponent,
+  children:[
+    {path: 'driverlist', component: DriverlistComponent},
+  ]},
   {path:'**',component:MainloginComponent},
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
@@ -100,5 +102,5 @@ export const routingComponents=[
  SalesagenthometabelComponent,
  SalesagenthomeComponent,
  RoutetableComponent,
- DrivershomeComponent,
+
 ]

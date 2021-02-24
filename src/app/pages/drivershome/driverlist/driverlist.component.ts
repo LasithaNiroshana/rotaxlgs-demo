@@ -1,21 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { Order } from 'src/app/models/order';
 import { OrdersService } from 'src/app/services/orders.service';
-import { MatDialog } from '@angular/material/dialog';
-import { EditpopupComponent } from '../editpopup/editpopup.component';
-import { AddordersComponent } from '../../orders/addorders/addorders.component';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
-  selector: 'app-salesagenthometabel',
-  templateUrl: './salesagenthometabel.component.html',
-  styleUrls: ['./salesagenthometabel.component.scss']
+  selector: 'app-driverlist',
+  templateUrl: './driverlist.component.html',
+  styleUrls: ['./driverlist.component.scss']
 })
-
-export class SalesagenthometabelComponent implements OnInit {
-  
+export class DriverlistComponent implements OnInit {
   status:'';
   orders:Order[];
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','province','route','sales_agent','current_status','edit'];
@@ -45,8 +40,6 @@ export class SalesagenthometabelComponent implements OnInit {
 
   edit(order){
     this.ordersservice.populateOrder(order)
-    this.dialog.open(EditpopupComponent);
+    this.dialog.open(PopupComponent);
   }
-  
-
 }

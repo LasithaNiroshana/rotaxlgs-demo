@@ -1,4 +1,4 @@
-import { Component, OnInit,Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrdersService } from 'src/app/services/orders.service';
@@ -10,20 +10,22 @@ import { OrdersService } from 'src/app/services/orders.service';
 })
 export class DrivershomeComponent implements OnInit {
   @Output()
-toggleOpen:boolean;
-
+  toggleOpen:boolean;
   constructor(private ordersservice:OrdersService,
-    private router:Router,
-    private route:ActivatedRoute,
-    private fireAuth: AngularFireAuth) {
-}
-ngOnInit(): void {
-}
-toggleNav(){
-  this.toggleOpen=!this.toggleOpen;
-}
+              private router:Router,
+              private route:ActivatedRoute,
+              private fireAuth: AngularFireAuth) {
+   }
+   ngOnInit(): void {
+  }
 
-showDashboard(){
-this.router.navigate(['drivertable'],{relativeTo:this.route});
-}
-}
+  toggleNav(){
+    this.toggleOpen=!this.toggleOpen;
+  }
+
+  showDashboard(){
+    this.router.navigate(['drivershome'],{relativeTo:this.route});
+  }
+
+
+  }

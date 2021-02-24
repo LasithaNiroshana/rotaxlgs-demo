@@ -42,15 +42,19 @@ export class AuthService {
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           if(currentUser.role=='Admin'){
-            this.router.navigate(['/adminhome']);
+            alert('You are successfully log in to the system as a admin'  )
+            this.router.navigate(['/adminhome/admindashboard']);
           }
           else if(currentUser.role=='Driver'){
+            alert('You are successfully log in to the system.')
             this.router.navigate(['/drivershome']);
           }
           else if(currentUser.role=='Sales Agent'){
+            alert('You are successfully log in to the system.')
             this.router.navigate(['/salesagenthome']);
           }
           else{
+            alert('You are successfully log in to the system.')
             this.router.navigate(['/salesagenthome']);
           }
      });
@@ -58,8 +62,6 @@ export class AuthService {
         }
       });
   }
-
-
 
   createUser(user:User){
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
