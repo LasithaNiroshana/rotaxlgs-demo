@@ -62,8 +62,9 @@ import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopu
     AdmindashchartComponent,
     EditpopupComponent,
     DriverpopupComponent,
-   
+
   ],
+  entryComponents:[EditpopupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -99,6 +100,5 @@ import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopu
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[EditpopupComponent]
 })
 export class AppModule { }

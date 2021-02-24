@@ -27,6 +27,7 @@ export class SalesagentstableComponent implements OnInit {
 
   deleteSalesAgents(salesagent){
     this.afs.collection('salesagents').doc(salesagent.id).delete();
+    alert('Are you sure you want to delete this item?')
   }
 
 }

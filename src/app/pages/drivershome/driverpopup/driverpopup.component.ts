@@ -13,7 +13,7 @@ export class DriverpopupComponent implements OnInit {
 
   constructor(private orderServices: OrdersService,
               private httpclient: HttpClient) { }
-  // private orderService : OrdersService 
+  // private orderService : OrdersService
   ngOnInit(): void {
   }
 
@@ -25,6 +25,6 @@ export class DriverpopupComponent implements OnInit {
 
   onSubmit(){
     this.orderServices.updatefrmDriver(this.Dstatus);
-    alert('Invoice status is updated.')
+    alert('Invoice status is updated.');
    }
 }

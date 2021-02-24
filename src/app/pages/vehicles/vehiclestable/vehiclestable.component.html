@@ -13,10 +13,10 @@
       <td mat-cell *matCellDef="let vehicles"> {{vehicles.revenuelicense_expiry.seconds*1000 | date}} </td>
     </ng-container>
     <ng-container matColumnDef="vehicle_size">
-      <th mat-header-cell *matHeaderCellDef>Vehicle Type</th>
+      <th mat-header-cell *matHeaderCellDef>Vehicle Size</th>
       <td mat-cell *matCellDef="let vehicles"> {{vehicles.vehicle_size}} </td>
     </ng-container>
-   
+
     <ng-container matColumnDef="tel_no">
       <th mat-header-cell *matHeaderCellDef>Telephone Number</th>
       <td mat-cell *matCellDef="let vehicles"> {{vehicles.telephone_no}} </td>
