@@ -12,6 +12,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   providedIn: 'root'
 })
 export class AuthService {
+  Url:string
   user:Observable<User>;
   private eventAuthError=new BehaviorSubject<String>("");
   eventAuthError$=this.eventAuthError.asObservable();
@@ -67,7 +68,8 @@ export class AuthService {
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
       userCredentials.user.updateProfile({
-        displayName:user.first_name+'  '+user.last_name
+        displayName:user.first_name+'  '+user.last_name,
+        photoURL:this.Url,
       });
       this.insertUserData(userCredentials).then(()=>{
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
@@ -93,9 +95,15 @@ export class AuthService {
   signOut(){
     return this.afauth.signOut().then(()=>
     {
-      this.router.navigate(['/mainlogin']);
+      alert('loging out')
+      this.router.navigate(['**']);
     });
   }
+
+  dpurl(url){
+    this.Url = url;
+  }
+
 
   insertUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).set({
@@ -104,15 +112,14 @@ export class AuthService {
       lastName:this.newUser.last_name,
       id_no:this.newUser.id_no,
       mobileNumber:this.newUser.mobile_no,
-      role:this.newUser.role
+      role:this.newUser.role,
+      photo_url:this.Url
     });
   }
 
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
-
-
 
   canRead(user:User):boolean{
     const allowed=['admin','driver','storekeeper','salesagent']

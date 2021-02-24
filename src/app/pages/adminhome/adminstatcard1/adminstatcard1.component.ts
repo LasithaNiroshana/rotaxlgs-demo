@@ -19,7 +19,7 @@ vehicles:Vehicle[];
         let vehicle:any=v.payload.doc.data();
         vehicle.id=v.payload.doc.id;
         this.vehicles.push(vehicle);
-        
+        console.log(this.vehicles.length)
       });
     });
   }

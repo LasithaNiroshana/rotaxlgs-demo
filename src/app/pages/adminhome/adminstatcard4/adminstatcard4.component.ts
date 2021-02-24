@@ -12,12 +12,12 @@ export class Adminstatcard4Component implements OnInit {
   constructor(private ordersservice: OrdersService) { }
 
   ngOnInit(): void {
-    this.ordersservice.getDashOrders().subscribe(order=>{
+    this.ordersservice.getDOrders().subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{
         let ordes:any = o.payload.doc.data();
         ordes.id = o.payload.doc.id;
-        
+        this.orders.push(ordes);
       })
     });
   }

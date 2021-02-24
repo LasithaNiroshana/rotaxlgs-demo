@@ -25,6 +25,7 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
       this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
         console.log(result.mqAlias);
         this.deviceXs=result.mqAlias==='xs'?true:false;
+        console.log(this.user.photoURL)
       });
     })
   }
@@ -59,10 +60,6 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
 
   showVehicles(){
     this.router.navigate(['viewvehicles'],{relativeTo:this.route})
-  }
-
-  logOut(){
-    this.authService.signOut();
   }
 
   toggleNav(){

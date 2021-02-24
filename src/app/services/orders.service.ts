@@ -23,7 +23,7 @@ export class OrdersService {
    }
 //Get the number of active invoices to the dashboard
    getDashOrders(){
-    return this.afs.collection('orders', ref =>ref.where('status', '!=', 'Delivered')).snapshotChanges();
+    return this.afs.collection('orders', ref =>ref.where('status', '==', 'Delivered')).snapshotChanges();
   }
   //Get the number of active invoices left
    getDOrders(){
@@ -35,7 +35,7 @@ export class OrdersService {
   }
 //Get all the invoices under salesagents
   getSAOrder(name){
-    return this.afs.collection('orders',  ref => ref.where('sales_agent', '==', name));
+    return this.afs.collection('orders',  ref => ref.where('sales_agent', '==', name)).snapshotChanges();
   }
 //Get all the invoices under each route
    getOrder(route){
