@@ -1,31 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { Order } from 'src/app/models/order';
-import {OrdersService} from '../../../services/orders.service'
-import { AngularFireStorage } from "@angular/fire/storage";
 import { finalize } from 'rxjs/operators';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
-  selector: 'app-editpopup',
-  templateUrl: './editpopup.component.html',
-  styleUrls: ['./editpopup.component.scss']
+  selector: 'app-popup',
+  templateUrl: './popup.component.html',
+  styleUrls: ['./popup.component.scss']
 })
-export class EditpopupComponent implements OnInit {
-Tstatus:'';
-title = "cloudsSorage";
-selectedFile: File = null;
-fb;
-downloadURL: Observable<string>;
-Url:String
+export class PopupComponent implements OnInit {
+  Dstatus:'';
+  title = "cloudsSorage";
+  selectedFile: File = null;
+  fb;
+  downloadURL: Observable<string>;
+  Url:String
 
   constructor(private orderServices: OrdersService,
-    private dialog: MatDialog,
-    private storage: AngularFireStorage) { }
+     private storage: AngularFireStorage) { }
   // private orderService : OrdersService 
   ngOnInit(): void {
   }
-  onFileSelected(event){
+
+
+  onUpload(event){
     var n = Date.now();
     const file = event.target.files[0];
     const filePath = `invoices/${n}`;
@@ -53,11 +52,7 @@ Url:String
   }
 
   onSubmit(){
-    this.orderServices.updatefrmDriver(this.Tstatus, this.Url);
+    this.orderServices.updatefrmDriver(this.Dstatus, this.Url);
     alert('Invoice status is updated.')
    }
-
-  close(){
-    this.dialog.closeAll();
-  }
 }

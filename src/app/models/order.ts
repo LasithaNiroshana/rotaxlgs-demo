@@ -15,5 +15,6 @@ export interface Order{
   sales_agent?:string;
   status?:string;
   distance?:number;
+  photo_URL?:string
   // pending_completed_time?:Time;
 }

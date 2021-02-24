@@ -17,7 +17,7 @@ export class Adminstatcard4Component implements OnInit {
       order.forEach(o=>{
         let ordes:any = o.payload.doc.data();
         ordes.id = o.payload.doc.id;
-        this.orders.push(ordes);
+        
       })
     });
   }

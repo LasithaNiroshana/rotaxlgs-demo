@@ -1,0 +1,15 @@
+
+<mat-form-field class="ord2-field">
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="Dstatus" name="status">
+      <mat-option value="Delivered">Delivered</mat-option>
+      <mat-option value="Delivery Ready">Not delivered</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <div>Upload a picture of the invoice:</div> <br>
+  <input type="file" (change)="onUpload($event)">
+  <!-- <button type="button" (click)= "onUpload()">Upload</button> -->
+  <br>
+  <br>
+  <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>

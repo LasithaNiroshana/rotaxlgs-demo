@@ -32,7 +32,8 @@ export class AddordersComponent implements OnInit {
   route:'',
   sales_agent:'',
   status:'',
-  distance: 0 ,
+  distance: 0,
+  photo_URL:''
   }
 
   constructor(private ordersService:OrdersService,

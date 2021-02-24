@@ -42,7 +42,9 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { AdmindashchartComponent } from './pages/adminhome/admindashboard/admindashchart/admindashchart.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.component';
-import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopup.component';
+import { PopupComponent } from './pages/drivershome/popup/popup.component';
+import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
+import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
 
 
 
@@ -61,8 +63,14 @@ import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopu
     FooterComponent,
     AdmindashchartComponent,
     EditpopupComponent,
+<<<<<<< HEAD
     DriverpopupComponent,
 
+=======
+    PopupComponent,
+    DrivershomeComponent,
+    DriverlistComponent
+>>>>>>> 952214da8a5aa034a9144866965f173d9aa626ac
   ],
   entryComponents:[EditpopupComponent],
   imports: [
@@ -100,5 +108,9 @@ import { DriverpopupComponent } from './pages/drivershome/driverpopup/driverpopu
   ],
   providers: [],
   bootstrap: [AppComponent],
+<<<<<<< HEAD
+=======
+  entryComponents:[EditpopupComponent,PopupComponent]
+>>>>>>> 952214da8a5aa034a9144866965f173d9aa626ac
 })
 export class AppModule { }
