@@ -44,10 +44,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.component';
 import { PopupComponent } from './pages/drivershome/popup/popup.component';
 import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
+<<<<<<< HEAD
 import { VehicledltdialogComponent } from './pages/vehicles/vehiclestable/vehicledltdialog/vehicledltdialog.component';
 
 
 
+=======
+import { DropZoneDirective } from './dropzone.directive';
+import { UseruploadComponent } from './pages/userupload/userupload.component';
+import { UsersComponent } from './pages/users/users.component';
+import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
+>>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
 
 @NgModule({
   declarations: [
@@ -64,8 +71,16 @@ import { VehicledltdialogComponent } from './pages/vehicles/vehiclestable/vehicl
     AdmindashchartComponent,
     EditpopupComponent,
     PopupComponent,
+<<<<<<< HEAD
     DriverlistComponent,
     VehicledltdialogComponent
+=======
+    DrivershomeComponent,
+    DriverlistComponent,
+    DropZoneDirective,
+    UseruploadComponent,
+    UsersComponent,
+>>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,13 @@
     <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="user.mobile_no" name="mobile_no">
   </mat-form-field>
 
+  <div>
+    <mat-label>Profile Picture</mat-label>
+  </div>
+    
+    <input type="file" name="dp"  [(ngModel)]="selectedFile" (change)="onFileSelected($event)">
+  
+
   <mat-form-field class="signup-full-width">
     <mat-label>Choose Your Role</mat-label>
     <mat-select [(ngModel)]="user.role" name="sales_agent">
@@ -47,7 +54,9 @@
     <mat-label>Confirm Password</mat-label>
     <input type="password" matInput placeholder="Confirm Password">
   </mat-form-field>
-
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="12px">
   <button class="signup-btn" mat-raised-button color="primary" click="createUser()">SIGNUP</button>
   <button class="reset-btn" mat-raised-button>RESET</button>
+</div>
+  
 </form>

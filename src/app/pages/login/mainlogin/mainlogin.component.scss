@@ -9,6 +9,11 @@
   max-width: 400px;
 }
 
+.welcome{
+  flex-direction: row ;
+  align-content: center flex-start;
+}
+
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;

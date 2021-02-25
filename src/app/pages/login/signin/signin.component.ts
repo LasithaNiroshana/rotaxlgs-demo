@@ -22,6 +22,8 @@ user:User={
   }
   signIn(){
     this.authService.signIn(this.user.email,this.user.password);
+    this.user.email='';
+    this.user.password='';
   }
 
 }

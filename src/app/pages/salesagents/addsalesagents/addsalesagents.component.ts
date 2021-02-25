@@ -3,6 +3,7 @@ import {SalesagentsService} from '../../../services/salesagents.service';
 import {Salesagent} from '../../../models/salesagents';
 import { VehiclesService } from 'src/app/services/vehicles.service';
 import { Vehicle } from 'src/app/models/vehicles';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-addsalesagents',
@@ -28,7 +29,8 @@ export class AddsalesagentsComponent implements OnInit {
   }
 
   constructor(private salesagentsservice:SalesagentsService,
-              private vehicleService: VehiclesService) { }
+              private vehicleService: VehiclesService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.vehicleService.getVehicles().subscribe(sa=>{

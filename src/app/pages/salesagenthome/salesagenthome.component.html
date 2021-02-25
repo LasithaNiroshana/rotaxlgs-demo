@@ -3,18 +3,23 @@
   <mat-drawer class="drawer" mode="side" [opened]="toggleOpen">
     <mat-nav-list class="sidenav">
       <div class="profile-card">
+<<<<<<< HEAD
         <div class="header" *ngIf="user">
+=======
+        <div class="header" >
+            *ngIf="user"
+>>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
          <h2>
           {{user?.displayName}}
          </h2>
-         <!-- <mat-label class="profile-label">
-          {{user?.role}}
+          <mat-label class="profile-label">
+          
         </mat-label> -->
          <h4>
              {{user?.email}}
          </h4>
         </div>
-        <img class="img-responsive" src="assets/Images/avatar.png">
+        <img class="img-responsive" src="{{user?.photoURL}}">
       </div>
       <mat-divider></mat-divider>
       <div>

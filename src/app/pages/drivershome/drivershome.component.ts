@@ -34,6 +34,6 @@ export class DrivershomeComponent implements OnInit {
   }
 
   showDashboard(){
-    this.router.navigate(['drivershome'],{relativeTo:this.route});
+    this.router.navigate(['/drivershome'],{relativeTo:this.route});
   }
 }

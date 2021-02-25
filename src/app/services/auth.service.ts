@@ -11,6 +11,7 @@ import {User} from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
+  Url:string
   user:Observable<User>;
   private eventAuthError=new BehaviorSubject<String>("");
   eventAuthError$=this.eventAuthError.asObservable();
@@ -41,24 +42,28 @@ export class AuthService {
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           if(currentUser.role=='Admin'){
-            alert('You are successfully log in to the system as a admin'  )
             this.router.navigate(['/adminhome/admindashboard']);
+            console.log('srdfghi')
+            alert('You are successfully log in to the system as a admin');
           }
-          else if(currentUser.role=='Driver'){
-            alert('You are successfully log in to the system.')
-            this.router.navigate(['/drivershome']);
-          }
-          else if(currentUser.role=='Sales Agent'){
-            alert('You are successfully log in to the system.')
-            this.router.navigate(['/salesagenthome']);
-          }
-          else{
-            alert('You are successfully log in to the system.')
-            this.router.navigate(['/salesagenthome']);
-          }
+          else if(currentUser.approved == true){
+              if(currentUser.role=='Driver'){
+                this.router.navigate(['/drivershome']);
+                alert('You are successfully log in to the system.');
+              }
+              else if(currentUser.role=='Sales Agent'){
+                this.router.navigate(['/salesagenthome']);
+                alert('You are successfully log in to the system.');
+              }
+              else if(currentUser.role=='Store Keeper'){
+                this.router.navigate(['/salesagenthome']);
+                alert('You are successfully log in to the system.');
+              }}
+            else {
+              alert('You are not approved to log in to the system. Please contact an administator.');
+            }
      });
-
-        }
+    }
       });
   }
 
@@ -67,34 +72,30 @@ export class AuthService {
       this.newUser=user;
       userCredentials.user.updateProfile({
         displayName:user.first_name+'  '+user.last_name,
+<<<<<<< HEAD
+=======
+        photoURL:this.Url,
+>>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
       });
       this.insertUserData(userCredentials).then(()=>{
-        this.getUserData(userCredentials).subscribe((currentUser: any) => {
-          if(currentUser.role=='Admin'){
-            this.router.navigate(['/adminhome']);
-          }
-          else if(currentUser.role=='Driver'){
-            this.router.navigate(['/drivershome']);
-          }
-          else if(currentUser.role=='Sales Agent'){
-            this.router.navigate(['/salesagenthome']);
-          }
-          else{
-            this.router.navigate(['/salesagenthome']);
-          }
-     });
+        this.getUserData(userCredentials).subscribe();
+            this.router.navigate(['/notapproved']);
       });
     })
     .catch(error=>{
       this.eventAuthError.next(error);
   });}
 
-  signOut(){
-    return this.afauth.signOut().then(()=>
-    {
-      this.router.navigate(['/mainlogin']);
-    });
+  async signOut(){
+    await this.afauth.signOut();
+    alert('loging out');
+    this.router.navigate(['/**']);
   }
+
+  dpurl(url: string){
+    this.Url = url;
+  }
+
 
   insertUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).set({
@@ -103,15 +104,15 @@ export class AuthService {
       lastName:this.newUser.last_name,
       id_no:this.newUser.id_no,
       mobileNumber:this.newUser.mobile_no,
-      role:this.newUser.role
+      role:this.newUser.role,
+      photo_url:this.Url,
+      approved:this.newUser.approved
     });
   }
 
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
-
-
 
   canRead(user:User):boolean{
     const allowed=['admin','driver','storekeeper','salesagent']
@@ -136,6 +137,10 @@ export class AuthService {
         }
       }
       return false;
+    }
+
+    getUsers(){
+      return this.afs.collection('users',  ref => ref.where('approved', '==', false)).snapshotChanges();
     }
   }
 

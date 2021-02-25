@@ -7,6 +7,7 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditpopupComponent } from '../editpopup/editpopup.component';
 import { AddordersComponent } from '../../orders/addorders/addorders.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-salesagenthometabel',
@@ -15,21 +16,26 @@ import { AddordersComponent } from '../../orders/addorders/addorders.component';
 })
 
 export class SalesagenthometabelComponent implements OnInit {
-  
+  user:firebase.default.User;
   status:'';
   orders:Order[];
+  agentName: String
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','province','route','sales_agent','current_status','edit'];
   // user: firebase.User;
   constructor(private ordersservice:OrdersService,
               // private router:Router,
               // private route:ActivatedRoute,
               // private fireAuth: AngularFireAuth,
+              private authService:AuthService,
               private afs:AngularFirestore,
               private dialog: MatDialog,
              ) {
    }
    ngOnInit(): void {
-    this.ordersservice.getOrders().subscribe(order=>{
+    this.authService.getUserState().subscribe(user=>{
+      this.user=user;
+      this.agentName = user.displayName});
+    this.ordersservice.getSAOrder(this.agentName).subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{
         let orders:any = o.payload.doc.data();
@@ -37,6 +43,7 @@ export class SalesagenthometabelComponent implements OnInit {
         this.orders.push(orders);
       })
     });
+   
   }
 
   done(orders: { id: string; }){

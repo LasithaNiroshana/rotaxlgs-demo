@@ -7,6 +7,7 @@ export interface User{
   password?:string;
   role?:string;
   photo_url?:string;
+  approved?:boolean
 }
 
 // export interface Roles{

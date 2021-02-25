@@ -12,7 +12,7 @@
         </mat-label> -->
          <h4>{{user?.email}}</h4>
         </div>
-        <img class="img-responsive" src="assets/Images/avatar.png">
+        <img class="img-responsive" src='{{user?.photoURL}}'>
       </div>
       <mat-divider></mat-divider>
       <div>
@@ -24,6 +24,7 @@
           <a  mat-list-item class="listitem" (click)="showVehicles()">Vehicles</a>
           <a  mat-list-item class="listitem" (click)="showCustomers()">Customers</a>
           <a  mat-list-item class="listitem" (click)="showSalesAgents()">Sales Agents</a>
+          <a  mat-list-item class="listitem" (click)="showUsers()">Users</a>
     </mat-accordion>
       </div>
     </mat-nav-list>
