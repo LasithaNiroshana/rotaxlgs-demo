@@ -45,6 +45,9 @@ import { EditpopupComponent } from './pages/salesagenthome/editpopup/editpopup.c
 import { PopupComponent } from './pages/drivershome/popup/popup.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
 import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
+import { DropZoneDirective } from './dropzone.directive';
+import { UseruploadComponent } from './pages/userupload/userupload.component';
+
 
 
 
@@ -65,7 +68,10 @@ import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.c
     EditpopupComponent,
     PopupComponent,
     DrivershomeComponent,
-    DriverlistComponent
+    DriverlistComponent,
+    DropZoneDirective,
+    UseruploadComponent,
+    
   ],
   imports: [
     BrowserModule,

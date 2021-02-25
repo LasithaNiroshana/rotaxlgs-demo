@@ -28,6 +28,8 @@ import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.c
 import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
 import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
+import { UseruploadComponent } from './pages/userupload/userupload.component';
+
 
 
 
@@ -42,19 +44,18 @@ const routes: Routes = [
     {path:'vieworders',component:ViewordersComponent},
     {path:'viewsalesagents',component:ViewsalesagentsComponent},
     {path:'viewvehicles',component:ViewvehiclesComponent},
+    
   ]
 },
 
-
+{path:'bulkupload', component: UseruploadComponent },
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
 ]},
-{path:'drivershome', component: DrivershomeComponent,
-  children:[
-    {path: 'driverlist', component: DriverlistComponent},
-  ]},
+{path:'drivershome', component: DrivershomeComponent},
   {path:'**',component:MainloginComponent},
+ 
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
   {path:'adddisroutes',component:AdddisroutesComponent},

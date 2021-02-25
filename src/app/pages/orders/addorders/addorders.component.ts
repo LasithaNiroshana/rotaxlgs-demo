@@ -6,6 +6,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { SalesagentsService } from 'src/app/services/salesagents.service';
 import { Salesagent } from 'src/app/models/salesagents';
 import { DisroutsService } from 'src/app/services/disroutes.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -39,7 +40,9 @@ export class AddordersComponent implements OnInit {
   constructor(private ordersService:OrdersService,
     private customerService: CustomersService,
     private salesagentService: SalesagentsService,
-    private routeService: DisroutsService) { }
+    private routeService: DisroutsService,
+    private router:Router,
+    private acr:ActivatedRoute) { }
 
   ngOnInit(): void {this.salesagentService.getSalesagents().subscribe(sa=>{
     this.sales_agents = [];
@@ -171,6 +174,10 @@ route() {
       console.log(error)
     }
   })
+}
+
+showupload(){
+  this.router.navigate(['bulkupload'],{relativeTo:this.acr});
 }
 
 }

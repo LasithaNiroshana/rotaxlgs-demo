@@ -18,6 +18,10 @@ export class CustomersService {
      return this.afs.collection('customers', ref => ref.orderBy('distance', 'desc')).snapshotChanges();
    }
 
+   getDistance(customerID){
+    return this.afs.collection('customers', ref => ref.where('customer_id', '==', customerID)).snapshotChanges();
+  }
+
    getspcustomer(custID){
     return this.afs.collection('customers',  ref => ref.where('customer_id', '==', custID));
 

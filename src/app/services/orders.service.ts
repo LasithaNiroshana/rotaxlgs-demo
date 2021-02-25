@@ -61,6 +61,12 @@ export class OrdersService {
     this.afs.collection('orders').doc(this.id).update({'photo_URL': url})
    }
 
+   updateRoute(id,route){
+     this.afs.collection('orders').doc(id).update({'route': route})
+   }
 
+  updateDistance(id,distance){
+    this.afs.collection('orders').doc(id).update({'distance': distance})
+  }
 
 }
