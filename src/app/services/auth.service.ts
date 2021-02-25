@@ -43,24 +43,28 @@ export class AuthService {
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           if(currentUser.role=='Admin'){
-            alert('You are successfully log in to the system as a admin'  )
             this.router.navigate(['/adminhome/admindashboard']);
+            console.log('srdfghi')
+            alert('You are successfully log in to the system as a admin');
           }
-          else if(currentUser.role=='Driver'){
-            alert('You are successfully log in to the system.')
-            this.router.navigate(['/drivershome']);
-          }
-          else if(currentUser.role=='Sales Agent'){
-            alert('You are successfully log in to the system.')
-            this.router.navigate(['/salesagenthome']);
-          }
-          else{
-            alert('You are successfully log in to the system.')
-            this.router.navigate(['/salesagenthome']);
-          }
+          else if(currentUser.approved == true){
+              if(currentUser.role=='Driver'){
+                this.router.navigate(['/drivershome']);
+                alert('You are successfully log in to the system.');
+              }
+              else if(currentUser.role=='Sales Agent'){
+                this.router.navigate(['/salesagenthome']);
+                alert('You are successfully log in to the system.');
+              }
+              else if(currentUser.role=='Store Keeper'){
+                this.router.navigate(['/salesagenthome']);
+                alert('You are successfully log in to the system.');
+              }}
+            else {
+              alert('You are not approved to log in to the system. Please contact an administator.');
+            }
      });
-
-        }
+    }
       });
   }
 
@@ -72,35 +76,21 @@ export class AuthService {
         photoURL:this.Url,
       });
       this.insertUserData(userCredentials).then(()=>{
-        this.getUserData(userCredentials).subscribe((currentUser: any) => {
-          if(currentUser.role=='Admin'){
-            this.router.navigate(['/adminhome']);
-          }
-          else if(currentUser.role=='Driver'){
-            this.router.navigate(['/drivershome']);
-          }
-          else if(currentUser.role=='Sales Agent'){
-            this.router.navigate(['/salesagenthome']);
-          }
-          else{
-            this.router.navigate(['/salesagenthome']);
-          }
-     });
+        this.getUserData(userCredentials).subscribe();
+            this.router.navigate(['/notapproved']);
       });
     })
     .catch(error=>{
       this.eventAuthError.next(error);
   });}
 
-  signOut(){
-    return this.afauth.signOut().then(()=>
-    {
-      alert('loging out')
-      this.router.navigate(['**']);
-    });
+  async signOut(){
+    await this.afauth.signOut();
+    alert('loging out');
+    this.router.navigate(['/**']);
   }
 
-  dpurl(url){
+  dpurl(url: string){
     this.Url = url;
   }
 
@@ -113,7 +103,8 @@ export class AuthService {
       id_no:this.newUser.id_no,
       mobileNumber:this.newUser.mobile_no,
       role:this.newUser.role,
-      photo_url:this.Url
+      photo_url:this.Url,
+      approved:this.newUser.approved
     });
   }
 
@@ -144,6 +135,10 @@ export class AuthService {
         }
       }
       return false;
+    }
+
+    getUsers(){
+      return this.afs.collection('users',  ref => ref.where('approved', '==', false)).snapshotChanges();
     }
   }
 

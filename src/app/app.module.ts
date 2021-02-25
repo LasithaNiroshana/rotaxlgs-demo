@@ -47,10 +47,8 @@ import { DrivershomeComponent } from './pages/drivershome/drivershome.component'
 import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
 import { DropZoneDirective } from './dropzone.directive';
 import { UseruploadComponent } from './pages/userupload/userupload.component';
-
-
-
-
+import { UsersComponent } from './pages/users/users.component';
+import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +69,7 @@ import { UseruploadComponent } from './pages/userupload/userupload.component';
     DriverlistComponent,
     DropZoneDirective,
     UseruploadComponent,
-    
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,9 +29,8 @@ import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenth
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
 import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
 import { UseruploadComponent } from './pages/userupload/userupload.component';
-
-
-
+import { UsersComponent } from './pages/users/users.component';
+import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 
 
 const routes: Routes = [
@@ -44,10 +43,10 @@ const routes: Routes = [
     {path:'vieworders',component:ViewordersComponent},
     {path:'viewsalesagents',component:ViewsalesagentsComponent},
     {path:'viewvehicles',component:ViewvehiclesComponent},
-    
+    {path:'Viewusers',component:UsersComponent},
   ]
 },
-
+{path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[

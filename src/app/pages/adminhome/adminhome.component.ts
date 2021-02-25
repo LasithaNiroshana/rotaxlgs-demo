@@ -22,10 +22,10 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.authService.getUserState().subscribe(user=>{
       this.user=user;
+      
       this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
         console.log(result.mqAlias);
         this.deviceXs=result.mqAlias==='xs'?true:false;
-        console.log(this.user.photoURL)
       });
     })
   }
@@ -61,6 +61,10 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
   showVehicles(){
     this.router.navigate(['viewvehicles'],{relativeTo:this.route})
   }
+  showUsers(){
+    this.router.navigate(['Viewusers'],{relativeTo:this.route})
+  }
+
 
   toggleNav(){
     this.toggleOpen=!this.toggleOpen;

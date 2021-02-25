@@ -24,7 +24,8 @@ export class SignupComponent implements OnInit {
   email:'',
   password:'',
   role:'',
-  photo_url:''
+  photo_url:'',
+  approved:false
   }
 
   constructor(private authService:AuthService,
@@ -65,6 +66,13 @@ export class SignupComponent implements OnInit {
 
   createUser(){
     this.authService.createUser(this.user);
+    this.user.first_name=''
+    this.user.last_name=''
+    this.user.id_no=''
+    this.user.email=''
+    this.user.mobile_no=''
+    this.user.password=''
+    this.user.role=''
   }
 
 }
