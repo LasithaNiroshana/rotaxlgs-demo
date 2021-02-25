@@ -41,25 +41,25 @@
       <mat-card class="vehicles3">
         <mat-form-field class="vehicles3-field">
           <mat-label>Insurance Expiry Date</mat-label>
-          <input matInput [matDatepicker]="picker1" name="insurance_expiry">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
+          <input matInput [matDatepicker]="picker2" [(ngModel)]="vehicle.insurance_expiry" name="insurance_expiry">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field class="vehicles3-field">
           <mat-label>Insurance Company</mat-label>
-          <input type="text" matInput placeholder="ABC Company Pvt Ltd" name="insurance_company">
+          <input type="text" matInput placeholder="ABC Company Pvt Ltd" [(ngModel)]="vehicle.insurance_company" name="insurance_company">
         </mat-form-field>
         <br>
         <mat-form-field class="vehicles3-field">
           <mat-label>Telephone Number</mat-label>
-          <input type="text" matInput placeholder="112254864" name="insurancetel_no">
+          <input type="text" matInput placeholder="112254864" [(ngModel)]="vehicle.insurance_tel" name="insurancetel_no">
         </mat-form-field>
       </mat-card>
       <br><br>
-     
-      
-     
+
+
+
 
     </div>
 

@@ -3,16 +3,15 @@
   <mat-drawer class="drawer" mode="side" [opened]="toggleOpen">
     <mat-nav-list class="sidenav">
       <div class="profile-card">
-        <div class="header" >
-            <!-- *ngIf="user" -->
+        <div class="header" *ngIf="user">
          <h2>
-          <!-- {{user?.displayName}} -->
+          {{user?.displayName}}
          </h2>
          <!-- <mat-label class="profile-label">
           {{user?.role}}
         </mat-label> -->
          <h4>
-             <!-- {{user?.email}} -->
+             {{user?.email}}
          </h4>
         </div>
         <img class="img-responsive" src="assets/Images/avatar.png">

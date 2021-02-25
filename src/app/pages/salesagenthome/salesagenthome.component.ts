@@ -1,8 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Order } from 'src/app/models/order';
-import { OrdersService } from 'src/app/services/orders.service';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthService} from '../../services/auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute,Router} from '@angular/router';
+import {MediaObserver,MediaChange} from '@angular/flex-layout';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-salesagenthome',
@@ -12,12 +13,19 @@ import {AngularFireAuth} from '@angular/fire/auth';
 export class SalesagenthomeComponent implements OnInit {
   @Output()
   toggleOpen:boolean;
-  constructor(private ordersservice:OrdersService,
-              private router:Router,
-              private route:ActivatedRoute,
-              private fireAuth: AngularFireAuth) {
+  user:firebase.default.User;
+  mediaSub:Subscription;
+  deviceXs:boolean;
+  constructor(private authService:AuthService,private afs:AngularFirestore,private router:Router,
+    private route:ActivatedRoute, public mediaObserver:MediaObserver) {
    }
    ngOnInit(): void {
+    this.authService.getUserState().subscribe(user=>{
+      this.user=user;
+      this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
+        this.deviceXs=result.mqAlias==='xs'?true:false;
+      });
+    });
   }
 
   toggleNav(){

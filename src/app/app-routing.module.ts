@@ -51,9 +51,10 @@ const routes: Routes = [
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
 ]},
 {path:'drivershome', component: DrivershomeComponent,
-  children:[
-    {path: 'driverlist', component: DriverlistComponent},
-  ]},
+  // children:[
+  //   {path: 'driverlist', component: DriverlistComponent},
+  // ]
+},
   {path:'**',component:MainloginComponent},
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
@@ -102,5 +103,7 @@ export const routingComponents=[
  SalesagenthometabelComponent,
  SalesagenthomeComponent,
  RoutetableComponent,
+ DrivershomeComponent,
+ DriverstableComponent
 
 ]

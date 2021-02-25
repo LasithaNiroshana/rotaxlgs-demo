@@ -12,8 +12,11 @@ export class AddvehiclesComponent implements OnInit {
   vehicle_no:'',
   revenuelicense_no:'',
   revenuelicense_expiry:new Date(),
+  insurance_expiry:new Date(),
   telephone_no:'',
   vehicle_size:'',
+  insurance_tel:'',
+  insurance_company:'',
   }
 
   constructor(private vehiclesService:VehiclesService) { }
@@ -25,7 +28,7 @@ export class AddvehiclesComponent implements OnInit {
     if(
       this.vehicle.vehicle_no!=''
       && this.vehicle.revenuelicense_no!=''
-      
+
       // && this.vehicle.company_name!=''
       // && this.vehicle.address_ln1!=''
       // && this.vehicle.address_ln2!=''

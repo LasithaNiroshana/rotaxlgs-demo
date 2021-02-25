@@ -24,20 +24,31 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let vehicles">
-        <button mat-icon-button class="dlt_btn" (click)="deleteVehicle(vehicles)">
+        <button mat-icon-button class="dlt_btn" (click)="callDialog()">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="vehiclesColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: vehiclesColumns;"></tr>
+     <ng-template #callAPIDialog *ngFor="let vehicle of vehicles">
+      <h1 mat-dialog-title>Alert!</h1>
+      <div mat-dialog-content>
+        <p>Are you sure you want to delete this item?</p>
+      </div>
+      <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="20px">
+        <button mat-raised-button [mat-dialog-close]="">Cancel</button>
+        <button mat-raised-button  (click)="deleteVehicle(vehicle)" color="primary">Yes</button>
+      </div>
+</ng-template>
   </table>
-  </div>
 
+  </div>
   <ng-template #noVehicles>
     <hr>
     <h5>There are no current registered vehicles</h5>
   </ng-template>
+
 
 
 

@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {BehaviorSubject,Observable,of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../models/user';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +66,7 @@ export class AuthService {
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
       userCredentials.user.updateProfile({
-        displayName:user.first_name+'  '+user.last_name
+        displayName:user.first_name+'  '+user.last_name,
       });
       this.insertUserData(userCredentials).then(()=>{
         this.getUserData(userCredentials).subscribe((currentUser: any) => {

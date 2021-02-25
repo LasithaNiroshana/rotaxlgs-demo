@@ -15,9 +15,9 @@ export class Adminstatcard4Component implements OnInit {
     this.ordersservice.getDashOrders().subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{
-        let ordes:any = o.payload.doc.data();
-        ordes.id = o.payload.doc.id;
-        
+        let order:any = o.payload.doc.data();
+        order.id = o.payload.doc.id;
+        this.orders.push(order);
       })
     });
   }

@@ -37,7 +37,8 @@ export class CustomertableComponent implements OnInit {
   }
 
   deleteCustomers(customer){
-    this.afs.collection('customers').doc(customer.id).delete();
+    // this.afs.collection('customers').doc(customer.id).delete();
+    this.afs.doc(`customers/${customer.id}`).delete();
   }
 
 }

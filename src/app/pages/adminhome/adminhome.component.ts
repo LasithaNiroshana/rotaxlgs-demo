@@ -1,6 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {User} from '../../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute,Router} from '@angular/router';
 import {MediaObserver,MediaChange} from '@angular/flex-layout';
@@ -11,7 +10,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./adminhome.component.scss']
 })
 export class AdminhomeComponent implements OnInit,OnDestroy {
-  @Input()
+  @Output()
   toggleOpen:boolean;
   user:firebase.default.User;
   mediaSub:Subscription;
@@ -26,7 +25,7 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
         console.log(result.mqAlias);
         this.deviceXs=result.mqAlias==='xs'?true:false;
       });
-    })
+    });
   }
 
   ngOnDestroy(){
