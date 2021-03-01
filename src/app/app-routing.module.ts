@@ -31,10 +31,14 @@ import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.c
 import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
+import { AdminGuard } from './guards/admin.guard';
+import { DriverGuard } from './guards/driver.guard';
+import { SalesagentGuard } from './guards/salesagent.guard';
 
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
+  canActivate:[AdminGuard],
   children:[
     {path:'admindashboard',component:AdmindashboardComponent},
     {path:'viewcustomers',component:ViewcustomersComponent},
@@ -51,18 +55,10 @@ const routes: Routes = [
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
-]},
-<<<<<<< HEAD
-{path:'drivershome', component: DrivershomeComponent,
-  // children:[
-  //   {path: 'driverlist', component: DriverlistComponent},
-  // ]
-},
-=======
-{path:'drivershome', component: DrivershomeComponent},
->>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
+],canActivate:[SalesagentGuard]},
+{path:'drivershome', component: DrivershomeComponent,canActivate:[DriverGuard]},
   {path:'**',component:MainloginComponent},
- 
+
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
   {path:'adddisroutes',component:AdddisroutesComponent},

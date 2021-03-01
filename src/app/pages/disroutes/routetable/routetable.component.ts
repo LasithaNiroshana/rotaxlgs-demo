@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DisroutsService } from 'src/app/services/disroutes.service';
+import {MatDialog} from '@angular/material/dialog'
 
 @Component({
   selector: 'app-routetable',
@@ -8,9 +9,10 @@ import { DisroutsService } from 'src/app/services/disroutes.service';
   styleUrls: ['./routetable.component.scss']
 })
 export class RoutetableComponent implements OnInit {
+  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   disroutes=[];
   routeColumns:string[]=['Route_Name','cities', 'edit','delete'];
-  constructor(private disroutsService:DisroutsService, private afs:AngularFirestore) {
+  constructor(private disroutsService:DisroutsService, private afs:AngularFirestore, public dialog:MatDialog) {
 
   }
 
@@ -26,7 +28,11 @@ export class RoutetableComponent implements OnInit {
   }
 
   deleteRoute(disroute){
-    this.afs.collection('routes').doc(disroute.id).delete();
+    this.afs.doc(`disroutes/${disroute.id}`).delete();
+  }
+
+  callDialog() {
+    this.dialog.open(this.callDLTDialog);
   }
 
 }
