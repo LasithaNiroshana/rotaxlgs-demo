@@ -80,4 +80,9 @@ export class UsersComponent implements OnInit {
     this.user.password=''
     this.user.role=''
   }
+
+  edit(user){
+    this.authService.populateUser(user)
+    // this.dialog.open(EditpopupComponent);
+  }
 }
