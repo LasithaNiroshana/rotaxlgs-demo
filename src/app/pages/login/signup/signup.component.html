@@ -27,9 +27,9 @@
   <div>
     <mat-label>Profile Picture</mat-label>
   </div>
-    
+
     <input type="file" name="dp"  [(ngModel)]="selectedFile" (change)="onFileSelected($event)">
-  
+
 
   <mat-form-field class="signup-full-width">
     <mat-label>Choose Your Role</mat-label>
@@ -58,5 +58,6 @@
   <button class="signup-btn" mat-raised-button color="primary" click="createUser()">SIGNUP</button>
   <button class="reset-btn" mat-raised-button>RESET</button>
 </div>
-  
+
 </form>
+<app-spinner></app-spinner>

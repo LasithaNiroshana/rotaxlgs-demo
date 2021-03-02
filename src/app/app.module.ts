@@ -23,7 +23,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {HttpClientModule} from '@angular/common/http';
@@ -49,13 +51,11 @@ import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-<<<<<<< HEAD
-import { VehicledltdialogComponent } from './pages/vehicles/vehiclestable/vehicledltdialog/vehicledltdialog.component';
-=======
 import { AdminGuard } from './guards/admin.guard';
 import { DriverGuard } from './guards/driver.guard';
 import { SalesagentGuard } from './guards/salesagent.guard';
->>>>>>> 9623c141b22d9b35645ab2d46ab3c72d3291d7e6
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +77,8 @@ import { SalesagentGuard } from './guards/salesagent.guard';
     DropZoneDirective,
     UseruploadComponent,
     UsersComponent,
+    SpinnerComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +107,8 @@ import { SalesagentGuard } from './guards/salesagent.guard';
     MatFormFieldModule,
     MatExpansionModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     AppRoutingModule,
     FlexLayoutModule,

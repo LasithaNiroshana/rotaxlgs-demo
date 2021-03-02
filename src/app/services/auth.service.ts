@@ -6,6 +6,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {BehaviorSubject,Observable,of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../models/user';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,10 @@ export class AuthService {
   eventAuthError$=this.eventAuthError.asObservable();
   newUser:any;
   id:'';
+  message:'';
 
 
-  constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router) {
+  constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router, private spinner:SpinnerService) {
     this.user=this.afauth.authState;
     this.user.pipe(switchMap(u=>{
       if(u){
@@ -36,6 +38,7 @@ export class AuthService {
   }
 
   signIn(email:string, password:string){
+    this.spinner.requestStarted();
     this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
       {
         this.eventAuthError.next(error);
@@ -43,24 +46,29 @@ export class AuthService {
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           if(currentUser.role=='Admin'){
+            this.spinner.requestEnded();
             this.router.navigate(['/adminhome/admindashboard']);
             // console.log('srdfghi');
             alert('You are successfully log in to the system as a admin');
           }
           else if(currentUser.approved == true){
               if(currentUser.role=='Driver'){
+                this.spinner.requestEnded();
                 this.router.navigate(['/drivershome']);
                 alert('You are successfully log in to the system.');
               }
               else if(currentUser.role=='Sales Agent'){
+                this.spinner.requestEnded();
                 this.router.navigate(['/salesagenthome']);
                 alert('You are successfully log in to the system.');
               }
               else if(currentUser.role=='Store Keeper'){
+                this.spinner.requestEnded();
                 this.router.navigate(['/salesagenthome']);
                 alert('You are successfully log in to the system.');
               }}
             else {
+              this.spinner.requestEnded();
               alert('You are not approved to log in to the system. Please contact an administator.');
             }
      });
@@ -69,6 +77,7 @@ export class AuthService {
   }
 
   createUser(user:User){
+    this.spinner.requestStarted();
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
       userCredentials.user.updateProfile({
@@ -77,6 +86,7 @@ export class AuthService {
       });
       this.insertUserData(userCredentials).then(()=>{
         this.getUserData(userCredentials).subscribe();
+        this.spinner.requestEnded();
             this.router.navigate(['/notapproved']);
       });
     })
@@ -85,8 +95,10 @@ export class AuthService {
   });}
 
   async signOut(){
+    this.spinner.requestStarted();
     await this.afauth.signOut();
-    alert('loging out');
+    alert('logging out');
+    this.spinner.requestStarted();
     this.router.navigate(['/**']);
   }
 
@@ -109,6 +121,7 @@ export class AuthService {
   }
 
   createAdmin(user:User){
+    this.spinner.requestStarted();
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
       userCredentials.user.updateProfile({
@@ -120,7 +133,9 @@ export class AuthService {
       });
       }).catch(error=>{
         this.eventAuthError.next(error);}
-      );}
+      );
+      this.spinner.requestStarted();
+    }
 
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
