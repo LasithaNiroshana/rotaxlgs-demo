@@ -107,6 +107,20 @@ export class AuthService {
     });
   }
 
+  createAdmin(user:User){
+    this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
+      this.newUser=user;
+      userCredentials.user.updateProfile({
+        displayName:user.first_name+'  '+user.last_name,
+        photoURL:this.Url,
+      });
+      this.insertUserData(userCredentials).then(()=>{
+        this.getUserData(userCredentials).subscribe();
+      });
+      }).catch(error=>{
+        this.eventAuthError.next(error);}
+      );}
+
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
