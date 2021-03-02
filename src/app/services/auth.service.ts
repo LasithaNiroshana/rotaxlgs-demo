@@ -16,6 +16,7 @@ export class AuthService {
   private eventAuthError=new BehaviorSubject<String>("");
   eventAuthError$=this.eventAuthError.asObservable();
   newUser:any;
+  id:'';
 
 
   constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router) {
@@ -154,5 +155,13 @@ export class AuthService {
     getUsers(){
       return this.afs.collection('users',  ref => ref.where('approved', '==', false)).snapshotChanges();
     }
+
+    populateUser(user){
+      this.id = user.id;
+      console.log(this.id)
+      this.afs.collection('users').doc(this.id).update({'approved': true})
+      alert('User approved successfully.')
+      //  this.edit.onSubmit(order.status, order.id);
+     }
   }
 
