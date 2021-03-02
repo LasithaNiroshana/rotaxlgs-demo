@@ -72,10 +72,7 @@ export class AuthService {
       this.newUser=user;
       userCredentials.user.updateProfile({
         displayName:user.first_name+'  '+user.last_name,
-<<<<<<< HEAD
-=======
         photoURL:this.Url,
->>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
       });
       this.insertUserData(userCredentials).then(()=>{
         this.getUserData(userCredentials).subscribe();
@@ -109,6 +106,20 @@ export class AuthService {
       approved:this.newUser.approved
     });
   }
+
+  createAdmin(user:User){
+    this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
+      this.newUser=user;
+      userCredentials.user.updateProfile({
+        displayName:user.first_name+'  '+user.last_name,
+        photoURL:this.Url,
+      });
+      this.insertUserData(userCredentials).then(()=>{
+        this.getUserData(userCredentials).subscribe();
+      });
+      }).catch(error=>{
+        this.eventAuthError.next(error);}
+      );}
 
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();

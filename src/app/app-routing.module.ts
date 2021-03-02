@@ -52,15 +52,7 @@ const routes: Routes = [
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
 ]},
-<<<<<<< HEAD
-{path:'drivershome', component: DrivershomeComponent,
-  // children:[
-  //   {path: 'driverlist', component: DriverlistComponent},
-  // ]
-},
-=======
 {path:'drivershome', component: DrivershomeComponent},
->>>>>>> 0d6dee6e0d99e22c4348dd5da765c35c31930fc8
   {path:'**',component:MainloginComponent},
  
   {path:'addcustomers',component:AddcustomersComponent},
