@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,TemplateRef} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {MatDialog} from '@angular/material/dialog';
 import {OrdersService} from '../../../services/orders.service';
 import {Order} from '../../../models/order';
 import { DisroutsService } from 'src/app/services/disroutes.service';
 import { Disroute } from 'src/app/models/disroutes';
 import { CustomersService } from 'src/app/services/customers.service';
+
 
 @Component({
   selector: 'app-orderstable',
@@ -11,23 +14,24 @@ import { CustomersService } from 'src/app/services/customers.service';
   styleUrls: ['./orderstable.component.scss']
 })
 export class OrderstableComponent implements OnInit {
+  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   routes:Disroute[];
   orders:Order[];
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','edit','delete'];
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
-    private customerService: CustomersService) {
+    private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog) {
    }
 
    ngOnInit(): void {
-    this.ordersservice.getOrders().subscribe(order=>{
+    this.ordersservice.getOrders().subscribe(ord=>{
       this.orders=[];
-      order.forEach(o=>{
-        let ordes:any = o.payload.doc.data();
-        ordes.id = o.payload.doc.id;
-        this.route(ordes.city,ordes.id)
-        this.distance(ordes.customer_id,ordes.id)
-        this.orders.push(ordes);
+      ord.forEach(o=>{
+        let order:any = o.payload.doc.data();
+        order.id = o.payload.doc.id;
+        this.route(order.city,order.id)
+        this.distance(order.customer_id,order.id)
+        this.orders.push(order);
       })
     });
   }
@@ -58,6 +62,14 @@ export class OrderstableComponent implements OnInit {
             console.log(error)
       }
     });
+    }
+
+    deleteOrder(order){
+      this.afs.doc(`orders/${order.id}`).delete();
+    }
+
+    callDialog() {
+      this.dialog.open(this.callDLTDialog);
     }
 
   }

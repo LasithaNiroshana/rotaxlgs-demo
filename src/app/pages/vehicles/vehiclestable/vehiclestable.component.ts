@@ -1,8 +1,8 @@
 import { Component, OnInit,TemplateRef,ViewChild } from '@angular/core';
 import {VehiclesService} from '../../../services/vehicles.service';
-import {MatDialog} from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { VehicledltdialogComponent } from './vehicledltdialog/vehicledltdialog.component';
+import {MatDialog} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-vehiclestable',
@@ -11,7 +11,7 @@ import { VehicledltdialogComponent } from './vehicledltdialog/vehicledltdialog.c
 })
 
 export class VehiclestableComponent implements OnInit {
-  @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
+  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   vehicles=[];
   vehiclesColumns:string[]=['vehicle_no','rl_no','rl_expiry','vehicle_size','tel_no','delete'];
   constructor(private vehiclesservice:VehiclesService, private afs:AngularFirestore,public dialog:MatDialog) { }
@@ -34,24 +34,8 @@ export class VehiclestableComponent implements OnInit {
     console.log('dggfh');
   }
 
-  printM(){
-    console.log('vdfnvjkdfjkvk');
-  }
-
-//   openDialog(): void {
-//     const dialogRef = this.dialog.open(VehicledltdialogComponent, {
-//       width: '250px'});
-
-//     dialogRef.afterClosed().subscribe(result => {
-//       // this.deleteVehicle(this.vehicles);
-//       this.deleteVehicle(this.vehicles);
-//       this.printM();
-
-//     });
-
-// }
 callDialog() {
-  this.dialog.open(this.callAPIDialog);
+  this.dialog.open(this.callDLTDialog);
 }
 
 }

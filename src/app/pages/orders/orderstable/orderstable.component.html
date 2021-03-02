@@ -47,13 +47,23 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let orders">
-        <button mat-icon-button class="dlt_btn">
+        <button mat-icon-button class="dlt_btn" (click)="callDialog()">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="ordercolumns"></tr>
     <tr mat-row *matRowDef="let row; columns: ordercolumns;"></tr>
+    <ng-template #callDLTDialog *ngFor="let order of orders">
+      <h1 mat-dialog-title>Alert!</h1>
+      <div mat-dialog-content>
+        <p>Are you sure you want to delete this item?</p>
+      </div>
+      <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button [mat-dialog-close]="">Cancel</button>
+        <button mat-raised-button [mat-dialog-close]="" (click)="deleteOrder(order)" color="primary">Yes</button>
+      </div>
+</ng-template>
   </table>
   </div>
 

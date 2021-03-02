@@ -16,12 +16,16 @@ export class SalesagenthomeComponent implements OnInit {
   toggleOpen:boolean;
   constructor(private authService:AuthService,
               private router:Router,
-              private route:ActivatedRoute,
-              private fireAuth: AngularFireAuth) {
+              private route:ActivatedRoute) {
    }
    ngOnInit(): void {
+<<<<<<< HEAD
     this.authService.getUserState().subscribe(user=>{
       this.user=user;});
+=======
+    // this.authService.getUserState().subscribe(user=>{
+    //   this.user=user[];});
+>>>>>>> 9623c141b22d9b35645ab2d46ab3c72d3291d7e6
   }
 
   toggleNav(){

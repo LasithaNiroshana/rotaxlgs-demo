@@ -31,10 +31,14 @@ import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.c
 import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
+import { AdminGuard } from './guards/admin.guard';
+import { DriverGuard } from './guards/driver.guard';
+import { SalesagentGuard } from './guards/salesagent.guard';
 
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
+  canActivate:[AdminGuard],
   children:[
     {path:'admindashboard',component:AdmindashboardComponent},
     {path:'viewcustomers',component:ViewcustomersComponent},
@@ -51,10 +55,15 @@ const routes: Routes = [
 {path:'salesagenthome',component: SalesagenthomeComponent,
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
+<<<<<<< HEAD
 ]},
 {path:'drivershome', component: DrivershomeComponent},
+=======
+],canActivate:[SalesagentGuard]},
+{path:'drivershome', component: DrivershomeComponent,canActivate:[DriverGuard]},
+>>>>>>> 9623c141b22d9b35645ab2d46ab3c72d3291d7e6
   {path:'**',component:MainloginComponent},
- 
+
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
   {path:'adddisroutes',component:AdddisroutesComponent},

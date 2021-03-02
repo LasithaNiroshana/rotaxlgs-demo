@@ -22,7 +22,7 @@ Url:String
   constructor(private orderServices: OrdersService,
     private dialog: MatDialog,
     private storage: AngularFireStorage) { }
-  // private orderService : OrdersService 
+  // private orderService : OrdersService
   ngOnInit(): void {
   }
   onFileSelected(event){

@@ -27,16 +27,26 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let salesagents">
-        <button mat-icon-button class="dlt_btn" (click)="deleteSalesAgents(salesagents)">
+        <button mat-icon-button class="dlt_btn" (click)="callDialog()">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="salesagentColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: salesagentColumns;"></tr>
+    <ng-template #callDLTDialog *ngFor="let salesagent of salesagents">
+      <h1 mat-dialog-title>Alert!</h1>
+      <div mat-dialog-content>
+        <p>Are you sure you want to delete this item?</p>
+      </div>
+      <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button [mat-dialog-close]="">Cancel</button>
+        <button mat-raised-button  [mat-dialog-close]="" (click)="deleteSalesAgents(salesagent)" color="primary">Yes</button>
+      </div>
+</ng-template>
   </table>
   </div>
-
+/
   <ng-template #noSalesAgents>
     <hr>
     <h5>There are no current registered sales agents</h5>

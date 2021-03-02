@@ -49,7 +49,13 @@ import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
+<<<<<<< HEAD
 import { VehicledltdialogComponent } from './pages/vehicles/vehiclestable/vehicledltdialog/vehicledltdialog.component';
+=======
+import { AdminGuard } from './guards/admin.guard';
+import { DriverGuard } from './guards/driver.guard';
+import { SalesagentGuard } from './guards/salesagent.guard';
+>>>>>>> 9623c141b22d9b35645ab2d46ab3c72d3291d7e6
 
 @NgModule({
   declarations: [
@@ -105,8 +111,8 @@ import { VehicledltdialogComponent } from './pages/vehicles/vehiclestable/vehicl
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AdminGuard,DriverGuard,SalesagentGuard],
   bootstrap: [AppComponent],
-  entryComponents:[EditpopupComponent,PopupComponent,VehicledltdialogComponent]
+  entryComponents:[EditpopupComponent,PopupComponent]
 })
 export class AppModule { }

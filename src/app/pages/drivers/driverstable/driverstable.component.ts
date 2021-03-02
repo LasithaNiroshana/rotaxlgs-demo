@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import {DriversService} from '../../../services/drivers.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-driverstable',
@@ -8,9 +9,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./driverstable.component.scss']
 })
 export class DriverstableComponent implements OnInit {
+  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   drivers=[];
   driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','edit','delete'];
-  constructor(private driversservice:DriversService, private afs:AngularFirestore) {
+  constructor(private driversservice:DriversService, private afs:AngularFirestore,public dialog:MatDialog) {
 
   }
 
@@ -26,7 +28,11 @@ export class DriverstableComponent implements OnInit {
   }
 
   deleteDrivers(driver){
-    this.afs.collection('drivers').doc(driver.id).delete();
+    this.afs.doc(`drivers/${driver.id}`).delete();
+  }
+
+  callDialog() {
+    this.dialog.open(this.callDLTDialog);
   }
 
 }

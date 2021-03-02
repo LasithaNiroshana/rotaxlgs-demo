@@ -43,7 +43,7 @@ export class AuthService {
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           if(currentUser.role=='Admin'){
             this.router.navigate(['/adminhome/admindashboard']);
-            console.log('srdfghi')
+            // console.log('srdfghi');
             alert('You are successfully log in to the system as a admin');
           }
           else if(currentUser.approved == true){
@@ -125,30 +125,31 @@ export class AuthService {
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
 
-  canRead(user:User):boolean{
-    const allowed=['admin','driver','storekeeper','salesagent']
-    return this.checkAuthorization(user,allowed)
-  }
+  // canRead(user:User):boolean{
+  //   const allowed=['admin','driver','storekeeper','salesagent']
+  //   return this.checkAuthorization(user,allowed)
+  // }
 
-  canEdit(user:User):boolean{
-    const allowed=['admin','driver','storekeeper','salesagent'];
-    return this.checkAuthorization(user,allowed);
-  }
+  // canEdit(user:User):boolean{
+  //   const allowed=['admin','driver','storekeeper','salesagent'];
+  //   return this.checkAuthorization(user,allowed);
+  // }
 
-  canDelete(user:User):boolean{
-    const allowed=['admin'];
-    return this.checkAuthorization(user,allowed);
-  }
+  // canDelete(user:User):boolean{
+  //   const allowed=['admin'];
+  //   return this.checkAuthorization(user,allowed);
+  // }
 
-  private checkAuthorization(user:User,allowedRoles:string[]):boolean{
-    if(!user) return false;
-      for(const role of allowedRoles){
-        if(user.role[role]){
-          return true;
-        }
-      }
-      return false;
-    }
+  // private checkAuthorization(user:User,allowedRoles:string[]):boolean{
+  //   if(!user) return false;
+  //     for(const role of allowedRoles){
+  //       if(user.role[role]){
+  //         return true;
+  //       }
+  //     }
+  //     return false;
+  //   }
+
 
     getUsers(){
       return this.afs.collection('users',  ref => ref.where('approved', '==', false)).snapshotChanges();
