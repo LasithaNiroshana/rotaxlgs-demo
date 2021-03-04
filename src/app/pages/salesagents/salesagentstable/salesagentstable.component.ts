@@ -21,7 +21,6 @@ export class SalesagentstableComponent implements OnInit {
         let salesagent:any=s.payload.doc.data();
         salesagent.id=s.payload.doc.id;
         this.salesagents.push(salesagent);
-        console.log(salesagent.id);
       });
     });
   }

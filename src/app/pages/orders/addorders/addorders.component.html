@@ -16,14 +16,15 @@
           <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="order.invoice_no" name="invoice_no">
         </mat-form-field>
         <br>
-        <mat-form-field class="ord1-field">
-          <mat-label>Customer ID</mat-label>
-          <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="order.customer_id" name="customer_id">
-        </mat-form-field>
-        <button class="search-btn" type= "button"  (click)="search()">
-          <mat-icon>search</mat-icon>
-        </button>
-      <br>
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+          <mat-form-field class="ord1-field2">
+            <mat-label>Customer ID</mat-label>
+            <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="order.customer_id" name="customer_id">
+          </mat-form-field>
+          <button mat-raised-button class="ord1-field3" type= "button" color="primary"  (click)="search()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
         <mat-form-field class="ord1-field">
           <mat-label>Customer Name</mat-label>
           <input type="text"  matInput placeholder="John" [(ngModel)]="order.customer_name" name="customer_name">
