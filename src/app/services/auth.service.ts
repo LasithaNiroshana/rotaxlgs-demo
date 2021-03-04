@@ -98,7 +98,7 @@ export class AuthService {
     this.spinner.requestStarted();
     await this.afauth.signOut();
     alert('logging out');
-    this.spinner.requestStarted();
+    this.spinner.requestEnded();
     this.router.navigate(['/**']);
   }
 

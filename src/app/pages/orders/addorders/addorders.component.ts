@@ -101,7 +101,6 @@ this.order.sales_agent='';
       && this.order.address_ln2 != ''
       && this.order.city != ''
       && this.order.province != ''
-      && this.order.item_type != ''
       && this.order.sales_agent != ''
       && this.order.status != '') {
       console.log(this.order.invoice_no)
@@ -150,14 +149,14 @@ this.order.sales_agent='';
         this.order.city=this.customers[0].city;
         this.order.province=this.customers[0].province;
         this.order.distance = this.customers[0].distance;
-  });}else{
+  });this.route();
+}else{
     alert("No customers has been registered under this Customer ID. Please check the Customer ID")
   }
 });
 }
 
 route() {
-  console.log(this.order.city);
   this.routeService.getroute(this.order.city).snapshotChanges().subscribe(route =>{
     try {
       this.routes = [];
