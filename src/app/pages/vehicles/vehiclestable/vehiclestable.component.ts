@@ -23,7 +23,6 @@ export class VehiclestableComponent implements OnInit {
         let vehicle:any=v.payload.doc.data();
         vehicle.id=v.payload.doc.id;
         this.vehicles.push(vehicle);
-        console.log(this.vehicles.length);
       });
     });
   }
@@ -31,7 +30,6 @@ export class VehiclestableComponent implements OnInit {
   deleteVehicle(vehicle){
     // this.afs.collection('vehicles').doc(vehicle.id).delete();
     this.afs.doc(`vehicles/${vehicle.id}`).delete();
-    console.log('dggfh');
   }
 
 callDialog() {

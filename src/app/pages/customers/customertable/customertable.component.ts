@@ -27,7 +27,6 @@ export class CustomertableComponent implements OnInit {
         let customer:any=c.payload.doc.data();
         customer.id=c.payload.doc.id;
         this.customers.push(customer);
-        console.log(customer);
       });
     });
 

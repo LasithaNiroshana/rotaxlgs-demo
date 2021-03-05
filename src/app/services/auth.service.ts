@@ -173,7 +173,6 @@ export class AuthService {
 
     populateUser(user){
       this.id = user.id;
-      console.log(this.id)
       this.afs.collection('users').doc(this.id).update({'approved': true})
       alert('User approved successfully.')
       //  this.edit.onSubmit(order.status, order.id);

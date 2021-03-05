@@ -23,7 +23,6 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
       this.user=user;
       
       this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
-        console.log(result.mqAlias);
         this.deviceXs=result.mqAlias==='xs'?true:false;
       });
     });

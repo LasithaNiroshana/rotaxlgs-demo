@@ -44,6 +44,7 @@
   </ng-template>
   <ng-template #assignAgent *ngFor="let disroute of disroutes">
     <h1 mat-dialog-title>Change the Assigned person?</h1>
+    <p>Select the sales agent:</p>
     <div mat-dialog-content>
       <mat-select [(ngModel)]="assigned_person" name="sales_agent">
         <mat-option value="">- Select -</mat-option>

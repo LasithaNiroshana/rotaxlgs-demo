@@ -44,7 +44,7 @@ export class RoutetableComponent implements OnInit {
   }
 
   deleteRoute(disroute){
-    this.afs.doc(`disroutes/${disroute.id}`).delete();
+    this.afs.doc(`routes/${disroute.id}`).delete();
   }
 
   callDialog() {
