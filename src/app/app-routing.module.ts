@@ -34,6 +34,8 @@ import { ApprovepageComponent } from './pages/approvepage/approvepage.component'
 import { AdminGuard } from './guards/admin.guard';
 import { DriverGuard } from './guards/driver.guard';
 import { SalesagentGuard } from './guards/salesagent.guard';
+import { StoreHomeComponent } from './pages/store-home/store-home.component';
+import { StoreTableComponent } from './pages/store-home/store-table/store-table.component';
 
 
 const routes: Routes = [
@@ -56,9 +58,10 @@ const routes: Routes = [
     children:[
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
 ]},
-{path:'drivershome', component: DrivershomeComponent},
+  {path:'drivershome', component: DrivershomeComponent},
   {path:'**',component:MainloginComponent},
-
+  {path:'storehome', component: StoreHomeComponent},
+  
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
   {path:'adddisroutes',component:AdddisroutesComponent},
@@ -107,6 +110,7 @@ export const routingComponents=[
  SalesagenthomeComponent,
  RoutetableComponent,
  DrivershomeComponent,
- DriverstableComponent
-
+ DriverstableComponent,
+ StoreHomeComponent,
+ StoreTableComponent
 ]

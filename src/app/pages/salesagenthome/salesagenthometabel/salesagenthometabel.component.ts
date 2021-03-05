@@ -19,7 +19,7 @@ export class SalesagenthometabelComponent implements OnInit {
   user:firebase.default.User;
   status:'';
   orders:Order[];
-  agentName: String
+  agentName: String;
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','province','route','sales_agent','current_status','edit'];
   // user: firebase.User;
   constructor(private ordersservice:OrdersService,
@@ -32,22 +32,21 @@ export class SalesagenthometabelComponent implements OnInit {
              ) {
    }
    ngOnInit(): void {
-    this.authService.getUserState().subscribe(user=>{
-      this.user=user;
-      this.agentName = user.displayName});
-    this.ordersservice.getSAOrder(this.agentName).subscribe(order=>{
-      this.orders=[];
-      order.forEach(o=>{
-        let orders:any = o.payload.doc.data();
-        orders.id = o.payload.doc.id;
-        this.orders.push(orders);
-      })
-    });
-   
+    this.authService.getUserState().subscribe(use=>{
+      this.agentName = use.displayName;
+      this.ordersservice.getSAOrder(this.agentName).subscribe(order=>{
+        this.orders=[];
+        order.forEach(o=>{
+          let ordes:any = o.payload.doc.data();
+          ordes.id = o.payload.doc.id;
+          this.orders.push(ordes);
+        })
+      });
+      }); 
   }
 
   done(orders: { id: string; }){
-    this.afs.collection('orders').doc(orders.id).set({'status': this.status});
+    this.afs.collection('orders').doc(orders.id).update({'status': this.status});
   }
 
   edit(order){

@@ -47,7 +47,6 @@ export class VehiclestableComponent implements OnInit {
 
   deleteVehicle(vehicle){
     this.afs.doc(`vehicles/${vehicle.id}`).delete();
-    console.log('dggfh');
   }
 
 callDialog() {

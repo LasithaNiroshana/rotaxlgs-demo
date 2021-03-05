@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase:{
-    apiKey: "AIzaSyCzhkSYv8OlVBJI5zwZjjIxE7-3FzUYtFY",
-    authDomain: "rotaxlgs-demo.firebaseapp.com",
-    projectId: "rotaxlgs-demo",
-    storageBucket: "rotaxlgs-demo.appspot.com",
-    messagingSenderId: "264610032675",
-    appId: "1:264610032675:web:0d341d8a174934dea85596",
-    measurementId: "G-MNS0TZSWYQ"
+    apiKey: "AIzaSyBDB4kxKPsRb9MsSTkUcvhCsq3Xmqshb_4",
+    authDomain: "rotax-logistic.firebaseapp.com",
+    projectId: "rotax-logistic",
+    storageBucket: "rotax-logistic.appspot.com",
+    messagingSenderId: "450697302043",
+    appId: "1:450697302043:web:b3e7fde5697fd9eef7a8be",
+    measurementId: "G-B2GVP2HXB5"
   }
 };
 

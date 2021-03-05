@@ -17,7 +17,7 @@ export class OrderstableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   routes:Disroute[];
   orders:Order[];
-  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','edit','delete'];
+  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','view','delete'];
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
     private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog) {
@@ -35,7 +35,6 @@ export class OrderstableComponent implements OnInit {
       })
     });
   }
-
 
   route(city,id) {
   this.routeService.getroute(city).snapshotChanges().subscribe(route =>{
@@ -70,6 +69,10 @@ export class OrderstableComponent implements OnInit {
 
     callDialog() {
       this.dialog.open(this.callDLTDialog);
+    }
+
+    view(order){
+      window.open(order.photo_URL, "_blank");
     }
 
   }

@@ -54,6 +54,31 @@ adminValue$=this.authAdmin.next()
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           //  this.afauth.authState.
           if(currentUser.role=='Admin'){
+<<<<<<< HEAD
+=======
+            this.spinner.requestEnded();
+            this.router.navigate(['/adminhome/admindashboard']);
+            // console.log('srdfghi');
+            alert('You are successfully log in to the system as a admin');
+          }
+          else if(currentUser.approved == true){
+              if(currentUser.role=='Driver'){
+                this.spinner.requestEnded();
+                this.router.navigate(['/drivershome']);
+                alert('You are successfully log in to the system.');
+              }
+              else if(currentUser.role=='Sales Agent'){
+                this.spinner.requestEnded();
+                this.router.navigate(['/salesagenthome']);
+                alert('You are successfully log in to the system.');
+              }
+              else if(currentUser.role=='Store Keeper'){
+                this.spinner.requestEnded();
+                this.router.navigate(['/storehome']);
+                alert('You are successfully log in to the system.');
+              }}
+            else {
+>>>>>>> 46018d60a8f1ba560ca337b5a658621aab2a5d83
               this.spinner.requestEnded();
               this.router.navigate(['/adminhome/admindashboard']);
               alert('You have successfully log in to the system as a admin');
@@ -104,12 +129,19 @@ adminValue$=this.authAdmin.next()
 
   async signOut(){
     this.spinner.requestStarted();
+<<<<<<< HEAD
     await this.afauth.signOut().then(()=>{
       this.router.navigate(['/']);
     });
     this.isSignedIn=false;
 
     this.spinner.requestEnded();
+=======
+    await this.afauth.signOut();
+    alert('logging out');
+    this.spinner.requestEnded();
+    this.router.navigate(['/**']);
+>>>>>>> 46018d60a8f1ba560ca337b5a658621aab2a5d83
   }
 
   dpurl(url: string){
@@ -198,7 +230,6 @@ adminValue$=this.authAdmin.next()
 
     populateUser(user){
       this.id = user.id;
-      console.log(this.id)
       this.afs.collection('users').doc(this.id).update({'approved': true})
       alert('User approved successfully.')
       //  this.edit.onSubmit(order.status, order.id);

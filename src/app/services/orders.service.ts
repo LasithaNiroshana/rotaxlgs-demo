@@ -44,7 +44,6 @@ export class OrdersService {
 //for popups
    populateOrder(order){
     this.id = order.id;
-    console.log(this.id)
     //  this.edit.onSubmit(order.status, order.id);
    }
 //status update

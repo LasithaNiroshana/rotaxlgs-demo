@@ -53,7 +53,6 @@ customer:Customer={
     && this.customer.tel_no!=''){
       this.customersService.addCustomer(this.customer);
       alert('New customer has been added successfully');
-      console.log(this.customer);
       this.customer.customer_id='';
       this.customer.customer_id='';
       this.customer.first_name='';

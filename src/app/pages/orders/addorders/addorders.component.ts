@@ -101,10 +101,8 @@ this.order.sales_agent='';
       && this.order.address_ln2 != ''
       && this.order.city != ''
       && this.order.province != ''
-      && this.order.item_type != ''
       && this.order.sales_agent != ''
       && this.order.status != '') {
-      console.log(this.order.invoice_no)
       this.ordersService.getspOrder(this.order.invoice_no).snapshotChanges().subscribe(ord => {
         if (ord.length > 0) {
           alert('This invoice Number is already added.')
@@ -112,7 +110,6 @@ this.order.sales_agent='';
           try {
             this.ordersService.addOrder(this.order);
             alert('Order has been added successfully');
-            console.log(this.order);
             this.order.invoice_no = '';
             this.order.customer_id = '';
             this.order.customer_name = '';
@@ -138,7 +135,6 @@ this.order.sales_agent='';
   search(){
     this.customerService.getspcustomer(this.order.customer_id).snapshotChanges().subscribe(cus=>{
       this.customers=[];
-      console.log(cus);
       if(cus.length>0){
       cus.forEach(c=>{
         let customer:any=c.payload.doc.data();
@@ -150,23 +146,21 @@ this.order.sales_agent='';
         this.order.city=this.customers[0].city;
         this.order.province=this.customers[0].province;
         this.order.distance = this.customers[0].distance;
-  });}else{
+  });this.route();
+}else{
     alert("No customers has been registered under this Customer ID. Please check the Customer ID")
   }
 });
 }
 
 route() {
-  console.log(this.order.city);
   this.routeService.getroute(this.order.city).snapshotChanges().subscribe(route =>{
     try {
       this.routes = [];
     if(route.length > 0){
       route.forEach(r => {
         let route: any= r.payload.doc.data();
-        console.log(route)
         this.routes.push(route);
-        console.log(this.routes[0].route_name)
         this.order.route = this.routes[0].route_name;
       });
     }

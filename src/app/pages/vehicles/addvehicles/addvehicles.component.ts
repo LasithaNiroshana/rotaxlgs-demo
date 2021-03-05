@@ -37,7 +37,6 @@ export class AddvehiclesComponent implements OnInit {
     ){
       this.vehiclesService.addVehicle(this.vehicle);
       alert('Vehicle has been added successfully');
-      console.log(this.vehicle);
       this.vehicle.vehicle_no='';
       this.vehicle.revenuelicense_no='';
       this.vehicle.telephone_no='';
