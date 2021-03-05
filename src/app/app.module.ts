@@ -56,6 +56,8 @@ import { DriverGuard } from './guards/driver.guard';
 import { SalesagentGuard } from './guards/salesagent.guard';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+import { StoreTableComponent } from './pages/store-home/store-table/store-table.component';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
     UsersComponent,
     SpinnerComponent,
     SnackbarComponent,
+    StoreTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -64,7 +64,7 @@ export class AuthService {
               }
               else if(currentUser.role=='Store Keeper'){
                 this.spinner.requestEnded();
-                this.router.navigate(['/salesagenthome']);
+                this.router.navigate(['/storehome']);
                 alert('You are successfully log in to the system.');
               }}
             else {
