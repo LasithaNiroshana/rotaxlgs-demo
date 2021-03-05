@@ -27,7 +27,7 @@
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let customers">
-          <button mat-icon-button class="edit_btn" routerLinkActive="list-item-active" routerLink="/addcustomers" color="primary">
+          <button mat-icon-button class="edit_btn" (click)="callEditDialog()" color="primary">
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -42,14 +42,120 @@
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: customerColumns;"></tr>
+
+      <ng-template #callEDITDialog *ngFor="let customer of customers">
+        <br>
+<h2>Add Customer Details</h2>
+<form (ngSubmit)="onSubmit()" class="addcustomer-form">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <!-- <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="20px"> -->
+    <mat-card class="cus1">
+      <div >
+        <mat-form-field class="cus1-field">
+          <mat-label>Customer ID</mat-label>
+          <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="customer.customer_id" name="customer_id">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="cus1-field">
+          <mat-label>First Name</mat-label>
+          <input type="text" matInput placeholder="John" [(ngModel)]="customer.first_name" name="first_name">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="cus1-field">
+          <mat-label>Last Name</mat-label>
+          <input type="text" matInput placeholder="Doe" [(ngModel)]="customer.last_name" name="last_name">
+        </mat-form-field>
+        <br>
+      </div>
+    </mat-card>
+    <mat-card class="cus2">
+      <div>
+        <mat-form-field class="cus2-field">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="abc@gmail.com" [(ngModel)]="customer.email" name="email">
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="cus2-field">
+          <mat-label>Mobile No.</mat-label>
+          <input type="text" matInput placeholder="714568424" maxlength="10" [(ngModel)]="customer.tel_no" name="tel_no">
+          <mat-icon matSuffix>call</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="cus2-field">
+          <mat-label>Distance from RLH</mat-label>
+          <input type="number" matInput placeholder="km"  [(ngModel)]="customer.distance" name="distance">
+        </mat-form-field>
+      <br>
+      </div>
+    </mat-card>
+    <!-- </div> -->
+  </div>
+  <br><br>
+  <mat-divider>
+  </mat-divider>
+  <br>
+  <h2>Address</h2>
+  <div fxLayout="row" fxLayoutAlign="space-between start " fxLayoutGap="20px">
+    <mat-card class="cus3">
+      <div>
+        <mat-form-field class="cus3-field">
+          <mat-label>Address Line 1</mat-label>
+          <input type="text" matInput placeholder="No.24" [(ngModel)]="customer.address_ln1" name="address_ln1">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="cus3-field">
+          <mat-label>Address Line 2</mat-label>
+          <input type="text" matInput placeholder="Dalugama" [(ngModel)]="customer.address_ln2" name="address_ln2">
+        </mat-form-field>
+       <br>
+       </div>
+    </mat-card>
+    <mat-card class="cus4">
+      <div>
+        <mat-form-field class="cus4-field">
+          <mat-label>City/District</mat-label>
+          <input type="text" matInput placeholder="Kelaniya" [(ngModel)]="customer.city" name="city">
+        </mat-form-field>
+        <mat-form-field class="cus4-field">
+          <br>
+          <mat-label>Province</mat-label>
+          <mat-select [(ngModel)]="customer.province" name="province">
+            <mat-option value="Central">Central</mat-option>
+            <mat-option value="Eastern">Eastern</mat-option>
+            <mat-option value="North Central">North Central</mat-option>
+            <mat-option value="Nothern">Nothern</mat-option>
+            <mat-option value="North Western">North Western</mat-option>
+            <mat-option value="Sabaragamuwa">Sabaragamuwa</mat-option>
+            <mat-option value="Southern">Southern</mat-option>
+            <mat-option value="Uva">Uva</mat-option>
+            <mat-option value="Western">Western</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+     </mat-card>
+  </div>
+ <br>
+ <br>
+ <mat-divider></mat-divider>
+  <br>
+  <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
+    <button class="cancel-btn" mat-raised-button [mat-dialog-close]="">CANCEL</button>
+    <button class="submit-btn" mat-raised-button [mat-dialog-close]="" color="primary" click="editCustomer(customer)">SUBMIT</button>
+  </div>
+</form>
+
+
+  </ng-template>
+
       <ng-template #callDLTDialog *ngFor="let customer of customers">
         <h1 mat-dialog-title>Alert!</h1>
         <div mat-dialog-content>
           <p>Are you sure you want to delete this item?</p>
         </div>
         <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
-          <button mat-raised-button [mat-dialog-close]="">Cancel</button>
-          <button mat-raised-button [mat-dialog-close]="" (click)="deleteCustomer(customer)" color="primary">Yes</button>
+          <button mat-raised-button [mat-dialog-close]="">CANCEL</button>
+          <button mat-raised-button [mat-dialog-close]="" (click)="deleteCustomer(customer)" color="primary">YES</button>
         </div>
   </ng-template>
     </table>

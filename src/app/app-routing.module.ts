@@ -38,6 +38,7 @@ import { SalesagentGuard } from './guards/salesagent.guard';
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
+  // canActivate:[AdminGuard],
   children:[
     {path:'admindashboard',component:AdmindashboardComponent},
     {path:'viewcustomers',component:ViewcustomersComponent},

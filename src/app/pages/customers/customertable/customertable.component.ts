@@ -12,6 +12,7 @@ import {Subscription} from 'rxjs';
 })
 export class CustomertableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
+  @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   @Input()
   mediaSub:Subscription;
   deviceXs:boolean;
@@ -27,7 +28,6 @@ export class CustomertableComponent implements OnInit {
         let customer:any=c.payload.doc.data();
         customer.id=c.payload.doc.id;
         this.customers.push(customer);
-        console.log(customer);
       });
     });
 
@@ -40,9 +40,16 @@ export class CustomertableComponent implements OnInit {
     this.mediaSub.unsubscribe();
   }
 
+  editCustomer(customer){
+    this.afs.doc(`customers/${customer.id}`).update(customer);
+  }
+
   deleteCustomers(customer){
-    // this.afs.collection('customers').doc(customer.id).delete();
     this.afs.doc(`customers/${customer.id}`).delete();
+  }
+
+  callEditDialog() {
+    this.dialog.open(this.callEDITDialog);
   }
 
   callDialog() {

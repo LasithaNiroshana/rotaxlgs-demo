@@ -21,9 +21,8 @@ export class AdminhomeComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.authService.getUserState().subscribe(user=>{
       this.user=user;
-      
+
       this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
-        console.log(result.mqAlias);
         this.deviceXs=result.mqAlias==='xs'?true:false;
       });
     });

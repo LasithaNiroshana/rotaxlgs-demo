@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {BehaviorSubject,Observable,of} from 'rxjs';
+import {BehaviorSubject,Observable,of, Subject} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../models/user';
 import { SpinnerService } from './spinner.service';
+import { AdminGuard } from '../guards/admin.guard';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +21,15 @@ export class AuthService {
   newUser:any;
   id:'';
   message:'';
+  adminValue:string;
+  isSignedIn=false;
+private authAdmin=new Subject<string>();
+adminValue$=this.authAdmin.next()
 
-
-  constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router, private spinner:SpinnerService) {
+  constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router,
+  private spinner:SpinnerService, private ag:AdminGuard) {
     this.user=this.afauth.authState;
+
     this.user.pipe(switchMap(u=>{
       if(u){
         return this.afs.doc<User>('users/${user.uid}').valueChanges();
@@ -37,40 +44,41 @@ export class AuthService {
     return this.afauth.authState;
   }
 
-  signIn(email:string, password:string){
+  async signIn(email:string, password:string){
     this.spinner.requestStarted();
-    this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
+    await this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
       {
         this.eventAuthError.next(error);
       }).then(userCredentials=>{
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
+          //  this.afauth.authState.
           if(currentUser.role=='Admin'){
-            this.spinner.requestEnded();
-            this.router.navigate(['/adminhome/admindashboard']);
-            // console.log('srdfghi');
-            alert('You are successfully log in to the system as a admin');
-          }
-          else if(currentUser.approved == true){
-              if(currentUser.role=='Driver'){
-                this.spinner.requestEnded();
-                this.router.navigate(['/drivershome']);
-                alert('You are successfully log in to the system.');
-              }
-              else if(currentUser.role=='Sales Agent'){
-                this.spinner.requestEnded();
-                this.router.navigate(['/salesagenthome']);
-                alert('You are successfully log in to the system.');
-              }
-              else if(currentUser.role=='Store Keeper'){
-                this.spinner.requestEnded();
-                this.router.navigate(['/salesagenthome']);
-                alert('You are successfully log in to the system.');
-              }}
-            else {
               this.spinner.requestEnded();
-              alert('You are not approved to log in to the system. Please contact an administator.');
+              this.router.navigate(['/adminhome/admindashboard']);
+              alert('You have successfully log in to the system as a admin');
             }
+            else if(currentUser.approved == true){
+                if(currentUser.role=='Driver'){
+                  this.spinner.requestEnded();
+                  this.router.navigate(['/drivershome']);
+                  alert('You are successfully log in to the system.');
+                }
+                else if(currentUser.role=='Sales Agent'){
+                  this.spinner.requestEnded();
+                  this.router.navigate(['/salesagenthome']);
+                  alert('You are successfully log in to the system.');
+                }
+                else if(currentUser.role=='Store Keeper'){
+                  this.spinner.requestEnded();
+                  this.router.navigate(['/salesagenthome']);
+                  alert('You are successfully log in to the system.');
+                }}
+              else {
+                this.spinner.requestEnded();
+                alert('You are not approved to log in to the system. Please contact an administator.');
+              }
+
      });
     }
       });
@@ -96,10 +104,12 @@ export class AuthService {
 
   async signOut(){
     this.spinner.requestStarted();
-    await this.afauth.signOut();
-    alert('logging out');
-    this.spinner.requestStarted();
-    this.router.navigate(['/**']);
+    await this.afauth.signOut().then(()=>{
+      this.router.navigate(['/']);
+    });
+    this.isSignedIn=false;
+
+    this.spinner.requestEnded();
   }
 
   dpurl(url: string){
@@ -166,6 +176,21 @@ export class AuthService {
   //     return false;
   //   }
 
+  // adminAuth(userCredentials){
+  //  if(userCredentials){
+  //    this.getUserData(userCredentials).subscribe((currentUser:any)=>{
+  //      if(currentUser.role=='Admin'){
+  //       this.adminValue='Admin';
+  //       this.ag.getValue(this.adminValue);
+  //      }
+  //      else{
+  //       this.adminValue='Not Admin';
+  //       this.ag.getValue(this.adminValue);
+  //      }
+  //    });
+  //  }
+  // }
+
 
     getUsers(){
       return this.afs.collection('users',  ref => ref.where('approved', '==', false)).snapshotChanges();
@@ -179,4 +204,8 @@ export class AuthService {
       //  this.edit.onSubmit(order.status, order.id);
      }
   }
+
+
+
+
 

@@ -17,8 +17,9 @@ export class VehiclesService {
   getVehicles(){
     return this.afs.collection('vehicles').snapshotChanges();
   }
-  
+
   addVehicle(vehicle:Vehicle){
     this.vehiclesCollection.add(vehicle);
   }
+
 }

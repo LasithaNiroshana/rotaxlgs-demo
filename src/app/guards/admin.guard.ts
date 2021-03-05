@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
 import {User} from '../models/user';
 
 @Injectable({
@@ -9,13 +8,16 @@ import {User} from '../models/user';
 })
 export class AdminGuard implements CanActivate {
   user:Observable<User>;
+  value:string;
 
-  constructor(private authService:AuthService,private router:Router){}
-  canActivate(userCredentials):boolean{
-    this.authService.getUserData(userCredentials).subscribe((currentUser:any)=>{
-      currentUser.role=='Admin'?true:false;
-    }
-    )
-    return true;
-  }
+  constructor(private router:Router){}
+  canActivate():boolean{
+return true;
+ }
+
+
+// getValue(val){
+// this.value==val;
+// }
+
 }

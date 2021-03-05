@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class SalesagentstableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
+  @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   salesagents=[];
   salesagentColumns:string[]=['agent_id','agent_name','mobile_no','email','edit','delete'];
   constructor(private salesagentservice:SalesagentsService, private afs:AngularFirestore,public dialog:MatDialog) {}
@@ -18,12 +19,15 @@ export class SalesagentstableComponent implements OnInit {
     this.salesagentservice.getSalesagents().subscribe(sa=>{
       this.salesagents=[];
       sa.forEach(s=>{
-        let salesagent:any=s.payload.doc.data();
-        salesagent.id=s.payload.doc.id;
-        this.salesagents.push(salesagent);
-        console.log(salesagent.id);
+        let salesAgent:any=s.payload.doc.data();
+        salesAgent.id=s.payload.doc.id;
+        this.salesagents.push(salesAgent);
       });
     });
+  }
+
+  editSalesAgent(salesAgent){
+    this.afs.doc(`salesagents/${salesAgent.id}`).update(salesAgent);
   }
 
   deleteSalesAgents(salesagent){
@@ -33,6 +37,10 @@ export class SalesagentstableComponent implements OnInit {
 
   callDialog() {
     this.dialog.open(this.callDLTDialog);
+  }
+
+  callEditDialog() {
+    this.dialog.open(this.callEDITDialog);
   }
 
 }

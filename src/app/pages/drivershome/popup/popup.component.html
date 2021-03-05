@@ -12,4 +12,7 @@
   <!-- <button type="button" (click)= "onUpload()">Upload</button> -->
   <br>
   <br>
-  <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>
+  <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
+    <button class="submit-btn" mat-raised-button [mat-dialog-close]="">CANCEL</button>
+    <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>
+  </div>

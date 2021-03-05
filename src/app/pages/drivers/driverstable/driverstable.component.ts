@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class DriverstableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
+  @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   drivers=[];
   driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','edit','delete'];
   constructor(private driversservice:DriversService, private afs:AngularFirestore,public dialog:MatDialog) {
@@ -27,8 +28,16 @@ export class DriverstableComponent implements OnInit {
     });
   }
 
+  editDriver(driver){
+    this.afs.doc(`drivers/${driver.id}`).update(driver);
+  }
+
   deleteDrivers(driver){
     this.afs.doc(`drivers/${driver.id}`).delete();
+  }
+
+  callEditDialog() {
+    this.dialog.open(this.callEDITDialog);
   }
 
   callDialog() {

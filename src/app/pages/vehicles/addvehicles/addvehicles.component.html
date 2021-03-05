@@ -41,7 +41,7 @@
       <mat-card class="vehicles3">
         <mat-form-field class="vehicles3-field">
           <mat-label>Insurance Expiry Date</mat-label>
-          <input matInput [matDatepicker]="picker2" [(ngModel)]="vehicle.insurance_expiry" name="insurance_expiry">
+          <input matInput [matDatepicker]="picker2" [(ngModel)]="vehicle.insurance_expiry" autocomplete="on" name="insurance_expiry">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
@@ -57,9 +57,6 @@
         </mat-form-field>
       </mat-card>
       <br><br>
-
-
-
 
     </div>
 
