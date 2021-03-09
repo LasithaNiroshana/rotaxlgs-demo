@@ -31,7 +31,7 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let drivers">
-        <button mat-icon-button class="dlt_btn" (click)="deleteDrivers(drivers)">
+        <button mat-icon-button class="dlt_btn" (click)="callDialog()">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

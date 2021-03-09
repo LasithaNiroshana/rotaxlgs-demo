@@ -19,15 +19,9 @@ export class SalesagentstableComponent implements OnInit {
     this.salesagentservice.getSalesagents().subscribe(sa=>{
       this.salesagents=[];
       sa.forEach(s=>{
-<<<<<<< HEAD
         let salesAgent:any=s.payload.doc.data();
         salesAgent.id=s.payload.doc.id;
         this.salesagents.push(salesAgent);
-=======
-        let salesagent:any=s.payload.doc.data();
-        salesagent.id=s.payload.doc.id;
-        this.salesagents.push(salesagent);
->>>>>>> 46018d60a8f1ba560ca337b5a658621aab2a5d83
       });
     });
   }

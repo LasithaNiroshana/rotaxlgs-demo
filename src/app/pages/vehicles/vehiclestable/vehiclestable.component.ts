@@ -15,6 +15,7 @@ export class VehiclestableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   vehicles=[];
+  editVehicle=[];
   veh:Vehicle={
     vehicle_no:'',
     revenuelicense_no:'',

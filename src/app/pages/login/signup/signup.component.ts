@@ -67,7 +67,6 @@ export class SignupComponent implements OnInit {
   createUser(){
     // console.log(this.user)
     this.authService.createUser(this.user);
-<<<<<<< HEAD
   }
 
   resetForm(){
@@ -78,15 +77,6 @@ export class SignupComponent implements OnInit {
     this.user.mobile_no='';
     this.user.password='';
     this.user.role='';
-=======
-    // this.user.first_name=''
-    // this.user.last_name=''
-    // this.user.id_no=''
-    // this.user.email=''
-    // this.user.mobile_no=''
-    // this.user.password=''
-    // this.user.role=''
->>>>>>> 46018d60a8f1ba560ca337b5a658621aab2a5d83
   }
 
 }

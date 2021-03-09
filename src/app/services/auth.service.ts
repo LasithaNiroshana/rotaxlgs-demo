@@ -1,6 +1,5 @@
 import { Injectable, Output,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {BehaviorSubject,Observable,of, Subject} from 'rxjs';
@@ -25,6 +24,7 @@ export class AuthService {
   isSignedIn=false;
 private authAdmin=new Subject<string>();
 adminValue$=this.authAdmin.next()
+  firebase: any;
 
   constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router,
   private spinner:SpinnerService, private ag:AdminGuard) {
@@ -48,37 +48,14 @@ adminValue$=this.authAdmin.next()
     this.spinner.requestStarted();
     await this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
       {
-        this.eventAuthError.next(error);
+        this.spinner.requestEnded();
+        // this.eventAuthError.next(error);
+        alert(error);
       }).then(userCredentials=>{
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           //  this.afauth.authState.
           if(currentUser.role=='Admin'){
-<<<<<<< HEAD
-=======
-            this.spinner.requestEnded();
-            this.router.navigate(['/adminhome/admindashboard']);
-            // console.log('srdfghi');
-            alert('You are successfully log in to the system as a admin');
-          }
-          else if(currentUser.approved == true){
-              if(currentUser.role=='Driver'){
-                this.spinner.requestEnded();
-                this.router.navigate(['/drivershome']);
-                alert('You are successfully log in to the system.');
-              }
-              else if(currentUser.role=='Sales Agent'){
-                this.spinner.requestEnded();
-                this.router.navigate(['/salesagenthome']);
-                alert('You are successfully log in to the system.');
-              }
-              else if(currentUser.role=='Store Keeper'){
-                this.spinner.requestEnded();
-                this.router.navigate(['/storehome']);
-                alert('You are successfully log in to the system.');
-              }}
-            else {
->>>>>>> 46018d60a8f1ba560ca337b5a658621aab2a5d83
               this.spinner.requestEnded();
               this.router.navigate(['/adminhome/admindashboard']);
               alert('You have successfully log in to the system as a admin');
@@ -119,6 +96,7 @@ adminValue$=this.authAdmin.next()
       });
       this.insertUserData(userCredentials).then(()=>{
         this.getUserData(userCredentials).subscribe();
+        // this.firebase.auth().currentUser.sendEmailVerification();
         this.spinner.requestEnded();
             this.router.navigate(['/notapproved']);
       });
@@ -129,19 +107,10 @@ adminValue$=this.authAdmin.next()
 
   async signOut(){
     this.spinner.requestStarted();
-<<<<<<< HEAD
-    await this.afauth.signOut().then(()=>{
-      this.router.navigate(['/']);
-    });
-    this.isSignedIn=false;
-
-    this.spinner.requestEnded();
-=======
     await this.afauth.signOut();
     alert('logging out');
     this.spinner.requestEnded();
     this.router.navigate(['/**']);
->>>>>>> 46018d60a8f1ba560ca337b5a658621aab2a5d83
   }
 
   dpurl(url: string){
@@ -182,6 +151,10 @@ adminValue$=this.authAdmin.next()
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
+
+  // deleteUser(){
+  //   this.afauth.
+  // }
 
   // canRead(user:User):boolean{
   //   const allowed=['admin','driver','storekeeper','salesagent']

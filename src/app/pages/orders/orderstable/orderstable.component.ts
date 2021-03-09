@@ -14,10 +14,11 @@ import { CustomersService } from 'src/app/services/customers.service';
   styleUrls: ['./orderstable.component.scss']
 })
 export class OrderstableComponent implements OnInit {
+  @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   routes:Disroute[];
   orders:Order[];
-  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','view','delete'];
+  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','view','edit','delete'];
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
     private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog) {
@@ -63,8 +64,16 @@ export class OrderstableComponent implements OnInit {
     });
     }
 
+    editOrder(order){
+      this.afs.doc(`orders/${order.id}`).update(order);
+    }
+
     deleteOrder(order){
       this.afs.doc(`orders/${order.id}`).delete();
+    }
+
+    callEditDialog() {
+      this.dialog.open(this.callEDITDialog);
     }
 
     callDialog() {
