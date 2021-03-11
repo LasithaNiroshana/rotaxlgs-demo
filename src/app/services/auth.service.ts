@@ -90,13 +90,13 @@ adminValue$=this.authAdmin.next()
     this.spinner.requestStarted();
     this.afauth.createUserWithEmailAndPassword(user.email,user.password).then(userCredentials=>{
       this.newUser=user;
+      userCredentials.user.sendEmailVerification();
       userCredentials.user.updateProfile({
         displayName:user.first_name+'  '+user.last_name,
         photoURL:this.Url,
       });
       this.insertUserData(userCredentials).then(()=>{
         this.getUserData(userCredentials).subscribe();
-        // this.firebase.auth().currentUser.sendEmailVerification();
         this.spinner.requestEnded();
             this.router.navigate(['/notapproved']);
       });
@@ -203,8 +203,8 @@ adminValue$=this.authAdmin.next()
 
     populateUser(user){
       this.id = user.id;
-      this.afs.collection('users').doc(this.id).update({'approved': true})
-      alert('User approved successfully.')
+      this.afs.collection('users').doc(this.id).update({'approved': true});
+      alert('User approved successfully.');
       //  this.edit.onSubmit(order.status, order.id);
      }
   }

@@ -3,6 +3,7 @@ import {VehiclesService} from '../../../services/vehicles.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {Vehicle} from '../../../models/vehicles';
+import {DltdialogService} from '../../../services/dltdialog.service'
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Vehicle} from '../../../models/vehicles';
 })
 
 export class VehiclestableComponent implements OnInit {
-  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
+  // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   vehicles=[];
   editVehicle=[];
@@ -27,7 +28,8 @@ export class VehiclestableComponent implements OnInit {
     insurance_company:'',
     }
   vehiclesColumns:string[]=['vehicle_no','rl_no','rl_expiry','vehicle_size','tel_no','edit','delete'];
-  constructor(private vehiclesservice:VehiclesService, private afs:AngularFirestore,public dialog:MatDialog) { }
+  constructor(private vehiclesservice:VehiclesService, private afs:AngularFirestore,
+    public dialog:MatDialog,private dialogService:DltdialogService) { }
 
   ngOnInit(): void {
     this.vehiclesservice.getVehicles().subscribe(vehi=>{
@@ -41,22 +43,26 @@ export class VehiclestableComponent implements OnInit {
   }
 
   updateVehicle(vehicle){
-
-    this.afs.doc(`vehicles/${vehicle.id}`).update(vehicle);
-    console.log('dggfh');
+        this.afs.doc(`vehicles/${vehicle.id}`).update(vehicle);
   }
 
   deleteVehicle(vehicle){
+    this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
+      if(res){
     this.afs.doc(`vehicles/${vehicle.id}`).delete();
+    alert('Record Deleted Successfully');
+  }
+});
   }
 
-callDialog() {
-  this.dialog.open(this.callDLTDialog);
-}
+// callDialog() {
+//   this.dialog.open(this.callDLTDialog);
+// }
 
 callEditDialog() {
   this.dialog.open(this.callEDITDialog);
 }
+
 
 // onSubmit(){
 //   if(

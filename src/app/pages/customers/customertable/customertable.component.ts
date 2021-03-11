@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {MediaObserver,MediaChange} from '@angular/flex-layout';
 import {MatDialog} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
+import { DltdialogService } from 'src/app/services/dltdialog.service';
 
 @Component({
   selector: 'app-customertable',
@@ -11,7 +12,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./customertable.component.scss']
 })
 export class CustomertableComponent implements OnInit {
-  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
+  // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   @Input()
   mediaSub:Subscription;
@@ -19,7 +20,7 @@ export class CustomertableComponent implements OnInit {
   customers=[];
   customerColumns:string[]=['customer_id','customer_name','address','email','telephone_no','KM_RLH','edit','delete'];
   constructor(private customersservice:CustomersService,private afs:AngularFirestore,
-     public mediaObserver:MediaObserver,public dialog:MatDialog) { }
+     public mediaObserver:MediaObserver,public dialog:MatDialog,public dialogService:DltdialogService) { }
 
   ngOnInit(): void {
     this.customersservice.getCustomers().subscribe(cus=>{
@@ -45,15 +46,20 @@ export class CustomertableComponent implements OnInit {
   }
 
   deleteCustomers(customer){
+    this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
+      if(res){
     this.afs.doc(`customers/${customer.id}`).delete();
+    alert('Record Deleted Successfully');
+  }
+});
   }
 
   callEditDialog() {
     this.dialog.open(this.callEDITDialog);
   }
 
-  callDialog() {
-    this.dialog.open(this.callDLTDialog);
-  }
+  // callDialog() {
+  //   this.dialog.open(this.callDLTDialog);
+  // }
 
 }

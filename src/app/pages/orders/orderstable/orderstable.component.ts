@@ -6,6 +6,7 @@ import {Order} from '../../../models/order';
 import { DisroutsService } from 'src/app/services/disroutes.service';
 import { Disroute } from 'src/app/models/disroutes';
 import { CustomersService } from 'src/app/services/customers.service';
+import { DltdialogService } from 'src/app/services/dltdialog.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class OrderstableComponent implements OnInit {
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','view','edit','delete'];
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
-    private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog) {
+    private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog,
+    private dialogService:DltdialogService) {
    }
 
    ngOnInit(): void {
@@ -69,7 +71,12 @@ export class OrderstableComponent implements OnInit {
     }
 
     deleteOrder(order){
+      this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
+        if(res){
       this.afs.doc(`orders/${order.id}`).delete();
+      alert('Record Deleted Successfully');
+    }
+  });
     }
 
     callEditDialog() {

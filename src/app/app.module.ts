@@ -57,6 +57,7 @@ import { SalesagentGuard } from './guards/salesagent.guard';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { StoreTableComponent } from './pages/store-home/store-table/store-table.component';
+import { DltdialogComponent } from './shared/dltdialog/dltdialog.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { StoreTableComponent } from './pages/store-home/store-table/store-table.
     SpinnerComponent,
     SnackbarComponent,
     StoreTableComponent,
+    DltdialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +122,6 @@ import { StoreTableComponent } from './pages/store-home/store-table/store-table.
   ],
   providers: [AdminGuard,DriverGuard,SalesagentGuard],
   bootstrap: [AppComponent],
-  entryComponents:[EditpopupComponent,PopupComponent]
+  entryComponents:[EditpopupComponent,PopupComponent,DltdialogComponent]
 })
 export class AppModule { }

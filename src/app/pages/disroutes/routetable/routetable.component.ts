@@ -4,6 +4,7 @@ import { DisroutsService } from 'src/app/services/disroutes.service';
 import {MatDialog} from '@angular/material/dialog'
 import { SalesagentsService } from 'src/app/services/salesagents.service';
 import { Salesagent } from 'src/app/models/salesagents';
+import { DltdialogService } from 'src/app/services/dltdialog.service';
 
 @Component({
   selector: 'app-routetable',
@@ -11,16 +12,16 @@ import { Salesagent } from 'src/app/models/salesagents';
   styleUrls: ['./routetable.component.scss']
 })
 export class RoutetableComponent implements OnInit {
-  @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
+  // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('assignAgent') assignAgent: TemplateRef<any>;
   assigned_person:'';
   disroutes=[];
   sales_agents: Salesagent[];
   routeColumns:string[]=['Route_Name','cities','assinged_person', 'edit','delete'];
-  constructor(private disroutsService:DisroutsService, 
-    private afs:AngularFirestore, 
+  constructor(private disroutsService:DisroutsService,
+    private afs:AngularFirestore,
     public dialog:MatDialog,
-    private salesagentService: SalesagentsService,) {
+    private salesagentService: SalesagentsService,public dialogService:DltdialogService) {
 
   }
 
@@ -44,12 +45,17 @@ export class RoutetableComponent implements OnInit {
   }
 
   deleteRoute(disroute){
+    this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
+      if(res){
     this.afs.doc(`routes/${disroute.id}`).delete();
+    alert('Record Deleted Successfully');
+  }
+});
   }
 
-  callDialog() {
-    this.dialog.open(this.callDLTDialog);
-  }
+  // callDialog() {
+  //   this.dialog.open(this.callDLTDialog);
+  // }
 
   callAssignment() {
     this.dialog.open(this.assignAgent);
@@ -57,7 +63,7 @@ export class RoutetableComponent implements OnInit {
 
   updateRoue(disroute){
     this.disroutsService.updatePerson(disroute,this.assigned_person);
-    
+
   }
 
 }
