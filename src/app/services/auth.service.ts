@@ -6,7 +6,6 @@ import {BehaviorSubject,Observable,of, Subject} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../models/user';
 import { SpinnerService } from './spinner.service';
-import { AdminGuard } from '../guards/admin.guard';
 
 
 @Injectable({
@@ -15,6 +14,7 @@ import { AdminGuard } from '../guards/admin.guard';
 export class AuthService {
   Url:string
   user:Observable<User>;
+  us:firebase.default.User;
   private eventAuthError=new BehaviorSubject<String>("");
   eventAuthError$=this.eventAuthError.asObservable();
   newUser:any;
@@ -27,7 +27,7 @@ adminValue$=this.authAdmin.next()
   firebase: any;
 
   constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router,
-  private spinner:SpinnerService, private ag:AdminGuard) {
+  private spinner:SpinnerService) {
     this.user=this.afauth.authState;
 
     this.user.pipe(switchMap(u=>{
@@ -42,6 +42,16 @@ adminValue$=this.authAdmin.next()
 
   getUserState(){
     return this.afauth.authState;
+  }
+
+  checkUser(){
+    this.getUserState().subscribe(us=>{
+      this.us=us;
+      if(us!=null){
+        return true;
+      }
+      else return false;
+    });
   }
 
   async signIn(email:string, password:string){
@@ -64,17 +74,17 @@ adminValue$=this.authAdmin.next()
                 if(currentUser.role=='Driver'){
                   this.spinner.requestEnded();
                   this.router.navigate(['/drivershome']);
-                  alert('You are successfully log in to the system.');
+                  alert('You have successfully log in to the system.');
                 }
                 else if(currentUser.role=='Sales Agent'){
                   this.spinner.requestEnded();
                   this.router.navigate(['/salesagenthome']);
-                  alert('You are successfully log in to the system.');
+                  alert('You have successfully log in to the system.');
                 }
                 else if(currentUser.role=='Store Keeper'){
                   this.spinner.requestEnded();
-                  this.router.navigate(['/salesagenthome']);
-                  alert('You are successfully log in to the system.');
+                  this.router.navigate(['/storehome']);
+                  alert('You have successfully log in to the system.');
                 }}
               else {
                 this.spinner.requestEnded();

@@ -14,7 +14,6 @@ export class AddsalesagentsComponent implements OnInit {
   [x: string]: any;
   vehicles:Vehicle[];
   salesAgent:Salesagent={
-    agent_id:'',
   first_name:'',
   last_name:'',
   dob:new Date(),
@@ -23,9 +22,9 @@ export class AddsalesagentsComponent implements OnInit {
   email:'',
   address_ln1:'',
   address_ln2:'',
-  city:'',
-  vehicle_type:'',
-  assigned_vehicle:'',
+  city:''
+  // vehicle_type:'',
+  // assigned_vehicle:'',
   }
 
   constructor(private salesagentsservice:SalesagentsService,
@@ -53,12 +52,12 @@ export class AddsalesagentsComponent implements OnInit {
     && this.salesAgent.address_ln1!=''
     && this.salesAgent.address_ln2!=''
     && this.salesAgent.city!=''
-    && this.salesAgent.vehicle_type!=''
-    && this.salesAgent.assigned_vehicle!=''
+    // && this.salesAgent.vehicle_type!=''
+    // && this.salesAgent.assigned_vehicle!=''
     ){
       this.salesagentsservice.addSalesAgent(this.salesAgent);
       alert('New sales agent data has been added successfully')
-    
+
     this.salesAgent.last_name='';
     this.salesAgent.nic_no='';
     this.salesAgent.mobile_no='';
@@ -66,8 +65,8 @@ export class AddsalesagentsComponent implements OnInit {
     this.salesAgent.address_ln1='';
     this.salesAgent.address_ln2='';
     this.salesAgent.city='';
-    this.salesAgent.vehicle_type='';
-    this.salesAgent.assigned_vehicle='';
+    // this.salesAgent.vehicle_type='';
+    // this.salesAgent.assigned_vehicle='';
     }
     else{alert('Error...!!!')}
   }

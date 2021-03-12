@@ -5,14 +5,16 @@ import { Order } from 'src/app/models/order';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrdersService } from 'src/app/services/orders.service';
 
+
 @Component({
-  selector: 'app-store-table',
-  templateUrl: './store-table.component.html',
-  styleUrls: ['./store-table.component.scss']
+  selector: 'app-storehometable',
+  templateUrl: './storehometable.component.html',
+  styleUrls: ['./storehometable.component.scss']
 })
-export class StoreTableComponent implements OnInit {
+export class StorehometableComponent implements OnInit {
+
   @ViewChild('updateStatus') updateStatus: TemplateRef<any>;
-  
+
   user:firebase.default.User;
   status:'';
   orders:Order[];
@@ -32,7 +34,7 @@ export class StoreTableComponent implements OnInit {
     this.authService.getUserState().subscribe(user=>{
       this.user=user;
       this.agentName = user.displayName});
-    this.ordersservice.getSAOrder(this.agentName).subscribe(order=>{
+    this.ordersservice.getOrders().subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{
         let orders:any = o.payload.doc.data();
@@ -40,7 +42,7 @@ export class StoreTableComponent implements OnInit {
         this.orders.push(orders);
       })
     });
-   
+
   }
 
   callUpdate() {
@@ -50,6 +52,7 @@ export class StoreTableComponent implements OnInit {
   done(orders: { id: string; }){
     this.afs.collection('orders').doc(orders.id).update({'status': this.status});
   }
+
 
 
 }

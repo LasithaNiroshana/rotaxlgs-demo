@@ -31,16 +31,13 @@ import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.c
 import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
-import { AdminGuard } from './guards/admin.guard';
-import { DriverGuard } from './guards/driver.guard';
-import { SalesagentGuard } from './guards/salesagent.guard';
-import { StoreHomeComponent } from './pages/store-home/store-home.component';
-import { StoreTableComponent } from './pages/store-home/store-table/store-table.component';
+import { StorehomeComponent } from './pages/storehome/storehome.component';
+import { MainGuard } from './guards/main.guard';
 
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
-  // canActivate:[AdminGuard],
+  // canActivate:[MainGuard],
   children:[
     {path:'admindashboard',component:AdmindashboardComponent},
     {path:'viewcustomers',component:ViewcustomersComponent},
@@ -59,9 +56,9 @@ const routes: Routes = [
     {path: 'salesagenthometable', component: SalesagenthometabelComponent}
 ]},
   {path:'drivershome', component: DrivershomeComponent},
+  {path:'storehome', component: StorehomeComponent},
   {path:'**',component:MainloginComponent},
-  {path:'storehome', component: StoreHomeComponent},
-  
+
   {path:'addcustomers',component:AddcustomersComponent},
   {path:'customerstable',component:CustomertableComponent},
   {path:'adddisroutes',component:AdddisroutesComponent},
@@ -111,6 +108,5 @@ export const routingComponents=[
  RoutetableComponent,
  DrivershomeComponent,
  DriverstableComponent,
- StoreHomeComponent,
- StoreTableComponent
+ StorehomeComponent
 ]

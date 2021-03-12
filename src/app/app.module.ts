@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {environment} from '../environments/environment';
-import { CommonModule } from "@angular/common";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -49,15 +48,12 @@ import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.c
 import { DropZoneDirective } from './dropzone.directive';
 import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
-import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-import { AdminGuard } from './guards/admin.guard';
-import { DriverGuard } from './guards/driver.guard';
-import { SalesagentGuard } from './guards/salesagent.guard';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
-import { StoreTableComponent } from './pages/store-home/store-table/store-table.component';
 import { DltdialogComponent } from './shared/dltdialog/dltdialog.component';
+import { StorehometableComponent } from './pages/storehome/storehometable/storehometable.component';
+import { MainGuard } from './guards/main.guard';
 
 
 @NgModule({
@@ -82,8 +78,8 @@ import { DltdialogComponent } from './shared/dltdialog/dltdialog.component';
     UsersComponent,
     SpinnerComponent,
     SnackbarComponent,
-    StoreTableComponent,
     DltdialogComponent,
+    StorehometableComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +116,7 @@ import { DltdialogComponent } from './shared/dltdialog/dltdialog.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AdminGuard,DriverGuard,SalesagentGuard],
+  providers: [MainGuard],
   bootstrap: [AppComponent],
   entryComponents:[EditpopupComponent,PopupComponent,DltdialogComponent]
 })
