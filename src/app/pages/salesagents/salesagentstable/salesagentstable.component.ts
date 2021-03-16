@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import {SalesagentsService} from '../../../services/salesagents.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-salesagentstable',
@@ -13,7 +14,8 @@ export class SalesagentstableComponent implements OnInit {
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   salesagents=[];
   salesagentColumns:string[]=['agent_id','agent_name','mobile_no','email','edit','delete'];
-  constructor(private salesagentservice:SalesagentsService, private afs:AngularFirestore,public dialog:MatDialog) {}
+  constructor(private salesagentservice:SalesagentsService, private afs:AngularFirestore,
+    public dialog:MatDialog, private snackBar:MatSnackBar) {}
 
   ngOnInit(): void {
     this.salesagentservice.getSalesagents().subscribe(sa=>{
@@ -33,6 +35,7 @@ export class SalesagentstableComponent implements OnInit {
   deleteSalesAgents(salesagent){
     // this.afs.collection('salesagents').doc(salesagent.id).delete();
     this.afs.doc(`salesagents/${salesagent.id}`).delete();
+    this.openSnackBar('Sales agent record deleted successfully','');
   }
 
   callDialog() {
@@ -41,6 +44,12 @@ export class SalesagentstableComponent implements OnInit {
 
   callEditDialog() {
     this.dialog.open(this.callEDITDialog);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
   }
 
 }

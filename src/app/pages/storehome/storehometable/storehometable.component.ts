@@ -17,6 +17,7 @@ export class StorehometableComponent implements OnInit {
 
   user:firebase.default.User;
   status:'';
+  notes:'';
   orders:Order[];
   agentName: String
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','province','route','sales_agent','current_status','edit'];
@@ -51,6 +52,7 @@ export class StorehometableComponent implements OnInit {
 
   done(orders: { id: string; }){
     this.afs.collection('orders').doc(orders.id).update({'status': this.status});
+    this.afs.collection('orders').doc(orders.id).update({'notes': this.notes});
   }
 
 

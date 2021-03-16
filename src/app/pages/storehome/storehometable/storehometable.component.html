@@ -52,11 +52,14 @@
       <ng-template #updateStatus *ngFor="let order of orders">
         <h1 mat-dialog-title>Change the order status</h1>
         <div mat-dialog-content>
-          <mat-select [(ngModel)]="status" name="status">
-            <mat-option value="">- Select -</mat-option>
+          <mat-select [(ngModel)]="status" name="status" matInput placeholder="Select Status">
             <mat-option value="preparing">Preparing</mat-option>
             <mat-option value="issued">Issued</mat-option>
           </mat-select>
+          <mat-form-field class="notes-field">
+            <mat-label>Notes  *If Returned</mat-label>
+            <input type="text" matInput placeholder="Add a note" [(ngModel)]="notes" name="notes">
+          </mat-form-field>
         </div>
         <br>
         <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">

@@ -3,6 +3,7 @@ import {CustomersService} from '../../../services/customers.service';
 import {Customer} from '../../../models/customer';
 import {MediaObserver,MediaChange} from '@angular/flex-layout';
 import {Subscription} from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-addcustomers',
@@ -27,7 +28,7 @@ customer:Customer={
   distance:0
 }
 
-  constructor(private customersService:CustomersService,public mediaObserver:MediaObserver) {
+  constructor(private customersService:CustomersService,public mediaObserver:MediaObserver,private snackBar:MatSnackBar) {
    }
 
   ngOnInit(): void {
@@ -52,7 +53,7 @@ customer:Customer={
     && this.customer.email!=''
     && this.customer.tel_no!=''){
       this.customersService.addCustomer(this.customer);
-      alert('New customer has been added successfully');
+      this.openSnackBar('New customer added successfully.','');
       this.customer.customer_id='';
       this.customer.customer_id='';
       this.customer.first_name='';
@@ -66,8 +67,14 @@ customer:Customer={
       this.customer.distance=0;
     }
     else{
-      alert('Error Adding Customer');
+      this.openSnackBar('Error occured while adding new customer!','');
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {OrdersService} from '../../../services/orders.service';
 import { Order } from '../../../models/order';
 import { Customer } from 'src/app/models/customer';
@@ -7,6 +7,8 @@ import { SalesagentsService } from 'src/app/services/salesagents.service';
 import { Salesagent } from 'src/app/models/salesagents';
 import { DisroutsService } from 'src/app/services/disroutes.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -15,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./addorders.component.scss']
 })
 export class AddordersComponent implements OnInit {
+  @ViewChild('callOKDialog') callOKDialog: TemplateRef<any>;
   [x: string]: any;
   customers:Customer[];
   sales_agents: Salesagent[];
@@ -42,7 +45,9 @@ export class AddordersComponent implements OnInit {
     private salesagentService: SalesagentsService,
     private routeService: DisroutsService,
     private router:Router,
-    private acr:ActivatedRoute) { }
+    private acr:ActivatedRoute,
+    private snackBar:MatSnackBar,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {this.salesagentService.getSalesagents().subscribe(sa=>{
     this.sales_agents = [];
@@ -105,11 +110,11 @@ this.order.sales_agent='';
       && this.order.status != '') {
       this.ordersService.getspOrder(this.order.invoice_no).snapshotChanges().subscribe(ord => {
         if (ord.length > 0) {
-          alert('This invoice Number is already added.')
+          this.openSnackBar('This invoice number is already been added!','');
         } else {
           try {
             this.ordersService.addOrder(this.order);
-            alert('Order has been added successfully');
+            this.openSnackBar('New order has been added successfully.','');
             this.order.invoice_no = '';
             this.order.customer_id = '';
             this.order.customer_name = '';
@@ -123,12 +128,12 @@ this.order.sales_agent='';
             this.order.sales_agent = '';
           }
           catch (error) {
-            alert(error);
+            this.openSnackBar(error,'');
           }
         }
       });
     } else {
-      alert("Please fill all the fields.")
+      this.openSnackBar('Please fill in the fields','');
     }
   }
 
@@ -148,7 +153,7 @@ this.order.sales_agent='';
         this.order.distance = this.customers[0].distance;
   });this.route();
 }else{
-    alert("No customers has been registered under this Customer ID. Please check the Customer ID")
+   this.callDialog();
   }
 });
 }
@@ -165,13 +170,23 @@ route() {
       });
     }
     } catch (error) {
-      console.log(error)
+      this.openSnackBar(error,'');
     }
   })
 }
 
 showupload(){
   this.router.navigate(['bulkupload'],{relativeTo:this.acr});
+}
+
+openSnackBar(message: string, action: string) {
+  this.snackBar.open(message, action, {
+    duration: 3200,
+  });
+}
+
+callDialog() {
+  this.dialog.open(this.callOKDialog);
 }
 
 }

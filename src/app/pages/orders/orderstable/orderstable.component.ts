@@ -7,6 +7,7 @@ import { DisroutsService } from 'src/app/services/disroutes.service';
 import { Disroute } from 'src/app/models/disroutes';
 import { CustomersService } from 'src/app/services/customers.service';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class OrderstableComponent implements OnInit {
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
     private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog,
-    private dialogService:DltdialogService) {
+    private dialogService:DltdialogService, private snackBar:MatSnackBar) {
    }
 
    ngOnInit(): void {
@@ -74,7 +75,7 @@ export class OrderstableComponent implements OnInit {
       this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
         if(res){
       this.afs.doc(`orders/${order.id}`).delete();
-      alert('Record Deleted Successfully');
+      this.openSnackBar('Order record deleted successfully','');
     }
   });
     }
@@ -89,6 +90,12 @@ export class OrderstableComponent implements OnInit {
 
     view(order){
       window.open(order.photo_URL, "_blank");
+    }
+
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+        duration: 3200,
+      });
     }
 
   }

@@ -5,6 +5,7 @@ import {MediaObserver,MediaChange} from '@angular/flex-layout';
 import {MatDialog} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-customertable',
@@ -20,7 +21,8 @@ export class CustomertableComponent implements OnInit {
   customers=[];
   customerColumns:string[]=['customer_id','customer_name','address','email','telephone_no','KM_RLH','edit','delete'];
   constructor(private customersservice:CustomersService,private afs:AngularFirestore,
-     public mediaObserver:MediaObserver,public dialog:MatDialog,public dialogService:DltdialogService) { }
+     public mediaObserver:MediaObserver,public dialog:MatDialog,
+     public dialogService:DltdialogService,private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.customersservice.getCustomers().subscribe(cus=>{
@@ -49,7 +51,7 @@ export class CustomertableComponent implements OnInit {
     this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
       if(res){
     this.afs.doc(`customers/${customer.id}`).delete();
-    alert('Record Deleted Successfully');
+    this.openSnackBar('Customer record deleted successfully.','')
   }
 });
   }
@@ -61,5 +63,11 @@ export class CustomertableComponent implements OnInit {
   // callDialog() {
   //   this.dialog.open(this.callDLTDialog);
   // }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
+  }
 
 }

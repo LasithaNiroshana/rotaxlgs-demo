@@ -6,6 +6,7 @@ import {BehaviorSubject,Observable,of, Subject} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../models/user';
 import { SpinnerService } from './spinner.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({
@@ -19,7 +20,6 @@ export class AuthService {
   eventAuthError$=this.eventAuthError.asObservable();
   newUser:any;
   id:'';
-  message:'';
   adminValue:string;
   isSignedIn=false;
 private authAdmin=new Subject<string>();
@@ -27,7 +27,7 @@ adminValue$=this.authAdmin.next()
   firebase: any;
 
   constructor(private afauth:AngularFireAuth,private afs:AngularFirestore,private router:Router,
-  private spinner:SpinnerService) {
+  private spinner:SpinnerService, private snackBar:MatSnackBar) {
     this.user=this.afauth.authState;
 
     this.user.pipe(switchMap(u=>{
@@ -60,7 +60,7 @@ adminValue$=this.authAdmin.next()
       {
         this.spinner.requestEnded();
         // this.eventAuthError.next(error);
-        alert(error);
+        this.openSnackBar(error,'');
       }).then(userCredentials=>{
         if(userCredentials){
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
@@ -68,27 +68,27 @@ adminValue$=this.authAdmin.next()
           if(currentUser.role=='Admin'){
               this.spinner.requestEnded();
               this.router.navigate(['/adminhome/admindashboard']);
-              alert('You have successfully log in to the system as a admin');
+              this.openSnackBar('You Have Successfully Logged Into the System','Role:Admin');
             }
             else if(currentUser.approved == true){
                 if(currentUser.role=='Driver'){
                   this.spinner.requestEnded();
                   this.router.navigate(['/drivershome']);
-                  alert('You have successfully log in to the system.');
+                  this.openSnackBar('You Have Successfully Logged Into the System','Role:Driver');
                 }
                 else if(currentUser.role=='Sales Agent'){
                   this.spinner.requestEnded();
                   this.router.navigate(['/salesagenthome']);
-                  alert('You have successfully log in to the system.');
+                  this.openSnackBar('You Have Successfully Logged Into the System As An Admin','Role:Sales Agent');
                 }
                 else if(currentUser.role=='Store Keeper'){
                   this.spinner.requestEnded();
                   this.router.navigate(['/storehome']);
-                  alert('You have successfully log in to the system.');
+                  this.openSnackBar('You Have Successfully Logged Into the System','Role:Store Keeper');
                 }}
               else {
                 this.spinner.requestEnded();
-                alert('You are not approved to log in to the system. Please contact an administator.');
+                this.openSnackBar('You Are Not Approved To Log Into The System. Please Contact An Administrator.','Ok');
               }
 
      });
@@ -113,14 +113,15 @@ adminValue$=this.authAdmin.next()
     })
     .catch(error=>{
       this.eventAuthError.next(error);
+      this.openSnackBar(error,'');
   });}
 
   async signOut(){
     this.spinner.requestStarted();
     await this.afauth.signOut();
-    alert('logging out');
     this.spinner.requestEnded();
     this.router.navigate(['/**']);
+    this.openSnackBar('You Have Successfully Logged Out','');
   }
 
   dpurl(url: string){
@@ -155,12 +156,15 @@ adminValue$=this.authAdmin.next()
       }).catch(error=>{
         this.eventAuthError.next(error);}
       );
-      this.spinner.requestStarted();
+      this.spinner.requestEnded();
+      this.openSnackBar('Admin Profile Creation Was Successful','');
     }
 
   getUserData(userCredentials:firebase.default.auth.UserCredential){
     return this.afs.collection('users').doc(userCredentials.user.uid).valueChanges();
   }
+
+
 
   // deleteUser(){
   //   this.afauth.
@@ -211,10 +215,16 @@ adminValue$=this.authAdmin.next()
       return this.afs.collection('users',  ref => ref.where('approved', '==', false)).snapshotChanges();
     }
 
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+        duration: 3200,
+      });
+    }
+
     populateUser(user){
       this.id = user.id;
       this.afs.collection('users').doc(this.id).update({'approved': true});
-      alert('User approved successfully.');
+      this.openSnackBar('Successfully approved User','');
       //  this.edit.onSubmit(order.status, order.id);
      }
   }

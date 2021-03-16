@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {VehiclesService} from '../../../services/vehicles.service';
 import {Vehicle} from '../../../models/vehicles';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-addvehicles',
@@ -19,7 +20,7 @@ export class AddvehiclesComponent implements OnInit {
   insurance_company:'',
   }
 
-  constructor(private vehiclesService:VehiclesService) { }
+  constructor(private vehiclesService:VehiclesService, private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -36,15 +37,21 @@ export class AddvehiclesComponent implements OnInit {
       // && this.vehicle.telephone_no!=''
     ){
       this.vehiclesService.addVehicle(this.vehicle);
-      alert('Vehicle has been added successfully');
+      this.openSnackBar('New vehicle added successsfully','');
       this.vehicle.vehicle_no='';
       this.vehicle.revenuelicense_no='';
       this.vehicle.telephone_no='';
     }
     else{
-      alert('Error adding new vehicle');
+      this.openSnackBar('Error occured while adding new vehicle','');
     }
 
+      }
+
+      openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+          duration: 3200,
+        });
       }
 
 }

@@ -3,6 +3,7 @@ import {DriversService} from '../../../services/drivers.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-driverstable',
@@ -15,7 +16,7 @@ export class DriverstableComponent implements OnInit {
   drivers=[];
   driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','edit','delete'];
   constructor(private driversservice:DriversService, private afs:AngularFirestore,
-    public dialog:MatDialog,public dialogService:DltdialogService) {
+    public dialog:MatDialog,public dialogService:DltdialogService,private snackBar:MatSnackBar) {
 
   }
 
@@ -38,7 +39,7 @@ export class DriverstableComponent implements OnInit {
     this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
       if(res){
     this.afs.doc(`drivers/${driver.id}`).delete();
-    alert('Record Deleted Successfully');
+    this.openSnackBar('Driver/Delivery Assistant record deleted successfully','');
   }
 });
   }
@@ -50,5 +51,11 @@ export class DriverstableComponent implements OnInit {
   // callDialog() {
   //   this.dialog.open(this.callDLTDialog);
   // }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
+  }
 
 }

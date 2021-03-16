@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {Vehicle} from '../../../models/vehicles';
 import {DltdialogService} from '../../../services/dltdialog.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class VehiclestableComponent implements OnInit {
     }
   vehiclesColumns:string[]=['vehicle_no','rl_no','rl_expiry','vehicle_size','tel_no','edit','delete'];
   constructor(private vehiclesservice:VehiclesService, private afs:AngularFirestore,
-    public dialog:MatDialog,private dialogService:DltdialogService) { }
+    public dialog:MatDialog,private dialogService:DltdialogService,private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.vehiclesservice.getVehicles().subscribe(vehi=>{
@@ -50,7 +51,7 @@ export class VehiclestableComponent implements OnInit {
     this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
       if(res){
     this.afs.doc(`vehicles/${vehicle.id}`).delete();
-    alert('Record Deleted Successfully');
+    this.openSnackBar('Vehicle record deleted successfully','');
   }
 });
   }
@@ -87,6 +88,12 @@ callEditDialog() {
 //   }
 
 //     }
+
+openSnackBar(message: string, action: string) {
+  this.snackBar.open(message, action, {
+    duration: 3200,
+  });
+}
 
 
 }

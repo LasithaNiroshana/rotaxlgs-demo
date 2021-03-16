@@ -4,6 +4,7 @@ import {Salesagent} from '../../../models/salesagents';
 import { VehiclesService } from 'src/app/services/vehicles.service';
 import { Vehicle } from 'src/app/models/vehicles';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-addsalesagents',
@@ -29,7 +30,8 @@ export class AddsalesagentsComponent implements OnInit {
 
   constructor(private salesagentsservice:SalesagentsService,
               private vehicleService: VehiclesService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.vehicleService.getVehicles().subscribe(sa=>{
@@ -56,7 +58,7 @@ export class AddsalesagentsComponent implements OnInit {
     // && this.salesAgent.assigned_vehicle!=''
     ){
       this.salesagentsservice.addSalesAgent(this.salesAgent);
-      alert('New sales agent data has been added successfully')
+      this.openSnackBar('New sales agent data has been added successfully','');
 
     this.salesAgent.last_name='';
     this.salesAgent.nic_no='';
@@ -68,7 +70,15 @@ export class AddsalesagentsComponent implements OnInit {
     // this.salesAgent.vehicle_type='';
     // this.salesAgent.assigned_vehicle='';
     }
-    else{alert('Error...!!!')}
+    else{
+      this.openSnackBar('Error occured while adding new sales agent','');
+    }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
   }
 
 }

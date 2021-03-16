@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog'
 import { SalesagentsService } from 'src/app/services/salesagents.service';
 import { Salesagent } from 'src/app/models/salesagents';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-routetable',
@@ -21,7 +22,7 @@ export class RoutetableComponent implements OnInit {
   constructor(private disroutsService:DisroutsService,
     private afs:AngularFirestore,
     public dialog:MatDialog,
-    private salesagentService: SalesagentsService,public dialogService:DltdialogService) {
+    private salesagentService: SalesagentsService,public dialogService:DltdialogService,private snackBar:MatSnackBar) {
 
   }
 
@@ -48,7 +49,7 @@ export class RoutetableComponent implements OnInit {
     this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
       if(res){
     this.afs.doc(`routes/${disroute.id}`).delete();
-    alert('Record Deleted Successfully');
+    this.openSnackBar('Route deleted successfully.','')
   }
 });
   }
@@ -63,7 +64,12 @@ export class RoutetableComponent implements OnInit {
 
   updateRoue(disroute){
     this.disroutsService.updatePerson(disroute,this.assigned_person);
+  }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
   }
 
 }

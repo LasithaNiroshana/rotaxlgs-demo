@@ -1,6 +1,6 @@
 <app-header (toggleClicked)="toggleNav()"></app-header>
 <mat-drawer-container class="drawer-container">
-  <mat-drawer class="drawer" mode="side" [opened]="toggleOpen">
+  <mat-drawer class="drawer" mode="side" [opened]="toggleOpen" *ngIf="!deviceXs">
     <mat-nav-list class="sidenav">
       <div class="profile-card">
         <div class="header" *ngIf="user">
@@ -25,6 +25,33 @@
     </mat-nav-list>
 
   </mat-drawer>
+
+  <mat-drawer class="drawer-small" mode="over" [opened]="toggleOpen" *ngIf="deviceXs">
+    <mat-nav-list class="sidenav">
+      <div class="profile-card-small">
+        <div class="header" *ngIf="user">
+         <h5 class="display-text">
+          {{user?.displayName}}
+         </h5>
+         <!-- <mat-label class="profile-label">
+          {{user?.role}}
+        </mat-label> -->
+         <h6 class="display-text">
+             {{user?.email}}
+         </h6>
+        </div>
+        <img class="img-responsive" src="{{user?.photoURL}}">
+      </div>
+      <mat-divider></mat-divider>
+      <div>
+        <mat-accordion>
+          <a mat-list-item class="listitem" (click)="showDashboard()">Invoices</a>
+    </mat-accordion>
+      </div>
+    </mat-nav-list>
+
+  </mat-drawer>
+
   <mat-drawer-content>
     <app-driverlist></app-driverlist>
     <!-- <router-outlet></router-outlet> -->
