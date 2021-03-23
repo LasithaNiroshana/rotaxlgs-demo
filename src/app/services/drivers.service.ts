@@ -18,6 +18,10 @@ export class DriversService {
     return this.afs.collection('drivers').snapshotChanges();
   }
 
+  getspDriver(driverID){
+    return this.afs.collection('drivers',  ref => ref.where('employee_id', '==', driverID));
+  }
+
   addDriver(driver:Driver){
     this.driversCollection.add(driver);
   }

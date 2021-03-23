@@ -3,8 +3,9 @@ export interface Vehicle{
   revenuelicense_no?:string;
   revenuelicense_expiry?:Date;
   insurance_expiry?:Date;
-  insurance_tel?:String,
-  insurance_company?:String,
+  insurance_tel?:string;
+  insurance_company?:string;
   telephone_no?:string;
-  vehicle_size?: String,
+  vehicle_size?: string;
+  status?:string;
 }

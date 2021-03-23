@@ -37,14 +37,22 @@
 <br>
     <mat-card class="ord2">
       <div>
-        <mat-form-field class="ord2-field">
-        <mat-label>Sales Agent</mat-label>
-        <mat-select [(ngModel)]="order.sales_agent" name="sales_agent">
-          <mat-option value="">- Select -</mat-option>
-          <mat-option *ngFor="let sales_agent of sales_agents" [value]="sales_agent.first_name">{{sales_agent.first_name}} {{sales_agent.last_name}}  </mat-option>
-        </mat-select>
-      </mat-form-field>
       <br>
+      <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+        <mat-form-field class="ord2-field">
+          <mat-select [(ngModel)]="order.driver_id" name="driver_id">
+            <mat-option value="">Select Driver ID</mat-option>
+            <mat-option *ngFor="let driver of drivers" [value]="driver.employee_id">{{driver.employee_id}}  </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button class="ord2-field3" type= "button" color="primary"  (click)="searchDrivers()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <mat-form-field class="ord2-field">
+        <mat-label>Driver/Delivery Assistant</mat-label>
+        <input type="text"  matInput placeholder="John" [(ngModel)]="order.driver" name="driver">
+      </mat-form-field>
          <mat-form-field class="ord2-field">
         <mat-label>Date</mat-label>
         <input matInput [matDatepicker]="picker1" [(ngModel)]="order.order_date" name="order_date">

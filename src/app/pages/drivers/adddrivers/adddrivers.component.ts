@@ -17,7 +17,8 @@ export class AdddriversComponent implements OnInit {
     address_ln1:'',
     address_ln2:'',
     city:'',
-    mobile_no:''
+    mobile_no:'',
+    employee_id:''
     };
 
   constructor(private driversService:DriversService) { }

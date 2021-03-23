@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   user:User={
   first_name:'',
   last_name:'',
-  id_no:'',
+  employee_id:'',
   mobile_no:'',
   email:'',
   password:'',
@@ -74,7 +74,7 @@ export class UsersComponent implements OnInit {
     this.authService.createAdmin(this.user);
     this.user.first_name=''
     this.user.last_name=''
-    this.user.id_no=''
+    this.user.employee_id=''
     this.user.email=''
     this.user.mobile_no=''
     this.user.password=''

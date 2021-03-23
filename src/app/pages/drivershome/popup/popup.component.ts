@@ -19,7 +19,7 @@ export class PopupComponent implements OnInit {
 
   constructor(private orderServices: OrdersService,
      private storage: AngularFireStorage) { }
-  // private orderService : OrdersService 
+  // private orderService : OrdersService
   ngOnInit(): void {
   }
 
@@ -53,6 +53,5 @@ export class PopupComponent implements OnInit {
 
   onSubmit(){
     this.orderServices.updatefrmDriver(this.Dstatus, this.Url);
-    alert('Invoice status is updated.')
    }
 }

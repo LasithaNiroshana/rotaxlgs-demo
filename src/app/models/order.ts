@@ -13,6 +13,8 @@ export interface Order{
   order_date?:Date;
   route?:string;
   sales_agent?:string;
+  driver?:string;
+  driver_id?:string;
   status?:string;
   distance?:number;
   photo_URL?:string;

@@ -1,9 +1,9 @@
 
-<mat-form-field class="ord2-field">
+<mat-form-field class="status-field">
     <mat-label>Status</mat-label>
     <mat-select [(ngModel)]="Dstatus" name="status">
       <mat-option value="Delivered">Delivered</mat-option>
-      <mat-option value="Delivery Ready">Not delivered</mat-option>
+      <mat-option value="On Delivery">On Delivery</mat-option>
     </mat-select>
   </mat-form-field>
   <br>
@@ -14,5 +14,5 @@
   <br>
   <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
     <button class="submit-btn" mat-raised-button [mat-dialog-close]="">CANCEL</button>
-    <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' >SUBMIT</button>
+    <button class="submit-btn" mat-raised-button color="primary" (click) = 'onSubmit()' [mat-dialog-close]="" >SUBMIT</button>
   </div>

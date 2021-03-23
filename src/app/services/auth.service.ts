@@ -134,7 +134,7 @@ adminValue$=this.authAdmin.next()
       email:this.newUser.email,
       firstName:this.newUser.first_name,
       lastName:this.newUser.last_name,
-      id_no:this.newUser.id_no,
+      employee_id:this.newUser.employee_id,
       mobileNumber:this.newUser.mobile_no,
       role:this.newUser.role,
       photo_url:this.Url,

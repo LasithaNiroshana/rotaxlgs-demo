@@ -18,6 +18,14 @@ export class VehiclesService {
     return this.afs.collection('vehicles').snapshotChanges();
   }
 
+  getAvaVehicles(){
+    return this.afs.collection('vehicles',ref => ref.where('status', '==', 'Available')).snapshotChanges();
+  }
+
+  getRepVehicles(){
+    return this.afs.collection('vehicles',ref => ref.where('status', '==', 'On Repair')).snapshotChanges();
+  }
+
   addVehicle(vehicle:Vehicle){
     this.vehiclesCollection.add(vehicle);
   }

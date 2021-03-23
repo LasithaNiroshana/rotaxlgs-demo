@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MediaObserver,MediaChange} from '@angular/flex-layout';
 import {Subscription} from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-drivershome',
@@ -16,6 +17,7 @@ export class DrivershomeComponent implements OnInit {
   toggleOpen:boolean;
   mediaSub:Subscription;
   deviceXs:boolean;
+  userCredentials:any;
   constructor(private router:Router,private route:ActivatedRoute,
     private authService:AuthService,private afs:AngularFirestore,
     public mediaObserver:MediaObserver) {
@@ -23,9 +25,9 @@ export class DrivershomeComponent implements OnInit {
    ngOnInit(): void {
     this.authService.getUserState().subscribe(user=>{
       this.user=user;
-      this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
-        this.deviceXs=result.mqAlias==='xs'?true:false;
-      });
+    });
+    this.mediaSub=this.mediaObserver.media$.subscribe((result:MediaChange)=>{
+      this.deviceXs=result.mqAlias==='xs'?true:false;
     });
   }
 
@@ -36,4 +38,5 @@ export class DrivershomeComponent implements OnInit {
   showDashboard(){
     this.router.navigate(['/drivershome'],{relativeTo:this.route});
   }
+
 }

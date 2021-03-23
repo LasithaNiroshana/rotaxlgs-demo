@@ -38,9 +38,9 @@ export class StorehometableComponent implements OnInit {
     this.ordersservice.getOrders().subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{
-        let orders:any = o.payload.doc.data();
-        orders.id = o.payload.doc.id;
-        this.orders.push(orders);
+        let order:any = o.payload.doc.data();
+        order.id = o.payload.doc.id;
+        this.orders.push(order);
       })
     });
 

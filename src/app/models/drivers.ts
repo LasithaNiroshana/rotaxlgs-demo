@@ -9,4 +9,5 @@ export interface Driver{
   city?:string;
   mobile_no?:string;
   dob?:Date;
+  employee_id?:string;
 }

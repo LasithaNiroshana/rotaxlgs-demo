@@ -13,13 +13,13 @@ vehicles:Vehicle[];
   constructor(private vehiclesservice: VehiclesService) { }
 
   ngOnInit(): void {
-    this.vehiclesservice.getVehicles().subscribe(vehi=>{
+    this.vehiclesservice.getAvaVehicles().subscribe(vehi=>{
       this.vehicles=[];
       vehi.forEach(v=>{
         let vehicle:any=v.payload.doc.data();
         vehicle.id=v.payload.doc.id;
         this.vehicles.push(vehicle);
-        
+
       });
     });
   }

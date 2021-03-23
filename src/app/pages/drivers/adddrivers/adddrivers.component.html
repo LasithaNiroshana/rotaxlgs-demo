@@ -19,6 +19,10 @@
       </mat-form-field>
       <br>
       <mat-form-field class="drive1-field">
+        <mat-label>Employee ID</mat-label>
+        <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="driver.employee_id" name="employee_id">
+      </mat-form-field>
+      <mat-form-field class="drive1-field">
         <mat-label>Date of Birth</mat-label>
         <input matInput [matDatepicker]="picker2" [(ngModel)]="driver.dob" name="dob">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>

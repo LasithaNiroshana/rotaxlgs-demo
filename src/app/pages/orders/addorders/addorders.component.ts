@@ -9,6 +9,8 @@ import { DisroutsService } from 'src/app/services/disroutes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { DriversService } from 'src/app/services/drivers.service';
+import {Driver} from '../../../models/drivers';
 
 
 @Component({
@@ -21,6 +23,7 @@ export class AddordersComponent implements OnInit {
   [x: string]: any;
   customers:Customer[];
   sales_agents: Salesagent[];
+  driver:Driver[];
 
   order:Order={
     id:'',
@@ -35,6 +38,8 @@ export class AddordersComponent implements OnInit {
   order_date:new Date(),
   route:'',
   sales_agent:'',
+  driver:'',
+  driver_id:'',
   status:'',
   distance: 0,
   photo_URL:''
@@ -43,20 +48,31 @@ export class AddordersComponent implements OnInit {
   constructor(private ordersService:OrdersService,
     private customerService: CustomersService,
     private salesagentService: SalesagentsService,
+    private driversService:DriversService,
     private routeService: DisroutsService,
     private router:Router,
     private acr:ActivatedRoute,
     private snackBar:MatSnackBar,
     private dialog:MatDialog) { }
 
-  ngOnInit(): void {this.salesagentService.getSalesagents().subscribe(sa=>{
-    this.sales_agents = [];
-    if(sa.length > 0){
-      sa.forEach(SA=>{
-        let SalesAgent:any=SA.payload.doc.data();
-        this.sales_agents.push(SalesAgent);
+  ngOnInit(): void {
+    // this.salesagentService.getSalesagents().subscribe(sa=>{
+    // this.sales_agents = [];
+    // if(sa.length > 0){
+    //   sa.forEach(SA=>{
+    //     let SalesAgent:any=SA.payload.doc.data();
+    //     this.sales_agents.push(SalesAgent);
+    //   });
+    // }});
+
+    this.driversService.getDrivers().subscribe(driv=>{
+      this.drivers=[];
+      driv.forEach(d=>{
+        let driver:any=d.payload.doc.data();
+        driver.id=d.payload.doc.id;
+        this.drivers.push(driver);
       });
-    }});
+    });
   }
     // this.salesagentService.getSalesagents().subscribe(salesagents=>
     //   {
@@ -106,7 +122,7 @@ this.order.sales_agent='';
       && this.order.address_ln2 != ''
       && this.order.city != ''
       && this.order.province != ''
-      && this.order.sales_agent != ''
+      && this.order.driver != ''
       && this.order.status != '') {
       this.ordersService.getspOrder(this.order.invoice_no).snapshotChanges().subscribe(ord => {
         if (ord.length > 0) {
@@ -155,6 +171,22 @@ this.order.sales_agent='';
 }else{
    this.callDialog();
   }
+});
+}
+
+searchDrivers(){
+  this.driversService.getspDriver(this.order.driver_id).snapshotChanges().subscribe(driv=>{
+    this.driver=[];
+    if(driv.length>0){
+    driv.forEach(d=>{
+      let driver:any=d.payload.doc.data();
+      driver.id=d.payload.doc.id;
+      this.drivers.push(driver);
+      this.order.driver=this.drivers[0].first_name+ ' ' + this.drivers[0].last_name;
+});
+}else{
+ this.callDialog();
+}
 });
 }
 
