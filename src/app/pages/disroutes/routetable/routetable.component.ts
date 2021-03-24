@@ -1,11 +1,11 @@
 import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DisroutsService } from 'src/app/services/disroutes.service';
-import {MatDialog} from '@angular/material/dialog'
-import { SalesagentsService } from 'src/app/services/salesagents.service';
-import { Salesagent } from 'src/app/models/salesagents';
+import {MatDialog} from '@angular/material/dialog';
+import {Driver} from '../../../models/drivers';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DriversService } from 'src/app/services/drivers.service';
 
 @Component({
   selector: 'app-routetable',
@@ -17,12 +17,14 @@ export class RoutetableComponent implements OnInit {
   @ViewChild('assignAgent') assignAgent: TemplateRef<any>;
   assigned_person:'';
   disroutes=[];
-  sales_agents: Salesagent[];
+  drivers: Driver[];
   routeColumns:string[]=['Route_Name','cities','assinged_person', 'edit','delete'];
   constructor(private disroutsService:DisroutsService,
     private afs:AngularFirestore,
     public dialog:MatDialog,
-    private salesagentService: SalesagentsService,public dialogService:DltdialogService,private snackBar:MatSnackBar) {
+    private driversService:DriversService,
+    public dialogService:DltdialogService,
+    private snackBar:MatSnackBar) {
 
   }
 
@@ -35,14 +37,14 @@ export class RoutetableComponent implements OnInit {
         this.disroutes.push(disroute);
       });
     });
-    this.salesagentService.getSalesagents().subscribe(sa=>{
-      this.sales_agents = [];
-      if(sa.length > 0){
-        sa.forEach(SA=>{
-          let SalesAgent:any=SA.payload.doc.data();
-          this.sales_agents.push(SalesAgent);
-        });
-      }});
+    this.driversService.getUADriver().snapshotChanges().subscribe(driv=>{
+      this.drivers=[];
+      driv.forEach(d=>{
+        let driver:any=d.payload.doc.data();
+        driver.id=d.payload.doc.id;
+        this.drivers.push(driver);
+      });
+    });
   }
 
   deleteRoute(disroute){

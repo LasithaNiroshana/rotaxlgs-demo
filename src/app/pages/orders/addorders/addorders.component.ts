@@ -26,7 +26,6 @@ export class AddordersComponent implements OnInit {
   driver:Driver[];
 
   order:Order={
-    id:'',
   customer_id:'',
   customer_name:'',
   address_ln1:'',
@@ -38,6 +37,7 @@ export class AddordersComponent implements OnInit {
   order_date:new Date(),
   route:'',
   sales_agent:'',
+  sa_id:'',
   driver:'',
   driver_id:'',
   status:'',

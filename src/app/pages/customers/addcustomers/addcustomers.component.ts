@@ -77,4 +77,18 @@ customer:Customer={
     });
   }
 
+  resetForm(){
+    this.customer.customer_id='';
+    this.customer.customer_id='';
+    this.customer.first_name='';
+    this.customer.last_name='' ;
+    this.customer.address_ln1='';
+    this.customer.address_ln2='';
+    this.customer.city='';
+    this.customer.province='';
+    this.customer.email='' ;
+    this.customer.tel_no='';
+    this.customer.distance=0;
+  }
+
 }

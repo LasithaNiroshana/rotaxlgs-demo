@@ -25,9 +25,7 @@ import { AdmindashboardComponent } from './pages/adminhome/admindashboard/admind
 import { RoutetableComponent } from './pages/disroutes/routetable/routetable.component';
 
 import { SalesagenthomeComponent } from './pages/salesagenthome/salesagenthome.component';
-import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 import { DrivershomeComponent } from './pages/drivershome/drivershome.component';
-import { DriverlistComponent } from './pages/drivershome/driverlist/driverlist.component';
 import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
@@ -51,10 +49,7 @@ const routes: Routes = [
 },
 {path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
-{path:'salesagenthome',component: SalesagenthomeComponent,
-    children:[
-    {path: 'salesagenthometable', component: SalesagenthometabelComponent}
-]},
+{path:'salesagenthome',component: SalesagenthomeComponent},
   {path:'drivershome', component: DrivershomeComponent},
   {path:'storehome', component: StorehomeComponent},
   {path:'**',component:MainloginComponent},
@@ -103,7 +98,6 @@ export const routingComponents=[
  MainloginComponent,
  SigninComponent,
  SignupComponent,
- SalesagenthometabelComponent,
  SalesagenthomeComponent,
  RoutetableComponent,
  DrivershomeComponent,

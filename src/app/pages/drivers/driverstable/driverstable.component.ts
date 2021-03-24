@@ -14,7 +14,7 @@ export class DriverstableComponent implements OnInit {
   // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   drivers=[];
-  driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','edit','delete'];
+  driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','assigned','edit','delete'];
   constructor(private driversservice:DriversService, private afs:AngularFirestore,
     public dialog:MatDialog,public dialogService:DltdialogService,private snackBar:MatSnackBar) {
 

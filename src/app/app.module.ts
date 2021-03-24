@@ -54,6 +54,7 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { DltdialogComponent } from './shared/dltdialog/dltdialog.component';
 import { StorehometableComponent } from './pages/storehome/storehometable/storehometable.component';
 import { MainGuard } from './guards/main.guard';
+import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenthometabel/salesagenthometabel.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { MainGuard } from './guards/main.guard';
     SnackbarComponent,
     DltdialogComponent,
     StorehometableComponent,
+    SalesagenthometabelComponent
   ],
   imports: [
     BrowserModule,

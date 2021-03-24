@@ -12,7 +12,7 @@
       </ng-container>
       <ng-container matColumnDef="assinged_person">
         <th mat-header-cell *matHeaderCellDef>Assigned Person</th>
-        <td mat-cell *matCellDef="let disroutes"> {{disroutes.agent}}  </td>
+        <td mat-cell *matCellDef="let disroutes"> {{disroutes.driver}}  </td>
       </ng-container>
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -44,11 +44,11 @@
   </ng-template>
   <ng-template #assignAgent *ngFor="let disroute of disroutes">
     <h1 mat-dialog-title>Change the Assigned person?</h1>
-    <p>Select the sales agent:</p>
+    <p>Select the driver/delivery assistant:</p>
     <div mat-dialog-content>
-      <mat-select [(ngModel)]="assigned_person" name="sales_agent">
-        <mat-option value="">- Select -</mat-option>
-        <mat-option *ngFor="let sales_agent of sales_agents" [value]="sales_agent.first_name +'  '+ sales_agent.last_name">{{sales_agent.first_name}} {{sales_agent.last_name}}  </mat-option>
+      <mat-select [(ngModel)]="driver" name="driver">
+        <mat-option value="">- Select Driver/Delivery Assistant -</mat-option>
+        <mat-option *ngFor="let driver of drivers" [value]="driver.first_name +'  '+ driver.last_name">{{driver.first_name}} {{driver.last_name}}  </mat-option>
       </mat-select>
     </div>
     <br>

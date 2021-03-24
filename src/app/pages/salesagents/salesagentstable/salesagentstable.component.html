@@ -1,8 +1,8 @@
 <div *ngIf="salesagents?.length>0;else noSalesAgents">
   <table mat-table [dataSource]="salesagents" class="mat-elevation-z8">
-    <ng-container matColumnDef="agent_id">
-      <th mat-header-cell *matHeaderCellDef> Sales Agent ID </th>
-      <td mat-cell *matCellDef="let salesagents"> {{salesagents.nic_no}} </td>
+    <ng-container matColumnDef="employee_id">
+      <th mat-header-cell *matHeaderCellDef> Employee ID </th>
+      <td mat-cell *matCellDef="let salesagents"> {{salesagents.employee_id}} </td>
     </ng-container>
     <ng-container matColumnDef="agent_name">
       <th mat-header-cell *matHeaderCellDef>Sales Agent Name</th>
@@ -96,8 +96,8 @@
       <mat-card class="sales3">
         <div>
           <mat-form-field class="sales3-field">
-            <mat-label>NIC Number</mat-label>
-            <input type="text" matInput placeholder="921564564V" [(ngModel)]="salesAgent.nic_no" name="nic_no">
+            <mat-label>Employee ID</mat-label>
+            <input type="text" matInput placeholder="921564564V" [(ngModel)]="salesAgent.employee_id" name="employee_id">
           </mat-form-field>
           <br>
           <mat-form-field class="sales3-field">
@@ -116,7 +116,7 @@
 <br><br>
 <mat-divider></mat-divider>
 <br><br>
-       <mat-card class="sales4">
+       <!-- <mat-card class="sales4">
         <div>
           <mat-radio-group aria-label="Select an option" class="sales4-field">
             Vehicle Type:
@@ -133,7 +133,7 @@
           </mat-select>
         </mat-form-field>
        </div>
-      </mat-card>
+      </mat-card> -->
 
     </div>
   </div>

@@ -87,10 +87,10 @@ adminValue$=this.authAdmin.next()
                   this.openSnackBar('You Have Successfully Logged Into the System','Role:Store Keeper');
                 }}
               else {
+                this.router.navigate(['/notapproved']);
                 this.spinner.requestEnded();
-                this.openSnackBar('You Are Not Approved To Log Into The System. Please Contact An Administrator.','Ok');
+                this.openSnackBar('You Are Not Approved To Log Into The System.','Please Contact An Administrator.');
               }
-
      });
     }
       });

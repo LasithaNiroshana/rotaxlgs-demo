@@ -5,6 +5,7 @@ import { finalize } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users',
@@ -29,7 +30,7 @@ export class UsersComponent implements OnInit {
   approved:true,}
   users:User[];
   routeColumns:string[]=['Name','email', 'mobile_no','edit'];
-  constructor(private authService:AuthService, private storage:AngularFireStorage) {
+  constructor(private authService:AuthService, private storage:AngularFireStorage, private snackBar:MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -71,18 +72,48 @@ export class UsersComponent implements OnInit {
   }
 
   createUser(){
-    this.authService.createAdmin(this.user);
-    this.user.first_name=''
-    this.user.last_name=''
-    this.user.employee_id=''
-    this.user.email=''
-    this.user.mobile_no=''
-    this.user.password=''
-    this.user.role=''
+    if(
+      this.user.first_name!=''
+    && this.user.last_name!=''
+    && this.user.employee_id!=''
+    && this.user.email!=''
+    && this.user.mobile_no!=''
+    && this.user.password!=''
+    && this.user.role!=''
+    ){
+      this.authService.createAdmin(this.user);
+    this.user.first_name='';
+    this.user.last_name='';
+    this.user.employee_id='';
+    this.user.email='';
+    this.user.mobile_no='';
+    this.user.password='';
+    this.user.role='';
+    }
+    else{
+      this.openSnackBar('Error adding new admin user','One or more fields are empty.');
+    }
   }
 
   edit(user){
     this.authService.populateUser(user)
     // this.dialog.open(EditpopupComponent);
   }
+
+  resetForm(){
+    this.user.first_name='';
+    this.user.last_name='';
+    this.user.employee_id='';
+    this.user.email='';
+    this.user.mobile_no='';
+    this.user.password='';
+    this.user.role='';
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
+  }
+
 }

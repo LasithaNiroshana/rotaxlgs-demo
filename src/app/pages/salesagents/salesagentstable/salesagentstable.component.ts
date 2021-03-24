@@ -13,7 +13,7 @@ export class SalesagentstableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   salesagents=[];
-  salesagentColumns:string[]=['agent_id','agent_name','mobile_no','email','edit','delete'];
+  salesagentColumns:string[]=['employee_id','agent_name','mobile_no','email','edit','delete'];
   constructor(private salesagentservice:SalesagentsService, private afs:AngularFirestore,
     public dialog:MatDialog, private snackBar:MatSnackBar) {}
 

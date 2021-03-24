@@ -29,21 +29,22 @@ export class AddvehiclesComponent implements OnInit {
     if(
       this.vehicle.vehicle_no!=''
       && this.vehicle.revenuelicense_no!=''
-
-      // && this.vehicle.company_name!=''
-      // && this.vehicle.address_ln1!=''
-      // && this.vehicle.address_ln2!=''
-      // && this.vehicle.city!=''
-      // && this.vehicle.telephone_no!=''
+      && this.vehicle.insurance_company!=''
+      && this.vehicle.insurance_tel!=''
+      && this.vehicle.status!=''
+      && this.vehicle.telephone_no!=''
     ){
       this.vehiclesService.addVehicle(this.vehicle);
       this.openSnackBar('New vehicle added successsfully','');
       this.vehicle.vehicle_no='';
-      this.vehicle.revenuelicense_no='';
-      this.vehicle.telephone_no='';
+      this.vehicle.revenuelicense_no!='';
+      this.vehicle.insurance_company!='';
+      this.vehicle.insurance_tel!='';
+      this.vehicle.status!='';
+      this.vehicle.telephone_no!='';
     }
     else{
-      this.openSnackBar('Error occured while adding new vehicle','');
+      this.openSnackBar('Error occured while adding new vehicle','One or more fields are empty.');
     }
 
       }
@@ -52,6 +53,15 @@ export class AddvehiclesComponent implements OnInit {
         this.snackBar.open(message, action, {
           duration: 3200,
         });
+      }
+
+      resetForm(){
+        this.vehicle.vehicle_no='';
+      this.vehicle.revenuelicense_no!='';
+      this.vehicle.insurance_company!='';
+      this.vehicle.insurance_tel!='';
+      this.vehicle.status!='';
+      this.vehicle.telephone_no!='';
       }
 
 }

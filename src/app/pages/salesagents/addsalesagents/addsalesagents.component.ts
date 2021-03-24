@@ -5,6 +5,8 @@ import { VehiclesService } from 'src/app/services/vehicles.service';
 import { Vehicle } from 'src/app/models/vehicles';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomersService } from 'src/app/services/customers.service';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-addsalesagents',
@@ -14,23 +16,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddsalesagentsComponent implements OnInit {
   [x: string]: any;
   vehicles:Vehicle[];
+  customers:Customer[];
   salesAgent:Salesagent={
   first_name:'',
   last_name:'',
   dob:new Date(),
-  nic_no:'',
+  employee_id:'',
   mobile_no:'',
   email:'',
   address_ln1:'',
   address_ln2:'',
-  city:''
-  // vehicle_type:'',
-  // assigned_vehicle:'',
+  city:'',
+  assigned_customer:''
   }
 
   constructor(private salesagentsservice:SalesagentsService,
               private vehicleService: VehiclesService,
               private authService: AuthService,
+              private customerService:CustomersService,
               private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
@@ -42,13 +45,22 @@ export class AddsalesagentsComponent implements OnInit {
           this.vehicles.push(vehicle);
         });
       }});
+      this.customerService.getSACustomers().subscribe(cus=>{
+        this.customers=[];
+        cus.forEach(c=>{
+          let customer:any=c.payload.doc.data();
+          customer.id=c.payload.doc.id;
+          this.customers.push(customer);
+        });
+      });
+
   }
 
   onSubmit(){
 
     if(this.salesAgent.first_name!=''
     && this.salesAgent.last_name!=''
-    && this.salesAgent.nic_no!=''
+    && this.salesAgent.employee_id!=''
     && this.salesAgent.mobile_no!=''
     && this.salesAgent.email!=''
     && this.salesAgent.address_ln1!=''
@@ -59,9 +71,9 @@ export class AddsalesagentsComponent implements OnInit {
     ){
       this.salesagentsservice.addSalesAgent(this.salesAgent);
       this.openSnackBar('New sales agent data has been added successfully','');
-
+      this.salesAgent.first_name='';
     this.salesAgent.last_name='';
-    this.salesAgent.nic_no='';
+    this.salesAgent.employee_id='';
     this.salesAgent.mobile_no='';
     this.salesAgent.email='';
     this.salesAgent.address_ln1='';
@@ -71,7 +83,7 @@ export class AddsalesagentsComponent implements OnInit {
     // this.salesAgent.assigned_vehicle='';
     }
     else{
-      this.openSnackBar('Error occured while adding new sales agent','');
+      this.openSnackBar('Error occured while adding new sales agent','One or more fields are empty.');
     }
   }
 
@@ -79,6 +91,17 @@ export class AddsalesagentsComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 3200,
     });
+  }
+
+  resetForm(){
+    this.salesAgent.first_name='';
+    this.salesAgent.last_name='';
+    this.salesAgent.employee_id='';
+    this.salesAgent.mobile_no='';
+    this.salesAgent.email='';
+    this.salesAgent.address_ln1='';
+    this.salesAgent.address_ln2='';
+    this.salesAgent.city='';
   }
 
 }

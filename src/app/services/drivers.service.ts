@@ -22,6 +22,10 @@ export class DriversService {
     return this.afs.collection('drivers',  ref => ref.where('employee_id', '==', driverID));
   }
 
+  getUADriver(){
+    return this.afs.collection('drivers',  ref => ref.where('assigned', '==', false));
+  }
+
   addDriver(driver:Driver){
     this.driversCollection.add(driver);
   }

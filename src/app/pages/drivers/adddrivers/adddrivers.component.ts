@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DriversService} from '../../../services/drivers.service';
 import {Driver} from '../../../models/drivers';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-adddrivers',
@@ -18,10 +19,12 @@ export class AdddriversComponent implements OnInit {
     address_ln2:'',
     city:'',
     mobile_no:'',
-    employee_id:''
+    employee_id:'',
+    assigned:false,
+    assigned_route:''
     };
 
-  constructor(private driversService:DriversService) { }
+  constructor(private driversService:DriversService,private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -37,7 +40,7 @@ export class AdddriversComponent implements OnInit {
     // && this.drivers.dob!=''
     ){
       this.driversService.addDriver(this.driver);
-      alert('New driver has been successfully added');
+      this.openSnackBar('New driver has been added successfully.','');
       this.driver.license_no='';
     this.driver.first_name='';
     this.driver.last_name='';
@@ -49,8 +52,28 @@ export class AdddriversComponent implements OnInit {
     this.driver.city='';
     }
     else {
-      alert('Something went wrong');
+      this.openSnackBar('Error adding new order.','One or more fields are empty');
     }
   }
+
+  resetForm(){
+    this.driver.employee_id='';
+    this.driver.license_no='';
+    this.driver.first_name='';
+    this.driver.last_name='';
+    this.driver.email='';
+    this.driver.mobile_no='';
+    this.driver.license_no='';
+    this.driver.address_ln1='';
+    this.driver.address_ln2='';
+    this.driver.city='';
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
+  }
+
 
 }

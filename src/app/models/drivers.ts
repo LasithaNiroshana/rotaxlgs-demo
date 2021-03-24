@@ -10,4 +10,6 @@ export interface Driver{
   mobile_no?:string;
   dob?:Date;
   employee_id?:string;
+  assigned?:boolean;
+  assigned_route?:string;
 }

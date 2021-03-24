@@ -87,8 +87,8 @@
       <mat-card class="sales3">
         <div>
           <mat-form-field class="sales3-field">
-            <mat-label>NIC Number</mat-label>
-            <input type="text" matInput placeholder="921564564V" [(ngModel)]="salesAgent.nic_no" name="nic_no">
+            <mat-label>Employee ID</mat-label>
+            <input type="text" matInput placeholder="640000" [(ngModel)]="salesAgent.employee_id" name="employee_id">
           </mat-form-field>
           <br>
           <mat-form-field class="sales3-field">
@@ -101,11 +101,13 @@
             <mat-label>Mobile No.</mat-label>
             <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="salesAgent.mobile_no" name="mobile_no">
           </mat-form-field>
-          <!-- <mat-form-field>
-            <mat-label>Select Image</mat-label>
-            <input matInput placeholder="Placeholder">
-            <mat-icon matSuffix>camera</mat-icon>
-          </mat-form-field> -->
+          <br>
+          <mat-form-field class="sales3-field">
+            <mat-select [(ngModel)]="salesAgent.assigned_customer" name="assigned_customer">
+              <mat-option value="">Select Customer</mat-option>
+              <mat-option *ngFor="let customer of customers" [value]="customer.first_name + customer.last_name">{{customer.first_name}} {{customer.last_name}} </mat-option>
+            </mat-select>
+          </mat-form-field>
         <br>
         </div>
        </mat-card>
@@ -138,7 +140,7 @@
   <br>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
     <button class="submit-btn" mat-raised-button color="primary" (click)="onSubmit()">SUBMIT</button>
-  <button class="reset-btn" mat-raised-button>RESET</button>
+  <button class="reset-btn" type="button" (click)="resetForm()" mat-raised-button>RESET</button>
   </div>
 </form>
 

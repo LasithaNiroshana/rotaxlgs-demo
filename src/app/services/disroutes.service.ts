@@ -26,7 +26,7 @@ export class DisroutsService {
   }
 
   updatePerson(disroute, name){
-    this.afs.collection('route').doc(disroute.id).update({'agent': name});
+    this.afs.collection('routes').doc(disroute.id).update({'driver': name});
   }
 
 }

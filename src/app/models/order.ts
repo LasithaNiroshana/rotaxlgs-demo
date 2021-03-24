@@ -1,7 +1,6 @@
 import { Time } from "@angular/common";
 
 export interface Order{
-  id:String,
   customer_id?:string;
   customer_name?:string;
   address_ln1?:string;
@@ -13,6 +12,7 @@ export interface Order{
   order_date?:Date;
   route?:string;
   sales_agent?:string;
+  sa_id:String;
   driver?:string;
   driver_id?:string;
   status?:string;
