@@ -64,6 +64,14 @@ export class AddordersComponent implements OnInit {
     //     this.sales_agents.push(SalesAgent);
     //   });
     // }});
+    this.routeService.getRoutes().subscribe(rou=>{
+      this.routes=[];
+      rou.forEach(r=>{
+        let route:any = r.payload.doc.data();
+        route.id = r.payload.doc.id;
+        this.routes.push(route);
+      })
+    });
 
     this.driversService.getDrivers().subscribe(driv=>{
       this.drivers=[];

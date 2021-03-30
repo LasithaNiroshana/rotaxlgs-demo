@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomersService } from 'src/app/services/customers.service';
 import { Customer } from 'src/app/models/customer';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-addsalesagents',
@@ -34,7 +35,8 @@ export class AddsalesagentsComponent implements OnInit {
               private vehicleService: VehiclesService,
               private authService: AuthService,
               private customerService:CustomersService,
-              private snackBar:MatSnackBar) { }
+              private snackBar:MatSnackBar,
+              private afs:AngularFirestore) { }
 
   ngOnInit(): void {
     this.vehicleService.getVehicles().subscribe(sa=>{
@@ -66,26 +68,26 @@ export class AddsalesagentsComponent implements OnInit {
     && this.salesAgent.address_ln1!=''
     && this.salesAgent.address_ln2!=''
     && this.salesAgent.city!=''
-    // && this.salesAgent.vehicle_type!=''
-    // && this.salesAgent.assigned_vehicle!=''
+    && this.salesAgent.assigned_customer!=''
     ){
-      this.salesagentsservice.addSalesAgent(this.salesAgent);
-      this.openSnackBar('New sales agent data has been added successfully','');
-      this.salesAgent.first_name='';
-    this.salesAgent.last_name='';
-    this.salesAgent.employee_id='';
-    this.salesAgent.mobile_no='';
-    this.salesAgent.email='';
-    this.salesAgent.address_ln1='';
-    this.salesAgent.address_ln2='';
-    this.salesAgent.city='';
-    // this.salesAgent.vehicle_type='';
-    // this.salesAgent.assigned_vehicle='';
+      this.afs.collection('salesagents').doc(this.salesAgent.employee_id).set(this.salesAgent);
+     this.openSnackBar('New Sales Agent added successfully','');
+     this.salesAgent.first_name='';
+     this.salesAgent.last_name='';
+     this.salesAgent.employee_id='';
+     this.salesAgent.mobile_no='';
+     this.salesAgent.email='';
+     this.salesAgent.address_ln1='';
+     this.salesAgent.address_ln2='';
+     this.salesAgent.city='';
+
     }
-    else{
+    else
+    {
       this.openSnackBar('Error occured while adding new sales agent','One or more fields are empty.');
     }
   }
+
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

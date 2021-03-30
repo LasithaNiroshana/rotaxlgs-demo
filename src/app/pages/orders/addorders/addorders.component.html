@@ -122,11 +122,7 @@
 
         <mat-label>Route</mat-label>
         <mat-select [(ngModel)]="order.route" name="route">
-          <mat-option value="R1">R1</mat-option>
-          <mat-option value="R2">R2</mat-option>
-          <mat-option value="R3">R3</mat-option>
-          <mat-option value="R4">R4</mat-option>
-          <mat-option value="R5">R5</mat-option>
+          <mat-option *ngFor="let route of routes" value={{route.route_name}}>{{route.route_name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="ord2-field">

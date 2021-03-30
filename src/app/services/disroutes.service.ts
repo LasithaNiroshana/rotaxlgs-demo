@@ -18,9 +18,14 @@ export class DisroutsService {
     return this.afs.collection('routes').snapshotChanges();
   }
 
+  getUARoutes(){
+    return this.afs.collection('routes',  ref => ref.where('driver', '==', "")).snapshotChanges();
+  }
+
   getroute(city){
     return this.afs.collection('routes',  ref => ref.where('cities', 'array-contains', city));
    }
+
    addDisroutes(disroute:Disroute){
     this.routeCollection.add(disroute);
   }

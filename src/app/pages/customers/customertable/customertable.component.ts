@@ -18,6 +18,7 @@ export class CustomertableComponent implements OnInit {
   @Input()
   mediaSub:Subscription;
   deviceXs:boolean;
+  cusEdit=[];
   customers=[];
   customerColumns:string[]=['customer_id','customer_name','address','email','telephone_no','KM_RLH','edit','delete'];
   constructor(private customersservice:CustomersService,private afs:AngularFirestore,
@@ -56,7 +57,8 @@ export class CustomertableComponent implements OnInit {
 });
   }
 
-  callEditDialog() {
+  callEditDialog(cus) {
+    this.cusEdit=cus;
     this.dialog.open(this.callEDITDialog);
   }
 

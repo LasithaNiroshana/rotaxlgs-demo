@@ -19,6 +19,7 @@ export class OrderstableComponent implements OnInit {
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   routes:Disroute[];
+  oEdit=[];
   orders:Order[];
   ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','view','edit','delete'];
   constructor(private ordersservice:OrdersService,
@@ -80,7 +81,8 @@ export class OrderstableComponent implements OnInit {
   });
     }
 
-    callEditDialog() {
+    callEditDialog(ord) {
+      this.oEdit=ord;
       this.dialog.open(this.callEDITDialog);
     }
 

@@ -3,6 +3,8 @@ import {SalesagentsService} from '../../../services/salesagents.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DltdialogService } from 'src/app/services/dltdialog.service';
+import { Salesagent } from 'src/app/models/salesagents';
 
 @Component({
   selector: 'app-salesagentstable',
@@ -13,9 +15,11 @@ export class SalesagentstableComponent implements OnInit {
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   salesagents=[];
+  saedit=[];
+  salesagentToEdit:Salesagent[];
   salesagentColumns:string[]=['employee_id','agent_name','mobile_no','email','edit','delete'];
   constructor(private salesagentservice:SalesagentsService, private afs:AngularFirestore,
-    public dialog:MatDialog, private snackBar:MatSnackBar) {}
+    public dialog:MatDialog, private snackBar:MatSnackBar,private dialogService:DltdialogService) {}
 
   ngOnInit(): void {
     this.salesagentservice.getSalesagents().subscribe(sa=>{
@@ -33,16 +37,20 @@ export class SalesagentstableComponent implements OnInit {
   }
 
   deleteSalesAgents(salesagent){
-    // this.afs.collection('salesagents').doc(salesagent.id).delete();
+    this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
+      if(res){
     this.afs.doc(`salesagents/${salesagent.id}`).delete();
     this.openSnackBar('Sales agent record deleted successfully','');
   }
-
-  callDialog() {
-    this.dialog.open(this.callDLTDialog);
+});
   }
 
-  callEditDialog() {
+  // callDialog() {
+  //   this.dialog.open(this.callDLTDialog);
+  // }
+
+  callEditDialog(sa) {
+    this.saedit=sa;
     this.dialog.open(this.callEDITDialog);
   }
 

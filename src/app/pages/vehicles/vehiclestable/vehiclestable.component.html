@@ -24,7 +24,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let vehicles">
-        <button mat-icon-button class="edit_btn" (click)="callEditDialog(vehicle)" color="primary">
+        <button mat-icon-button class="edit_btn" (click)="callEditDialog(vehicles)" color="primary">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -40,10 +40,10 @@
     <tr mat-header-row *matHeaderRowDef="vehiclesColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: vehiclesColumns;"></tr>
 
-    <ng-template #callEDITDialog *ngFor="let vehicle of vehicles">
+    <ng-template #callEDITDialog>
       <br>
 <h2>Edit Vehicle Details</h2>
-<form class="addvehicle-form" (ngSubmit)="updateVehicle(vehicle)">
+<form class="addvehicle-form">
   <div fxLayoutAlign="space-between start" fxLayoutGap="20px" class="vehicles-form">
 
     <div class="form-part1">
@@ -52,12 +52,12 @@
         <div>
           <mat-form-field class="vehicles1-field">
             <mat-label>Vehicle Number</mat-label>
-            <input type="text" matInput placeholder="KD-1564" [(ngModel)]="vehicle.vehicle_no" name="vehicle_no">
+            <input type="text" matInput placeholder="KD-1564" [(ngModel)]="this.vEdit.vehicle_no" name="vehicle_no">
           </mat-form-field>
           <br>
           <mat-form-field class="vehicles1-field">
             <mat-label>Vehicle Size</mat-label>
-            <mat-select name="vehicle_size" [(ngModel)]="vehicle.vehicle_size">
+            <mat-select name="vehicle_size" [(ngModel)]="this.vEdit.vehicle_size">
               <mat-option value="Small">Small</mat-option>
               <mat-option value="Medium">Medium</mat-option>
               <mat-option value="Large">Large</mat-option>
@@ -66,12 +66,12 @@
           <br>
           <mat-form-field class="vehicles1-field">
             <mat-label>Revenue License Number</mat-label>
-            <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="vehicle.revenuelicense_no" name="revenuelicense_no">
+            <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="this.vEdit.revenuelicense_no" name="revenuelicense_no">
           </mat-form-field>
         <br>
          <mat-form-field class="vehicles1-field">
-          <mat-label>RLE Date : {{vehicle.revenuelicense_expiry.seconds*1000 | date}}</mat-label>
-          <input matInput [matDatepicker]="picker1"  [(ngModel)]="vehicle.revenuelicense_expiry" name="revenuelicense_expiry">
+          <mat-label>RLE Date : {{this.vEdit.revenuelicense_expiry.seconds*1000 | date}}</mat-label>
+          <input matInput [matDatepicker]="picker1"  [(ngModel)]="this.vEdit.revenuelicense_expiry" name="revenuelicense_expiry">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -83,20 +83,20 @@
 
       <mat-card class="vehicles3">
         <mat-form-field class="vehicles3-field">
-          <mat-label>IE Date : {{vehicle.insurance_expiry.seconds*1000 | date}}</mat-label>
-          <input matInput [matDatepicker]="picker2" defaultValue="vehicle.insurance_expiry" [(ngModel)]="vehicle.insurance_expiry" name="insurance_expiry">
+          <mat-label>IE Date : {{this.vEdit.insurance_expiry.seconds*1000 | date}}</mat-label>
+          <input matInput [matDatepicker]="picker2" defaultValue="vehicle.insurance_expiry" [(ngModel)]="this.vEdit.insurance_expiry" name="insurance_expiry">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field class="vehicles3-field">
           <mat-label>Insurance Company</mat-label>
-          <input type="text" matInput placeholder="ABC Company Pvt Ltd" [(ngModel)]="vehicle.insurance_company" name="insurance_company">
+          <input type="text" matInput placeholder="ABC Company Pvt Ltd" [(ngModel)]="this.vEdit.insurance_company" name="insurance_company">
         </mat-form-field>
         <br>
         <mat-form-field class="vehicles3-field">
           <mat-label>Telephone Number</mat-label>
-          <input type="text" matInput placeholder="112254864" [(ngModel)]="vehicle.insurance_tel" name="insurancetel_no">
+          <input type="text" matInput placeholder="112254864" [(ngModel)]="this.vEdit.insurance_tel" name="insurancetel_no">
         </mat-form-field>
       </mat-card>
       <br><br>
@@ -113,7 +113,7 @@
   <br>
   <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px" class="form-part3">
     <button class="reset-btn" mat-raised-button  [mat-dialog-close]="">CANCEL</button>
-    <button class="submit-btn" mat-raised-button color="primary" (click)="updateVehicle(vehicle)">SUBMIT</button>
+    <button class="submit-btn" mat-raised-button color="primary" (click)="updateVehicle(this.vEdit)">SUBMIT</button>
   </div>
 </form>
 

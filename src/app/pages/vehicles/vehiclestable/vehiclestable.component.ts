@@ -17,7 +17,7 @@ export class VehiclestableComponent implements OnInit {
   // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   vehicles=[];
-  editVehicle=[];
+  vEdit=[];
   veh:Vehicle={
     vehicle_no:'',
     revenuelicense_no:'',
@@ -60,7 +60,8 @@ export class VehiclestableComponent implements OnInit {
 //   this.dialog.open(this.callDLTDialog);
 // }
 
-callEditDialog() {
+callEditDialog(vehi) {
+  this.vEdit=vehi;
   this.dialog.open(this.callEDITDialog);
 }
 

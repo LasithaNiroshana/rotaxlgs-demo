@@ -46,15 +46,19 @@
     <h1 mat-dialog-title>Change the Assigned person?</h1>
     <p>Select the driver/delivery assistant:</p>
     <div mat-dialog-content>
-      <mat-select [(ngModel)]="driver" name="driver">
-        <mat-option value="">- Select Driver/Delivery Assistant -</mat-option>
-        <mat-option *ngFor="let driver of drivers" [value]="driver.first_name +'  '+ driver.last_name">{{driver.first_name}} {{driver.last_name}}  </mat-option>
-      </mat-select>
+      <mat-form-field class="driver-field">
+        <mat-label>
+          Driver/Delivery Assistant
+        </mat-label>
+        <mat-select [(ngModel)]="assigned_person" name="assinged_person" >
+          <mat-option *ngFor="let driver of drivers" [value]="driver.first_name +'  '+ driver.last_name">{{driver.first_name}} {{driver.last_name}}  </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <br>
     <div mat-dialog-actions fxLayoutAlign="end end" fxLayoutGap="10px">
       <button mat-raised-button [mat-dialog-close]="">Cancel</button>
-      <button mat-raised-button [mat-dialog-close]="" (click)="updateRoue(disroute)" color="primary">Done</button>
+      <button mat-raised-button [mat-dialog-close]="" (click)="updateRoute(disroute)" color="primary">Done</button>
     </div>
 </ng-template>
     </table>

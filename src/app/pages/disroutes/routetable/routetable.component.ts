@@ -15,8 +15,9 @@ import { DriversService } from 'src/app/services/drivers.service';
 export class RoutetableComponent implements OnInit {
   // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('assignAgent') assignAgent: TemplateRef<any>;
-  assigned_person:'';
+  assigned_person:string;
   disroutes=[];
+  routes=[];
   drivers: Driver[];
   routeColumns:string[]=['Route_Name','cities','assinged_person', 'edit','delete'];
   constructor(private disroutsService:DisroutsService,
@@ -25,7 +26,6 @@ export class RoutetableComponent implements OnInit {
     private driversService:DriversService,
     public dialogService:DltdialogService,
     private snackBar:MatSnackBar) {
-
   }
 
   ngOnInit(): void {
@@ -45,13 +45,21 @@ export class RoutetableComponent implements OnInit {
         this.drivers.push(driver);
       });
     });
+    this.disroutsService.getUARoutes().subscribe(rou=>{
+      this.routes=[];
+      rou.forEach(r=>{
+        let uaroute:any = r.payload.doc.data();
+        uaroute.id = r.payload.doc.id;
+        this.routes.push(uaroute);
+      })
+    });
   }
 
   deleteRoute(disroute){
     this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
       if(res){
     this.afs.doc(`routes/${disroute.id}`).delete();
-    this.openSnackBar('Route deleted successfully.','')
+    this.openSnackBar('Route deleted successfully.','');
   }
 });
   }
@@ -64,7 +72,8 @@ export class RoutetableComponent implements OnInit {
     this.dialog.open(this.assignAgent);
   }
 
-  updateRoue(disroute){
+  updateRoute(disroute){
+    console.log(this.assigned_person);
     this.disroutsService.updatePerson(disroute,this.assigned_person);
   }
 

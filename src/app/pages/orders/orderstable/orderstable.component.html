@@ -47,7 +47,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let orders">
-        <button mat-icon-button class="edit_btn" color="primary" (click)="callEditDialog()">
+        <button mat-icon-button class="edit_btn" color="primary" (click)="callEditDialog(orders)">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -63,7 +63,7 @@
     <tr mat-header-row *matHeaderRowDef="ordercolumns"></tr>
     <tr mat-row *matRowDef="let row; columns: ordercolumns;"></tr>
 
-    <ng-template #callEDITDialog *ngFor="let order of orders">
+    <ng-template #callEDITDialog>
       <br>
 <div class="form-head" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
   <h2>Add Order Details</h2>
@@ -71,7 +71,7 @@
     <mat-icon>upload</mat-icon>
   </button> -->
 </div>
-<form (ngSubmit)="editOrder(orders)" class="addorder-form">
+<form class="addorder-form">
 
   <div class="add-order" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
   <div class="form-part1">
@@ -79,13 +79,13 @@
       <div>
         <mat-form-field class="ord1-field">
           <mat-label>Invoice Number</mat-label>
-          <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="order.invoice_no" name="invoice_no">
+          <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="this.oEdit.invoice_no" name="invoice_no">
         </mat-form-field>
         <br>
         <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
           <mat-form-field class="ord1-field2">
             <mat-label>Customer ID</mat-label>
-            <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="order.customer_id" name="customer_id">
+            <input type="text" matInput placeholder="4545dfgf" [(ngModel)]="this.oEdit.customer_id" name="customer_id">
           </mat-form-field>
           <button mat-raised-button class="ord1-field3" type= "button" color="primary"  (click)="search()">
             <mat-icon>search</mat-icon>
@@ -93,7 +93,7 @@
         </div>
         <mat-form-field class="ord1-field">
           <mat-label>Customer Name</mat-label>
-          <input type="text"  matInput placeholder="John" [(ngModel)]="order.customer_name" name="customer_name">
+          <input type="text"  matInput placeholder="John" [(ngModel)]="this.oEdit.customer_name" name="customer_name">
         </mat-form-field>
         <br>
       </div>
@@ -105,22 +105,22 @@
       <div>
         <mat-form-field class="ord2-field">
         <mat-label>Sales Agent</mat-label>
-        <mat-select [(ngModel)]="order.sales_agent" name="sales_agent">
+        <mat-select [(ngModel)]="this.oEdit.sales_agent" name="sales_agent">
           <mat-option value="">- Select -</mat-option>
           <mat-option *ngFor="let sales_agent of sales_agents" [value]="sales_agent.first_name">{{sales_agent.first_name}} {{sales_agent.last_name}}  </mat-option>
         </mat-select>
       </mat-form-field>
       <br>
          <mat-form-field class="ord2-field">
-        <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker1" [(ngModel)]="order.order_date" name="order_date">
+        <mat-label>Date:{{this.oEdit.order_date.seconds*1000 | date}}</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="this.oEdit.order_date" name="order_date">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
       <br>
       <mat-form-field class="ord2-field">
         <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="order.status" name="status">
+        <mat-select [(ngModel)]="this.oEdit.status" name="status">
           <mat-option value="Pending">Pending</mat-option>
           <mat-option value="Delivered">Delivered</mat-option>
           <mat-option value="Delivery Ready">Delivery Ready</mat-option>
@@ -140,17 +140,17 @@
   <div>
     <mat-form-field class="ord3-field">
       <mat-label>Address Line 1</mat-label>
-      <input type="text" matInput placeholder="No.24" [(ngModel)]="order.address_ln1" name="address_ln1">
+      <input type="text" matInput placeholder="No.24" [(ngModel)]="this.oEdit.address_ln1" name="address_ln1">
     </mat-form-field>
     <br>
     <mat-form-field class="ord3-field">
       <mat-label>Address Line 2</mat-label>
-      <input type="text" matInput placeholder="Dalugama" [(ngModel)]="order.address_ln2" name="address_ln2">
+      <input type="text" matInput placeholder="Dalugama" [(ngModel)]="this.oEdit.address_ln2" name="address_ln2">
     </mat-form-field>
     <br>
     <mat-form-field class="ord3-field">
       <mat-label>City/District</mat-label>
-      <input type="text" matInput placeholder="Kelaniya" (change)="routeSelector()" [(ngModel)]="order.city" name="city">
+      <input type="text" matInput placeholder="Kelaniya" (change)="routeSelector()" [(ngModel)]="this.oEdit.city" name="city">
     </mat-form-field>
     <br>
    </div>
@@ -162,7 +162,7 @@
     <mat-card class="ord4">
       <mat-form-field class="ord4-field">
         <mat-label>Province</mat-label>
-        <mat-select [(ngModel)]="order.province" name="province">
+        <mat-select [(ngModel)]="this.oEdit.province" name="province">
           <mat-option value="Central">Central</mat-option>
           <mat-option value="Eastern">Eastern</mat-option>
           <mat-option value="North Central">North Central</mat-option>
@@ -175,11 +175,11 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <p>Selected Route: {{order.route}}</p>
+      <p>Selected Route: {{this.oEdit.route}}</p>
       <mat-form-field>
 
         <mat-label>Route</mat-label>
-        <mat-select [(ngModel)]="order.route" name="route">
+        <mat-select [(ngModel)]="this.oEdit.route" name="route">
           <mat-option value="R1">R1</mat-option>
           <mat-option value="R2">R2</mat-option>
           <mat-option value="R3">R3</mat-option>
@@ -189,7 +189,7 @@
       </mat-form-field>
       <mat-form-field class="ord2-field">
         <mat-label> Approx. Distance From RLH</mat-label>
-        <input type="number" matInput placeholder="John" [(ngModel)]="order.distance" name="distance">
+        <input type="number" matInput placeholder="John" [(ngModel)]="this.oEdit.distance" name="distance">
       </mat-form-field>
     </mat-card>
   </div>
@@ -198,7 +198,7 @@
 <mat-divider></mat-divider>
 <br><br>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="form-part3">
-    <button class="submit-btn" mat-raised-button color="primary" (click)="editOrder(order)">SUBMIT</button>
+    <button class="submit-btn" mat-raised-button color="primary" (click)="editOrder(this.oEdit)">SUBMIT</button>
   <button class="reset-btn" mat-raised-button click="reset()">RESET</button>
   </div>
 </form>

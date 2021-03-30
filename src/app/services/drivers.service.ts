@@ -26,6 +26,10 @@ export class DriversService {
     return this.afs.collection('drivers',  ref => ref.where('assigned', '==', false));
   }
 
+  assignDriver(driver,assigned_route){
+    this.afs.collection('drivers').doc().update({'assigned': true,'assigned_route': assigned_route});
+  }
+
   addDriver(driver:Driver){
     this.driversCollection.add(driver);
   }

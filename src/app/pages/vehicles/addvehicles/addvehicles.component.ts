@@ -31,8 +31,8 @@ export class AddvehiclesComponent implements OnInit {
       && this.vehicle.revenuelicense_no!=''
       && this.vehicle.insurance_company!=''
       && this.vehicle.insurance_tel!=''
-      && this.vehicle.status!=''
-      && this.vehicle.telephone_no!=''
+      // && this.vehicle.status!=''
+      // && this.vehicle.telephone_no!=''
     ){
       this.vehiclesService.addVehicle(this.vehicle);
       this.openSnackBar('New vehicle added successsfully','');
