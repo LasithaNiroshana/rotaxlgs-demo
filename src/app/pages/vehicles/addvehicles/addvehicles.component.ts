@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {VehiclesService} from '../../../services/vehicles.service';
 import {Vehicle} from '../../../models/vehicles';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-addvehicles',
@@ -18,9 +19,15 @@ export class AddvehiclesComponent implements OnInit {
   vehicle_size:'',
   insurance_tel:'',
   insurance_company:'',
+  status:'',
+  driver:'',
+  assigned:''
   }
 
-  constructor(private vehiclesService:VehiclesService, private snackBar:MatSnackBar) { }
+  constructor(private vehiclesService:VehiclesService,
+    private snackBar:MatSnackBar,
+    private afs:AngularFirestore
+    ) { }
 
   ngOnInit(): void {
   }
@@ -31,17 +38,16 @@ export class AddvehiclesComponent implements OnInit {
       && this.vehicle.revenuelicense_no!=''
       && this.vehicle.insurance_company!=''
       && this.vehicle.insurance_tel!=''
-      // && this.vehicle.status!=''
+      && this.vehicle.status!=''
       // && this.vehicle.telephone_no!=''
     ){
-      this.vehiclesService.addVehicle(this.vehicle);
+      this.afs.collection('vehicles').doc(this.vehicle.vehicle_no).set(this.vehicle);
       this.openSnackBar('New vehicle added successsfully','');
       this.vehicle.vehicle_no='';
       this.vehicle.revenuelicense_no!='';
       this.vehicle.insurance_company!='';
       this.vehicle.insurance_tel!='';
       this.vehicle.status!='';
-      this.vehicle.telephone_no!='';
     }
     else{
       this.openSnackBar('Error occured while adding new vehicle','One or more fields are empty.');

@@ -26,8 +26,8 @@ export class VehiclesService {
     return this.afs.collection('vehicles',ref => ref.where('status', '==', 'On Repair')).snapshotChanges();
   }
 
-  addVehicle(vehicle:Vehicle){
-    this.vehiclesCollection.add(vehicle);
+  getUAVehicles(){
+    return this.afs.collection('vehicles',ref => ref.where('assigned', '==', 'No')).snapshotChanges();
   }
 
 }

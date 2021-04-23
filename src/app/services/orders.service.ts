@@ -27,7 +27,11 @@ export class OrdersService {
   }
   //Get the number of active invoices left
    getDOrders(){
-    return this.afs.collection('orders', ref =>ref.where('status', '==', 'Not Delivered')).snapshotChanges();
+    return this.afs.collection('orders', ref =>ref.where('status', '==', 'Pending')).snapshotChanges();
+  }
+
+  getOnDeliOrders(){
+    return this.afs.collection('orders', ref =>ref.where('status', '==', 'On Delivery')).snapshotChanges();
   }
 
    getspOrder(invoice_no){

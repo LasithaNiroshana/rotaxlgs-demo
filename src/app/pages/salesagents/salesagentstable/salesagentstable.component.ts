@@ -17,7 +17,7 @@ export class SalesagentstableComponent implements OnInit {
   salesagents=[];
   saedit=[];
   salesagentToEdit:Salesagent[];
-  salesagentColumns:string[]=['employee_id','agent_name','mobile_no','email','edit','delete'];
+  salesagentColumns:string[]=['employee_id','agent_name','mobile_no','email','sbu','edit','delete'];
   constructor(private salesagentservice:SalesagentsService, private afs:AngularFirestore,
     public dialog:MatDialog, private snackBar:MatSnackBar,private dialogService:DltdialogService) {}
 

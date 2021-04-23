@@ -11,13 +11,22 @@
         </mat-form-field>
         <br>
         <mat-form-field class="cus1-field">
-          <mat-label>First Name</mat-label>
-          <input type="text" matInput placeholder="John" [(ngModel)]="customer.first_name" name="first_name">
+          <mat-label>Customer/Company Name</mat-label>
+          <input type="text" matInput placeholder="John" [(ngModel)]="customer.name" name="customer_name">
         </mat-form-field>
         <br>
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+          <mat-form-field class="cus1-field1">
+            <mat-label>Sales Agent ID</mat-label>
+            <input type="text" matInput placeholder="456664" [(ngModel)]="customer.sa_id" name="sa_id">
+          </mat-form-field>
+          <button mat-raised-button class="cus1-field2" type= "button" color="primary" (click)="search()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
         <mat-form-field class="cus1-field">
-          <mat-label>Last Name</mat-label>
-          <input type="text" matInput placeholder="Doe" [(ngModel)]="customer.last_name" name="last_name">
+        <mat-label>Sales Agent</mat-label>
+          <input type="text" matInput placeholder="John Doe" [(ngModel)]="customer.sales_agent" name="sa_name">
         </mat-form-field>
         <br>
       </div>

@@ -8,4 +8,6 @@ export interface Vehicle{
   telephone_no?:string;
   vehicle_size?: string;
   status?:string;
+  assigned?:string;
+  driver?:string;
 }

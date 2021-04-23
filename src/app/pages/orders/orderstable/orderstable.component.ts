@@ -8,6 +8,7 @@ import { Disroute } from 'src/app/models/disroutes';
 import { CustomersService } from 'src/app/services/customers.service';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Customer } from 'src/app/models/customer';
 
 
 @Component({
@@ -19,9 +20,30 @@ export class OrderstableComponent implements OnInit {
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   routes:Disroute[];
+  disroutes:Disroute[];
   oEdit=[];
+  customers:Customer[];
   orders:Order[];
-  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','sales_agent','status','view','edit','delete'];
+  invoice:Order={
+    customer_id:'',
+    customer_name:'',
+    address_ln1:'',
+    address_ln2:'',
+    city:'',
+    province:'',
+    invoice_no:'',
+    item_type:'',
+    order_date:new Date(),
+    route:'',
+    sales_agent:'',
+    sa_id:'',
+    driver:'',
+    driver_id:'',
+    status:'',
+    distance: 0,
+    photo_URL:''
+    }
+  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','driver','status','view','edit','delete'];
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
     private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog,
@@ -39,6 +61,17 @@ export class OrderstableComponent implements OnInit {
         this.orders.push(order);
       })
     });
+    this.routeService.getRoutes().subscribe(
+      rou=>{
+        this.disroutes=[];
+        rou.forEach(d=>{
+          let disroute:any=d.payload.doc.data();
+          disroute.id=d.payload.doc.data();
+          disroute.id=d.payload.doc.id;
+          this.disroutes.push(disroute);
+        });
+      }
+    );
   }
 
   route(city,id) {

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore' ;
 import {Customer} from '../models/customer';
 import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class CustomersService {
    }
 
    getSACustomers(){
-    return this.afs.collection('customers').snapshotChanges();
+    return this.afs.collection('customers', ref => ref.where('sales_agent', '==', '')).snapshotChanges()
   }
 
    getDistance(customerID){

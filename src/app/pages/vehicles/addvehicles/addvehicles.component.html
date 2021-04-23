@@ -32,6 +32,15 @@
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
+        <br>
+          <mat-form-field class="vehicles1-field">
+            <mat-label>Driver</mat-label>
+            <mat-select name="driver" [(ngModel)]="vehicle.driver">
+              <mat-option value="">Select Later</mat-option>
+              <mat-option value="nimal">Nimal</mat-option>
+              <mat-option value="kamal">Kamal</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </mat-card>
     </div>
@@ -55,6 +64,23 @@
           <mat-label>Telephone Number</mat-label>
           <input type="text" matInput placeholder="112254864" [(ngModel)]="vehicle.insurance_tel" name="insurancetel_no">
         </mat-form-field>
+        <br>
+        <mat-form-field class="vehicles3-field">
+          <mat-label>Vehicle Status</mat-label>
+          <mat-select name="vehicle_status" [(ngModel)]="vehicle.status">
+            <mat-option value="Available">Available</mat-option>
+            <mat-option value="On Delivery">On Delivery</mat-option>
+            <mat-option value="Repairing">Repairing</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+          <mat-form-field class="vehicles3-field">
+            <mat-label>Assigned</mat-label>
+            <mat-select name="assigned" [(ngModel)]="vehicle.assigned">
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </mat-form-field>
       </mat-card>
       <br><br>
 

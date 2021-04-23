@@ -40,14 +40,12 @@
       <br>
       <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
         <mat-form-field class="ord2-field">
-          <mat-select [(ngModel)]="order.driver_id" name="driver_id">
-            <mat-option value="">Select Driver ID</mat-option>
-            <mat-option *ngFor="let driver of drivers" [value]="driver.employee_id">{{driver.employee_id}}  </mat-option>
-          </mat-select>
+          <mat-label>Driver ID</mat-label>
+          <input type="text"  matInput placeholder="John" [(ngModel)]="order.driver_id" name="driver_id">
         </mat-form-field>
-        <button mat-raised-button class="ord2-field3" type= "button" color="primary"  (click)="searchDrivers()">
+        <!-- <button mat-raised-button class="ord2-field3" type= "button" color="primary"  (click)="searchDrivers()">
           <mat-icon>search</mat-icon>
-        </button>
+        </button> -->
       </div>
       <mat-form-field class="ord2-field">
         <mat-label>Driver/Delivery Assistant</mat-label>
@@ -64,6 +62,7 @@
         <mat-label>Status</mat-label>
         <mat-select [(ngModel)]="order.status" name="status">
           <mat-option value="Pending">Pending</mat-option>
+          <mat-option value="Pickup Ready">Pickup Ready</mat-option>
           <mat-option value="Delivered">Delivered</mat-option>
           <mat-option value="Delivery Ready">Delivery Ready</mat-option>
         </mat-select>
@@ -117,13 +116,9 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <p>Selected Route: {{order.route}}</p>
-      <mat-form-field>
-
+      <mat-form-field class="ord2-field">
         <mat-label>Route</mat-label>
-        <mat-select [(ngModel)]="order.route" name="route">
-          <mat-option *ngFor="let route of routes" value={{route.route_name}}>{{route.route_name}}</mat-option>
-        </mat-select>
+        <input type="text" matInput placeholder="R1" [(ngModel)]="order.route" name="route">
       </mat-form-field>
       <mat-form-field class="ord2-field">
         <mat-label> Approx. Distance From RLH</mat-label>

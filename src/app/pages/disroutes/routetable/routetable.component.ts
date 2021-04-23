@@ -16,7 +16,10 @@ export class RoutetableComponent implements OnInit {
   // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('assignAgent') assignAgent: TemplateRef<any>;
   assigned_person:string;
+  driver_id:string;
   disroutes=[];
+  rEdit=[];
+  assigned=true;
   routes=[];
   drivers: Driver[];
   routeColumns:string[]=['Route_Name','cities','assinged_person', 'edit','delete'];
@@ -37,28 +40,42 @@ export class RoutetableComponent implements OnInit {
         this.disroutes.push(disroute);
       });
     });
-    this.driversService.getUADriver().snapshotChanges().subscribe(driv=>{
+    // this.disroutsService.getUARoutes().subscribe(rou=>{
+    //   this.routes=[];
+    //   rou.forEach(r=>{
+    //     let uaroute:any = r.payload.doc.data();
+    //     uaroute.id = r.payload.doc.id;
+    //     this.routes.push(uaroute);
+    //   })
+    // });
+  }
+
+  searchDrivers(){
+    this.driversService.getUASDriver(this.driver_id).snapshotChanges().subscribe(driv=>{
       this.drivers=[];
+      if(driv.length>0){
       driv.forEach(d=>{
         let driver:any=d.payload.doc.data();
         driver.id=d.payload.doc.id;
         this.drivers.push(driver);
-      });
-    });
-    this.disroutsService.getUARoutes().subscribe(rou=>{
-      this.routes=[];
-      rou.forEach(r=>{
-        let uaroute:any = r.payload.doc.data();
-        uaroute.id = r.payload.doc.id;
-        this.routes.push(uaroute);
-      })
-    });
+        this.assigned_person=driver.first_name+ ' ' + driver.last_name;
+  });
+  }else{
+    this.openSnackBar('There are no unassigned drivers on this employee id.','');
+  }
+  });
   }
 
   deleteRoute(disroute){
     this.dialogService.openDltDialog().afterClosed().subscribe(res=>{
       if(res){
-    this.afs.doc(`routes/${disroute.id}`).delete();
+        if(disroute.driver_id!=''){
+          this.afs.doc(`drivers/${disroute.driver_id}`).update({'assigned':false,'assigned_route':''});
+          this.afs.doc(`routes/${disroute.id}`).delete();
+        }
+        else{
+          this.afs.doc(`routes/${disroute.id}`).delete();
+        }
     this.openSnackBar('Route deleted successfully.','');
   }
 });
@@ -68,13 +85,25 @@ export class RoutetableComponent implements OnInit {
   //   this.dialog.open(this.callDLTDialog);
   // }
 
-  callAssignment() {
+  callAssignment(rou) {
+    this.rEdit=rou;
     this.dialog.open(this.assignAgent);
   }
 
   updateRoute(disroute){
-    console.log(this.assigned_person);
-    this.disroutsService.updatePerson(disroute,this.assigned_person);
+    if(disroute.driver_id!=''){
+      this.afs.doc(`drivers/${disroute.driver_id}`).update({'assigned':false,'assigned_route':''});
+    this.disroutsService.updatePerson(disroute,this.assigned_person,this.driver_id);
+    this.afs.doc(`drivers/${this.driver_id}`).update({'assigned':this.assigned,'assigned_route':disroute.route_name});
+    this.assigned_person='';
+    this.driver_id='';
+    }
+    else{
+      this.disroutsService.updatePerson(disroute,this.assigned_person,this.driver_id);
+    this.afs.doc(`drivers/${this.driver_id}`).update({'assigned':this.assigned,'assigned_route':disroute.route_name});
+    this.assigned_person='';
+    this.driver_id='';
+    }
   }
 
   openSnackBar(message: string, action: string) {

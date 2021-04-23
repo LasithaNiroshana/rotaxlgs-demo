@@ -1,4 +1,4 @@
-<form class="signup-form" (ngSubmit)="createUser()">
+<form class="signup-form">
   <div class="error">
     <div class="auth-error">
       {{authError?.message}}
@@ -55,7 +55,7 @@
     <input type="password" matInput placeholder="Confirm Password">
   </mat-form-field>
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="12px">
-  <button class="signup-btn" mat-raised-button color="primary" click="createUser()">SIGNUP</button>
+  <button class="signup-btn" mat-raised-button color="primary" (click)="createUser()">SIGNUP</button>
   <button class="reset-btn" type="button" mat-raised-button>RESET</button>
 </div>
 

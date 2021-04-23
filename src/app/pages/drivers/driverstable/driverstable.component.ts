@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { DltdialogService } from 'src/app/services/dltdialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DisroutsService } from 'src/app/services/disroutes.service';
+import { VehiclesService } from 'src/app/services/vehicles.service';
 
 @Component({
   selector: 'app-driverstable',
@@ -15,12 +16,15 @@ export class DriverstableComponent implements OnInit {
   // @ViewChild('callDLTDialog') callDLTDialog: TemplateRef<any>;
   @ViewChild('callEDITDialog') callEDITDialog: TemplateRef<any>;
   drivers=[];
+  vehicles=[];
   routes=[];
   drivEdit=[];
-  driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','assigned','assigned_route','edit','delete'];
+  driverColumns:string[]=['driver_name','license_no','license_expiry','mobile_no','assigned','assigned_route','vehicle','edit','delete'];
   constructor(private driversservice:DriversService, private afs:AngularFirestore,
     public dialog:MatDialog,public dialogService:DltdialogService,
-    private snackBar:MatSnackBar,private routeService:DisroutsService) {
+    private snackBar:MatSnackBar,private routeService:DisroutsService,
+    private vehiclesService:VehiclesService
+    ) {
 
   }
 
@@ -39,6 +43,14 @@ export class DriverstableComponent implements OnInit {
         let route:any=r.payload.doc.data();
         route.id=r.payload.doc.id;
         this.routes.push(route);
+      });
+    });
+    this.vehiclesService.getUAVehicles().subscribe(vehi=>{
+      this.vehicles=[];
+      vehi.forEach(v=>{
+        let vehicle:any=v.payload.doc.data();
+        vehicle.id=v.payload.doc.id;
+        this.vehicles.push(vehicle);
       });
     });
   }

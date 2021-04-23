@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DriversService } from 'src/app/services/drivers.service';
 import {Driver} from '../../../models/drivers';
+import { Disroute } from 'src/app/models/disroutes';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -23,7 +25,9 @@ export class AddordersComponent implements OnInit {
   [x: string]: any;
   customers:Customer[];
   sales_agents: Salesagent[];
-  driver:Driver[];
+  drivers:Driver[];
+  city:any;
+  routes:Disroute[];
 
   order:Order={
   customer_id:'',
@@ -53,7 +57,9 @@ export class AddordersComponent implements OnInit {
     private router:Router,
     private acr:ActivatedRoute,
     private snackBar:MatSnackBar,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog,
+    private afs:AngularFirestore
+    ) { }
 
   ngOnInit(): void {
     // this.salesagentService.getSalesagents().subscribe(sa=>{
@@ -150,12 +156,16 @@ this.order.sales_agent='';
             this.order.status = '';
             this.order.item_type = '';
             this.order.sales_agent = '';
+            this.order.route='';
+            this.order.driver='';
+              this.order.driver_id='';
           }
           catch (error) {
             this.openSnackBar(error,'');
           }
         }
       });
+      // this.afs.doc(`drivers/${this.order.driver_id}`).update('')
     } else {
       this.openSnackBar('Please fill in the fields','');
     }
@@ -169,13 +179,28 @@ this.order.sales_agent='';
         let customer:any=c.payload.doc.data();
         customer.id=c.payload.doc.id;
         this.customers.push(customer);
-        this.order.customer_name=this.customers[0].first_name +' ' + this.customers[0].last_name ;
-        this.order.address_ln1=this.customers[0].address_ln1;
-        this.order.address_ln2=this.customers[0].address_ln2;
-        this.order.city=this.customers[0].city;
-        this.order.province=this.customers[0].province;
-        this.order.distance = this.customers[0].distance;
-  });this.route();
+        this.order.customer_name=customer.name;
+        this.order.address_ln1=customer.address_ln1;
+        this.order.address_ln2=customer.address_ln2;
+        this.order.city=customer.city;
+        this.order.province=customer.province;
+        this.order.distance =customer.distance;
+        this.routeService.getroute(customer.city).snapshotChanges().subscribe(rou=>{
+          this.routes=[];
+          if(rou.length>0){
+            rou.forEach(r=>{
+              let disroute:any=r.payload.doc.data();
+              disroute.id=r.payload.doc.id;
+              this.routes.push(disroute);
+              this.order.route=disroute.route_name;
+              this.order.driver=disroute.driver;
+              this.order.driver_id=disroute.driver_id;
+            });
+          }else{
+            this.openSnackBar('There is no route assigned for the city','');
+          }
+          });
+  });
 }else{
    this.callDialog();
   }
@@ -183,37 +208,37 @@ this.order.sales_agent='';
 }
 
 searchDrivers(){
-  this.driversService.getspDriver(this.order.driver_id).snapshotChanges().subscribe(driv=>{
-    this.driver=[];
-    if(driv.length>0){
-    driv.forEach(d=>{
-      let driver:any=d.payload.doc.data();
-      driver.id=d.payload.doc.id;
-      this.drivers.push(driver);
-      this.order.driver=this.drivers[0].first_name+ ' ' + this.drivers[0].last_name;
-});
-}else{
- this.callDialog();
-}
-});
+//   this.driversService.getspDriver(this.order.driver_id).snapshotChanges().subscribe(driv=>{
+//     this.drivers=[];
+//     if(driv.length>0){
+//     driv.forEach(d=>{
+//       let driver:any=d.payload.doc.data();
+//       driver.id=d.payload.doc.id;
+//       this.drivers.push(driver);
+//       this.order.driver=this.driver.first_name+ ' ' + this.driver.last_name;
+// });
+// }else{
+//  this.callDialog();
+// }
+// });
 }
 
-route() {
-  this.routeService.getroute(this.order.city).snapshotChanges().subscribe(route =>{
-    try {
-      this.routes = [];
-    if(route.length > 0){
-      route.forEach(r => {
-        let route: any= r.payload.doc.data();
-        this.routes.push(route);
-        this.order.route = this.routes[0].route_name;
-      });
-    }
-    } catch (error) {
-      this.openSnackBar(error,'');
-    }
-  })
-}
+// route() {
+//   this.routeService.getroute(this.order.city).snapshotChanges().subscribe(route =>{
+//     try {
+//       this.routes = [];
+//     if(route.length > 0){
+//       route.forEach(r => {
+//         let route: any= r.payload.doc.data();
+//         this.routes.push(route);
+//         this.order.route = this.routes[0].route_name;
+//       });
+//     }
+//     } catch (error) {
+//       this.openSnackBar(error,'');
+//     }
+//   })
+// }
 
 showupload(){
   this.router.navigate(['bulkupload'],{relativeTo:this.acr});

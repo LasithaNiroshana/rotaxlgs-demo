@@ -9,4 +9,6 @@ export interface Salesagent{
   address_ln2?:string;
   city?:string;
   assigned_customer?:string;
+  customer_id?:string;
+  sbu?:string;
 }

@@ -22,7 +22,7 @@ export class DisroutsService {
     return this.afs.collection('routes',  ref => ref.where('driver', '==', "")).snapshotChanges();
   }
 
-  getroute(city){
+  getroute(city:string){
     return this.afs.collection('routes',  ref => ref.where('cities', 'array-contains', city));
    }
 
@@ -30,8 +30,8 @@ export class DisroutsService {
     this.routeCollection.add(disroute);
   }
 
-  updatePerson(disroute, name){
-    this.afs.collection('routes').doc(disroute.id).update({'driver': name});
+  updatePerson(disroute, name,id){
+    this.afs.collection('routes').doc(disroute.id).update({'driver': name,'driver_id': id});
   }
 
 }

@@ -12,4 +12,5 @@ export interface Driver{
   employee_id?:string;
   assigned?:boolean;
   assigned_route?:string;
+  vehicle?:string;
 }

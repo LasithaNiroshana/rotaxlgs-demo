@@ -28,7 +28,8 @@ export class AddsalesagentsComponent implements OnInit {
   address_ln1:'',
   address_ln2:'',
   city:'',
-  assigned_customer:''
+  assigned_customer:'',
+  customer_id:''
   }
 
   constructor(private salesagentsservice:SalesagentsService,
@@ -80,7 +81,7 @@ export class AddsalesagentsComponent implements OnInit {
      this.salesAgent.address_ln1='';
      this.salesAgent.address_ln2='';
      this.salesAgent.city='';
-
+     this.salesAgent.assigned_customer='';
     }
     else
     {
@@ -104,6 +105,7 @@ export class AddsalesagentsComponent implements OnInit {
     this.salesAgent.address_ln1='';
     this.salesAgent.address_ln2='';
     this.salesAgent.city='';
+    this.salesAgent.assigned_customer='';
   }
 
 }

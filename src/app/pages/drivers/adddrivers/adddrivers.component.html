@@ -35,7 +35,7 @@
     <br><br>
     <mat-divider></mat-divider>
     <br>
-    License Details
+    License & Vehicle Details:
   <br><br>
   <mat-card>
     <div>
@@ -55,6 +55,13 @@
       <input matInput [matDatepicker]="picker1" [(ngModel)]="driver.license_expiry" name="license_expiry">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="drive2-field">
+      <mat-label>Select Vehicle</mat-label>
+      <mat-select [(ngModel)]="driver.vehicle" name="vehicle">
+        <!-- <mat-option value="">Assign Vehicle Later</mat-option> -->
+        <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.vehicle_no">{{vehicle.vehicle_no}}  </mat-option>
+      </mat-select>
     </mat-form-field>
     <br>
     </div>
@@ -93,7 +100,7 @@
   <br><br>
   <mat-divider></mat-divider>
   <br>
-  Contact Details:
+  Contact & Route Details:
   <br><br>
 
   <mat-card class="drive4">
@@ -107,6 +114,20 @@
       <mat-label>Mobile No.</mat-label>
       <input type="text" matInput placeholder="714568424" maxlength="9" [(ngModel)]="driver.mobile_no" name="mobile_no">
       <mat-icon matSuffix>call</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="drive4-field">
+      <mat-label>Select Route</mat-label>
+      <mat-select [(ngModel)]="driver.assigned_route" name="route">
+        <mat-option value="">Assign Route Later</mat-option>
+        <mat-option *ngFor="let route of routes" [value]="route.route_name">{{route.route_name}}  </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="drive4-field">
+      <mat-label>Assigned:{{driver.assigned}}</mat-label>
+      <mat-select [(ngModel)]="driver.assigned" name="driver_id">
+        <mat-option  [value]="true">Yes </mat-option>
+        <mat-option  [value]="false">No </mat-option>
+      </mat-select>
     </mat-form-field>
   </mat-card>
 </div>

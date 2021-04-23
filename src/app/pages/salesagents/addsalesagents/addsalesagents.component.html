@@ -105,7 +105,7 @@
           <mat-form-field class="sales3-field">
             <mat-select [(ngModel)]="salesAgent.assigned_customer" name="assigned_customer">
               <mat-option value="">Select Customer</mat-option>
-              <mat-option *ngFor="let customer of customers" [value]="customer.first_name + customer.last_name">{{customer.first_name}} {{customer.last_name}} </mat-option>
+              <mat-option *ngFor="let customer of customers" [value]="customer.name">{{customer.name}} </mat-option>
             </mat-select>
           </mat-form-field>
         <br>
