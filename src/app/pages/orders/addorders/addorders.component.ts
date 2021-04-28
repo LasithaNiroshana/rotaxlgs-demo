@@ -46,7 +46,8 @@ export class AddordersComponent implements OnInit {
   driver_id:'',
   status:'',
   distance: 0,
-  photo_URL:''
+  photo_URL:'',
+  po_no:''
   }
 
   constructor(private ordersService:OrdersService,
@@ -115,6 +116,7 @@ export class AddordersComponent implements OnInit {
 //   }
 
   reset(){
+    this.order.po_no='';
     this.order.invoice_no='';
 this.order.customer_id='';
 this.order.customer_name='';
@@ -130,6 +132,7 @@ this.order.sales_agent='';
 
   onSubmit() {
     if (this.order.invoice_no != ''
+    && this.order.po_no !=''
       && this.order.customer_id != ''
       && this.order.customer_name != ''
       && this.order.address_ln1 != ''

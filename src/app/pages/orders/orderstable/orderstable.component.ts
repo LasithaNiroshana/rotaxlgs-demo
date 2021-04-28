@@ -41,9 +41,10 @@ export class OrderstableComponent implements OnInit {
     driver_id:'',
     status:'',
     distance: 0,
-    photo_URL:''
+    photo_URL:'',
+    po_no:''
     }
-  ordercolumns:string[]=['order_date','invoice_no','customer_name','address','city','distance','route','driver','status','view','edit','delete'];
+  ordercolumns:string[]=['order_date','invoice_no','po_no','customer_name','address','city','distance','route','driver','status','view','edit','delete'];
   constructor(private ordersservice:OrdersService,
     private routeService: DisroutsService,
     private customerService: CustomersService, private afs:AngularFirestore,public dialog:MatDialog,

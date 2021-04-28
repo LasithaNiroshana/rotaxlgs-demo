@@ -30,11 +30,15 @@ import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 import { StorehomeComponent } from './pages/storehome/storehome.component';
+import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 import { MainGuard } from './guards/main.guard';
 
 
+const redirectToUnauthorizedLogin=()=>redirectUnauthorizedTo(('mainlogin'));
+
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
+  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
   // canActivate:[MainGuard],
   children:[
     {path:'admindashboard',component:AdmindashboardComponent},
@@ -49,9 +53,15 @@ const routes: Routes = [
 },
 {path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
-{path:'salesagenthome',component: SalesagenthomeComponent},
-  {path:'drivershome', component: DrivershomeComponent},
-  {path:'storehome', component: StorehomeComponent},
+{path:'salesagenthome',component: SalesagenthomeComponent,
+canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
+},
+  {path:'drivershome', component: DrivershomeComponent,
+  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
+},
+  {path:'storehome', component: StorehomeComponent,
+  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
+},
   {path:'**',component:MainloginComponent},
 
   {path:'addcustomers',component:AddcustomersComponent},

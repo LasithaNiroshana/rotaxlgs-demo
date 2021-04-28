@@ -58,6 +58,7 @@ adminValue$=this.authAdmin.next()
     this.spinner.requestStarted();
     await this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
       {
+        this.spinner.requestStarted();
         this.spinner.requestEnded();
         // this.eventAuthError.next(error);
         this.openSnackBar(error,'');

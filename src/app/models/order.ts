@@ -19,5 +19,6 @@ export interface Order{
   distance?:number;
   photo_URL?:string;
   note?:string;
+  po_no?:string;
   // pending_completed_time?:Time;
 }
