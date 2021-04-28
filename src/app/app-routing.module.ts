@@ -32,6 +32,7 @@ import { ApprovepageComponent } from './pages/approvepage/approvepage.component'
 import { StorehomeComponent } from './pages/storehome/storehome.component';
 import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 import { MainGuard } from './guards/main.guard';
+import { UploadComponent } from './pages/customers/upload/upload.component';
 
 
 const redirectToUnauthorizedLogin=()=>redirectUnauthorizedTo(('mainlogin'));
@@ -53,15 +54,10 @@ const routes: Routes = [
 },
 {path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
-{path:'salesagenthome',component: SalesagenthomeComponent,
-canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
-},
-  {path:'drivershome', component: DrivershomeComponent,
-  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
-},
-  {path:'storehome', component: StorehomeComponent,
-  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
-},
+
+{path:'salesagenthome',component: SalesagenthomeComponent},
+  {path:'drivershome', component: DrivershomeComponent},
+  {path:'storehome', component: StorehomeComponent},
   {path:'**',component:MainloginComponent},
 
   {path:'addcustomers',component:AddcustomersComponent},
@@ -112,5 +108,6 @@ export const routingComponents=[
  RoutetableComponent,
  DrivershomeComponent,
  DriverstableComponent,
- StorehomeComponent
+ StorehomeComponent,
+ UploadComponent
 ]

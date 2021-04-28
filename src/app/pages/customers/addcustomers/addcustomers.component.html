@@ -1,5 +1,11 @@
 <br>
-<h2>Add Customer Details</h2>
+<div class="form-head" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <h2>Add Customer Details</h2>
+  <button class="upload-btn" type="button"  routerLink="/cusupload" routerLinkActive="active" mat-raised-button>Bulk Upload
+    <mat-icon>upload</mat-icon>
+  </button>
+</div>
+
 <form (ngSubmit)="onSubmit()" class="addcustomer-form">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <!-- <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="20px"> -->
