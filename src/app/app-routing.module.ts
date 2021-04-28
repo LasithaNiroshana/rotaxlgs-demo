@@ -31,6 +31,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 import { StorehomeComponent } from './pages/storehome/storehome.component';
 import { MainGuard } from './guards/main.guard';
+import { UploadComponent } from './pages/customers/upload/upload.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
 },
 {path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
+{path:'cusupload', component: UploadComponent },
 {path:'salesagenthome',component: SalesagenthomeComponent},
   {path:'drivershome', component: DrivershomeComponent},
   {path:'storehome', component: StorehomeComponent},
