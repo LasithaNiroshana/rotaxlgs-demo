@@ -11,8 +11,6 @@ export interface Order{
   item_type?:string;
   order_date?:Date;
   route?:string;
-  sales_agent?:string;
-  sa_id:String;
   driver?:string;
   driver_id?:string;
   status?:string;

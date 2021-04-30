@@ -35,8 +35,6 @@ export class OrderstableComponent implements OnInit {
     item_type:'',
     order_date:new Date(),
     route:'',
-    sales_agent:'',
-    sa_id:'',
     driver:'',
     driver_id:'',
     status:'',

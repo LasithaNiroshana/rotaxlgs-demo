@@ -55,9 +55,15 @@ const routes: Routes = [
 {path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
 
-{path:'salesagenthome',component: SalesagenthomeComponent},
-  {path:'drivershome', component: DrivershomeComponent},
-  {path:'storehome', component: StorehomeComponent},
+{path:'salesagenthome',component: SalesagenthomeComponent,
+canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
+},
+  {path:'drivershome', component: DrivershomeComponent,
+  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
+},
+  {path:'storehome', component: StorehomeComponent,
+  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },
+},
   {path:'**',component:MainloginComponent},
 
   {path:'addcustomers',component:AddcustomersComponent},

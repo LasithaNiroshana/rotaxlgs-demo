@@ -40,8 +40,6 @@ export class AddordersComponent implements OnInit {
   item_type:'',
   order_date:new Date(),
   route:'',
-  sales_agent:'',
-  sa_id:'',
   driver:'',
   driver_id:'',
   status:'',
@@ -127,7 +125,6 @@ this.order.province='';
 this.order.route='';
 this.order.status='';
 this.order.item_type='';
-this.order.sales_agent='';
   }
 
   onSubmit() {
@@ -158,7 +155,6 @@ this.order.sales_agent='';
             this.order.route = '';
             this.order.status = '';
             this.order.item_type = '';
-            this.order.sales_agent = '';
             this.order.route='';
             this.order.driver='';
               this.order.driver_id='';
