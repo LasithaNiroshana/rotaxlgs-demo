@@ -35,7 +35,7 @@ import { MainGuard } from './guards/main.guard';
 import { UploadComponent } from './pages/customers/upload/upload.component';
 
 
-const redirectToUnauthorizedLogin=()=>redirectUnauthorizedTo(('mainlogin'));
+const redirectToUnauthorizedLogin=()=>redirectUnauthorizedTo(('**'));
 
 const routes: Routes = [
   {path:'adminhome',component:AdminhomeComponent,
