@@ -13,6 +13,7 @@ import { finalize } from 'rxjs/operators';
 export class SignupComponent implements OnInit {
   title = "cloudsSorage";
   selectedFile: File = null;
+  cpassword:string;
   fb;
   downloadURL: Observable<string>;
   authError:any;
@@ -77,6 +78,8 @@ export class SignupComponent implements OnInit {
     this.user.mobile_no='';
     this.user.password='';
     this.user.role='';
+    this.user.password='';
+    this.cpassword='';
   }
 
 }

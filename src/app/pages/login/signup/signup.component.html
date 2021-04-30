@@ -52,11 +52,11 @@
 
   <mat-form-field class="signup-full-width">
     <mat-label>Confirm Password</mat-label>
-    <input type="password" matInput placeholder="Confirm Password">
+    <input type="password" matInput placeholder="Confirm Password" [(ngModel)]="cpassword" name="cpassword">
   </mat-form-field>
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="12px">
   <button class="signup-btn" mat-raised-button color="primary" (click)="createUser()">SIGNUP</button>
-  <button class="reset-btn" type="button" mat-raised-button>RESET</button>
+  <button class="reset-btn" type="button" mat-raised-button (click)="resetForm()">RESET</button>
 </div>
 
 </form>
