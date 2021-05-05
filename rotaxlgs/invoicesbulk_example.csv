@@ -1,0 +1,3 @@
+id,customer_id,customer_name,address_ln1,address_ln2,city,province,invoice_no,po_no,order_date,route,driver_id,driver,status,distance,photo_URL
+,157512F,Santec,No.12,Fancis Lane,Kiribathgoda,Western,157532F,,26/02/2021,,,,Issued,,
+,174555G,Holsim,NO.6,Daluagama,Kelaniya,Western,132561G,,26/02/2021,,,,Issued,,

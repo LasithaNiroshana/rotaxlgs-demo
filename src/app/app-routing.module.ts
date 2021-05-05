@@ -30,9 +30,8 @@ import { UseruploadComponent } from './pages/userupload/userupload.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ApprovepageComponent } from './pages/approvepage/approvepage.component';
 import { StorehomeComponent } from './pages/storehome/storehome.component';
-import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
-import { MainGuard } from './guards/main.guard';
 import { UploadComponent } from './pages/customers/upload/upload.component';
+import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 
 const redirectToUnauthorizedLogin=()=>redirectUnauthorizedTo(('**'));
@@ -54,6 +53,7 @@ const routes: Routes = [
 },
 {path:'notapproved', component: ApprovepageComponent },
 {path:'bulkupload', component: UseruploadComponent },
+{path:'cusupload',component:UploadComponent},
 
 {path:'salesagenthome',component: SalesagenthomeComponent,
 canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthorizedLogin },

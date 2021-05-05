@@ -1,4 +1,4 @@
-<h1 class="heading">Not delivered active invoices</h1>
+<h1 class="heading">Not Delivered Active Invoices</h1>
 <div *ngIf="orders?.length>0;else noOrders">
   <table mat-table [dataSource]="orders" class="mat-elevation-z8">
     <ng-container matColumnDef="invoice_no">
@@ -21,7 +21,7 @@
       <th mat-header-cell *matHeaderCellDef>Postal Code</th>
       <td mat-cell *matCellDef="let orders"> {{orders.postal_code}} </td>
     </ng-container> -->
-    
+
     <ng-container matColumnDef="order_date">
       <th mat-header-cell *matHeaderCellDef>Order Date</th>
       <td mat-cell *matCellDef="let orders"> {{ orders.order_date.seconds*1000 | date}}  </td>

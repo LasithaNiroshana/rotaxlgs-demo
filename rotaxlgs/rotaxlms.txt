@@ -1,0 +1,12 @@
+Rotax LMS
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyCcdhl59VmqR8vcResw2E47Qa5PicoH4PA",
+    authDomain: "rotax-lms.firebaseapp.com",
+    projectId: "rotax-lms",
+    storageBucket: "rotax-lms.appspot.com",
+    messagingSenderId: "633780569882",
+    appId: "1:633780569882:web:a4af53d31e440573ca0ea3",
+    measurementId: "G-10J6XEVPXJ"
+  };
