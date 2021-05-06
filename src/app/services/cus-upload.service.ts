@@ -26,7 +26,7 @@ export class CusUploadService {
   return new Promise<void>((resolve) => {
   _.map(json, (e, i) => {
   _.keys(e).map(() => {
-  this.afs.collection('customers').doc('cus ' + i).set(e);
+  this.afs.collection('customers').doc('cus ' + i).update(e);
   this.openSnackBar('List of cutomers added successfully','')
   })
   })

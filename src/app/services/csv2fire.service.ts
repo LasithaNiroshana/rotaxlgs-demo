@@ -23,7 +23,7 @@ firethis(json, collection) {
 return new Promise<void>((resolve) => {
 _.map(json, (e, i) => {
 _.keys(e).map(() => {
-this.afs.collection('orders').doc('doc ' + i).set(e);
+this.afs.collection('orders').doc('doc ' + i).update(e);
 this.openSnackBar('List of orders added successfully','')
 })
 })
