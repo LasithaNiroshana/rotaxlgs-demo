@@ -21,10 +21,10 @@ header: true
 }
 firethis(json, collection) {
 return new Promise<void>((resolve) => {
-_.map(json, (e, i) => {
+_.map(json, (e) => {
 _.keys(e).map(() => {
-this.afs.collection('orders').doc('doc ' + i).update(e);
-this.openSnackBar('List of orders added successfully','')
+this.afs.collection('orders').add(e);
+this.openSnackBar('List of orders added successfully','');
 })
 })
 resolve();

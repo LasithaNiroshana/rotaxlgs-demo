@@ -24,9 +24,9 @@ export class CusUploadService {
   }
   firethis(json, collection) {
   return new Promise<void>((resolve) => {
-  _.map(json, (e, i) => {
+  _.map(json, (e) => {
   _.keys(e).map(() => {
-  this.afs.collection('customers').doc('cus ' + i).update(e);
+  this.afs.collection('customers').add(e);
   this.openSnackBar('List of cutomers added successfully','')
   })
   })
