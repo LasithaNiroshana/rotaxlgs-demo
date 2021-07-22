@@ -24,12 +24,8 @@ export class Csv2fireService {
   firethis(json, collection) {
     return new Promise<void>((resolve) => {
       _.map(json, (e, i) => {
-        _.keys(e).map(() => {
-          this.afs
-            .collection("orders")
-            .add(e);
-          this.openSnackBar("List of orders added successfully", "");
-        });
+        this.afs.collection('orders').add(e);
+        this.openSnackBar('List of orders added successfully', '');
       });
       resolve();
     });

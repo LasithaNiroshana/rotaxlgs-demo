@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
 providedIn: 'root'
 })
-export class Csv2fireService {
+export class CusUploadService {
 csv_rec: any[] = [];
 header = false;
 constructor(private afs: AngularFirestore,private snackBar:MatSnackBar) { }
@@ -20,15 +20,13 @@ header: true
 });
 }
 firethis(json, collection) {
-return new Promise<void>((resolve) => {
-_.map(json, (e, i) => {
-_.keys(e).map(() => {
-this.afs.collection('orders').doc('doc ' + i).set(e);
-this.openSnackBar('List of orders added successfully','')
-})
-})
-resolve();
-})
+  return new Promise<void>((resolve) => {
+    _.map(json, (e, i) => {
+      this.afs.collection('customers').add(e);
+      this.openSnackBar('List of orders added successfully', '');
+    });
+    resolve();
+  });
 }
 
 openSnackBar(message: string, action: string) {
