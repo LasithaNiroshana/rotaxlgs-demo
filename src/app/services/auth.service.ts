@@ -114,6 +114,7 @@ adminValue$=this.authAdmin.next()
     })
     .catch(error=>{
       this.eventAuthError.next(error);
+      this.spinner.requestEnded();
       this.openSnackBar(error,'');
   });}
 
@@ -155,7 +156,9 @@ adminValue$=this.authAdmin.next()
         this.getUserData(userCredentials).subscribe();
       });
       }).catch(error=>{
-        this.eventAuthError.next(error);}
+        this.spinner.requestEnded();
+        this.eventAuthError.next(error);
+      }
       );
       this.spinner.requestEnded();
       this.openSnackBar('Admin Profile Creation Was Successful','');
