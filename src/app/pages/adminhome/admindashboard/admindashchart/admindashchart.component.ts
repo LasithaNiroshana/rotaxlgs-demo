@@ -13,6 +13,7 @@ export class AdmindashchartComponent implements OnInit {
    }
 
    ngOnInit(): void {
+    //Subscribing to orders serviceto get not delivered order information
     this.ordersservice.getDOrders().subscribe(order=>{
       this.orders=[];
       order.forEach(o=>{

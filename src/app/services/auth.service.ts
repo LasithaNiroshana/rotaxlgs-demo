@@ -58,12 +58,12 @@ adminValue$=this.authAdmin.next()
     this.spinner.requestStarted();
     await this.afauth.signInWithEmailAndPassword(email,password).catch(error=>
       {
-        this.spinner.requestStarted();
-        this.spinner.requestEnded();
         // this.eventAuthError.next(error);
         this.openSnackBar(error,'');
+        this.spinner.requestEnded();
       }).then(userCredentials=>{
         if(userCredentials){
+          this.spinner.requestEnded();
         this.getUserData(userCredentials).subscribe((currentUser: any) => {
           //  this.afauth.authState.
           if(currentUser.role=='Admin'){

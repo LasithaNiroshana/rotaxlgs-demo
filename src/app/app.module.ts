@@ -28,7 +28,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {HttpClientModule} from '@angular/common/http';
-// import {Chart} from 'chart.js';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -61,7 +60,9 @@ import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenth
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
+    routingComponents,          //Importing routing componets from routing module
+
+    //Importing created components
     AdmindashboardComponent,
     Adminstatcard1Component,
     Adminstatcard2Component,
@@ -88,9 +89,16 @@ import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenth
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase,'rotaxlgs-demo'),
+    AngularFireModule.initializeApp(environment.firebase,'rotaxlgs-demo'),    //Initializing firebase
     AngularFirestoreModule,
     AngularFireAuthModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    FormsModule,
+    HttpClientModule,
+
+    //Importing material module
     MatButtonModule,
     MatIconModule,
     MatCardModule,
@@ -113,11 +121,6 @@ import { SalesagenthometabelComponent } from './pages/salesagenthome/salesagenth
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    FlexLayoutModule,
-    FormsModule,
-    HttpClientModule
   ],
   providers: [MainGuard],
   bootstrap: [AppComponent],

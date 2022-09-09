@@ -11,6 +11,7 @@ export class MainGuard implements CanActivate {
 
   constructor(private auth:AuthService, private route:Router,private afs:AngularFirestore){}
 
+  //Can activate function
   canActivate():boolean{
     if(this.auth.getUserState().subscribe(user=>{
       this.user=user;

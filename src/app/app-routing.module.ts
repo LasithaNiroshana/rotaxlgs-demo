@@ -87,6 +87,8 @@ canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToUnauthoriz
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+//Exporting routing components
 export const routingComponents=[
   AdminhomeComponent,
   AdmindashboardComponent,

@@ -1,3 +1,4 @@
+//Creating salesagent model
 export interface Salesagent{
   first_name?:string;
   last_name?:string;

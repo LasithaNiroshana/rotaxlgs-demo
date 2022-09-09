@@ -1,5 +1,0 @@
-sales agents-customers
-customers------sales id
-status pickup ready
-backup for excel sheet
-multiple delete

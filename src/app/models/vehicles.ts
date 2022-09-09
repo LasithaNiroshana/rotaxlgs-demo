@@ -1,3 +1,4 @@
+//Creating vehicle model
 export interface Vehicle{
   vehicle_no?:string;
   revenuelicense_no?:string;
